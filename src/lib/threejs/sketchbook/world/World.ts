@@ -122,7 +122,7 @@ export class World {
 		// let timeStep = unscaledTimeStep * this.params.Time_Scale;
 		// timeStep = Math.min(timeStep, 1 / 30);    // min 30 fps
 
-    this.mesh?.rotateY(this.renderDelta * 5);
+    this.mesh?.rotateY(0.001 * 5);
 
   }
 

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { IUpdatable } from '../interfaces/IUpdatable';
 
 
 
@@ -18,6 +19,22 @@ export class World {
 
   public width: number;
   public height: number;
+
+  public params: any = {
+  	Pointer_Lock: true,
+		Mouse_Sensitivity: 0.3,
+		Time_Scale: 1,
+		Shadows: true,
+		FXAA: true,
+		Debug_Physics: false,
+		Debug_FPS: false,
+		Sun_Elevation: 50,
+		Sun_Rotation: 145,
+  };
+
+  public updatables: IUpdatable[] = [];
+
+
 
   public mesh: THREE.Mesh;
 
@@ -125,6 +142,12 @@ export class World {
     this.mesh?.rotateY(0.001 * 5);
 
   }
+
+  public registerUpdatable(registree: IUpdatable): void
+	{
+		this.updatables.push(registree);
+		this.updatables.sort((a, b) => (a.updateOrder > b.updateOrder) ? 1 : -1);
+	}
 
 
 }

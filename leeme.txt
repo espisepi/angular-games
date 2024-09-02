@@ -11,5 +11,6 @@ Sketchbook Pasos a Seguir:
 
 2 - Incluir los controles de la camara y los distintos tipos de controles dentro del juego
   -- Podemos hacer esto gracias a que ya tenemos implementado Los Inputs (Paso 1)
+  2.1 - Incluir MODO DIOS de Camara
 
 

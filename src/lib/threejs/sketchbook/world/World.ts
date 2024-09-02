@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { IUpdatable } from '../interfaces/IUpdatable';
 import { InputManager } from '../core/InputManager';
+import { CameraOperator } from '../core/CameraOperator';
 
 
 
@@ -19,6 +20,8 @@ export class World {
 	public justRendered: boolean;
 
   public inputManager: InputManager;
+  public cameraOperator: CameraOperator;
+
 
 
   public width: number;
@@ -103,6 +106,8 @@ export class World {
 
     // Initialization
 		this.inputManager = new InputManager(this, this.renderer.domElement);
+    this.cameraOperator = new CameraOperator(this, this.camera, this.params.Mouse_Sensitivity);
+
 
 
     // Render call
@@ -129,22 +134,41 @@ export class World {
 	 */
 	public render(world: World): void
 	{
-    this.requestDelta = this.clock.getDelta();
+    		this.requestDelta = this.clock.getDelta();
 
-    requestAnimationFrame(() =>
+		requestAnimationFrame(() =>
 		{
 			world.render(world);
 		});
 
+		// Getting timeStep
+		let unscaledTimeStep = (this.requestDelta + this.renderDelta + this.logicDelta) ;
+		let timeStep = unscaledTimeStep * this.params.Time_Scale;
+		timeStep = Math.min(timeStep, 1 / 30);    // min 30 fps
+
+		// Logic
+		world.update(timeStep, unscaledTimeStep);
+
+		// Measuring logic time
+		this.logicDelta = this.clock.getDelta();
+
+		// Frame limiting
+		let interval = 1 / 60;
+		this.sinceLastFrame += this.requestDelta + this.renderDelta + this.logicDelta;
+		this.sinceLastFrame %= interval;
+
+		// Stats end
+		// this.stats.end();
+		// this.stats.begin();
+
+		// Actual rendering with a FXAA ON/OFF switch
+		// if (this.params.FXAA) this.composer.render();
+		// else this.renderer.render(this.graphicsWorld, this.camera);
     this.renderer.render(this.graphicsWorld, this.camera);
 
 		// Measuring render time
 		this.renderDelta = this.clock.getDelta();
 
-    // Getting timeStep
-		// let unscaledTimeStep = (this.requestDelta + this.renderDelta + this.logicDelta) ;
-		// let timeStep = unscaledTimeStep * this.params.Time_Scale;
-		// timeStep = Math.min(timeStep, 1 / 30);    // min 30 fps
 
     this.mesh?.rotateY(0.001 * 5);
 
@@ -155,6 +179,46 @@ export class World {
 		this.updatables.push(registree);
 		this.updatables.sort((a, b) => (a.updateOrder > b.updateOrder) ? 1 : -1);
 	}
+
+
+  public updateControls(controls: any): void
+	{
+    console.log("Update Controls, new Controls: " + controls);
+		// let html = '';
+		// html += '<h2 class="controls-title">Controls:</h2>';
+
+		// controls.forEach((row: any) =>
+		// {
+		// 	html += '<div class="ctrl-row">';
+		// 	row.keys.forEach((key: any) => {
+		// 		if (key === '+' || key === 'and' || key === 'or' || key === '&') html += '&nbsp;' + key + '&nbsp;';
+		// 		else html += '<span class="ctrl-key">' + key + '</span>';
+		// 	});
+
+		// 	html += '<span class="ctrl-desc">' + row.desc + '</span></div>';
+		// });
+
+		// document.getElementById('controls').innerHTML = html;
+	}
+
+  // Update
+	// Handles all logic updates.
+	public update(timeStep: number, unscaledTimeStep: number): void
+	{
+		// this.updatePhysics(timeStep);
+
+		// Update registred objects
+		this.updatables.forEach((entity) => {
+			entity.update(timeStep, unscaledTimeStep);
+		});
+
+		// Lerp time scale
+		// this.params.Time_Scale = THREE.MathUtils.lerp(this.params.Time_Scale, this.timeScaleTarget, 0.2);
+
+		// Physics debug
+		// if (this.params.Debug_Physics) this.cannonDebugRenderer.update();
+	}
+
 
 
 }

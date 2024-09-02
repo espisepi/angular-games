@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { IUpdatable } from '../interfaces/IUpdatable';
+import { InputManager } from '../core/InputManager';
 
 
 
@@ -17,11 +18,14 @@ export class World {
 	public sinceLastFrame: number;
 	public justRendered: boolean;
 
+  public inputManager: InputManager;
+
+
   public width: number;
   public height: number;
 
   public params: any = {
-  	Pointer_Lock: true,
+  	Pointer_Lock: false,
 		Mouse_Sensitivity: 0.3,
 		Time_Scale: 1,
 		Shadows: true,
@@ -96,6 +100,9 @@ export class World {
 		this.logicDelta = 0;
 		this.sinceLastFrame = 0;
 		this.justRendered = false;
+
+    // Initialization
+		this.inputManager = new InputManager(this, this.renderer.domElement);
 
 
     // Render call

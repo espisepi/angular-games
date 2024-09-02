@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-// import * as Utils from './FunctionLibrary';
+import * as Utils from './FunctionLibrary';
 import { World } from '../world/World';
 import { IInputReceiver } from '../interfaces/IInputReceiver';
 import { KeyBinding } from './KeyBinding';
@@ -209,20 +209,19 @@ export class CameraOperator implements IInputReceiver, IUpdatable
 
 	public inputReceiverUpdate(timeStep: number): void
 	{
-    // TODO: Descomentar para mover la camara en modo dios
-		// // Set fly speed
-		// let speed = this.movementSpeed * (this.actions.fast.isPressed ? timeStep * 600 : timeStep * 60);
+		// Set fly speed
+		let speed = this.movementSpeed * (this.actions['fast'].isPressed ? timeStep * 600 : timeStep * 60);
 
-		// const up = Utils.getUp(this.camera);
-		// const right = Utils.getRight(this.camera);
-		// const forward = Utils.getBack(this.camera);
+		const up = Utils.getUp(this.camera);
+		const right = Utils.getRight(this.camera);
+		const forward = Utils.getBack(this.camera);
 
-		// this.upVelocity = THREE.MathUtils.lerp(this.upVelocity, +this.actions.up.isPressed - +this.actions.down.isPressed, 0.3);
-		// this.forwardVelocity = THREE.MathUtils.lerp(this.forwardVelocity, +this.actions.forward.isPressed - +this.actions.back.isPressed, 0.3);
-		// this.rightVelocity = THREE.MathUtils.lerp(this.rightVelocity, +this.actions.right.isPressed - +this.actions.left.isPressed, 0.3);
+		this.upVelocity = THREE.MathUtils.lerp(this.upVelocity, +this.actions['up'].isPressed - +this.actions['down'].isPressed, 0.3);
+		this.forwardVelocity = THREE.MathUtils.lerp(this.forwardVelocity, +this.actions['forward'].isPressed - +this.actions['back'].isPressed, 0.3);
+		this.rightVelocity = THREE.MathUtils.lerp(this.rightVelocity, +this.actions['right'].isPressed - +this.actions['left'].isPressed, 0.3);
 
-		// this.target.add(up.multiplyScalar(speed * this.upVelocity));
-		// this.target.add(forward.multiplyScalar(speed * this.forwardVelocity));
-		// this.target.add(right.multiplyScalar(speed * this.rightVelocity));
+		this.target.add(up.multiplyScalar(speed * this.upVelocity));
+		this.target.add(forward.multiplyScalar(speed * this.forwardVelocity));
+		this.target.add(right.multiplyScalar(speed * this.rightVelocity));
 	}
 }

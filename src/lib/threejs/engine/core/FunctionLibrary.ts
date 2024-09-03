@@ -2,6 +2,22 @@ import * as THREE from 'three';
 import { Space } from '../enums/Space';
 
 
+// Dom utils ======================================
+
+export function getElementWidth(element: HTMLElement): number {
+    let widthString = window.getComputedStyle(element).width; // Obtienes el valor computado de width, por ejemplo, "100px"
+    return parseFloat(widthString);
+}
+
+export function getElementHeight(element: HTMLElement): number {
+    let heightString = window.getComputedStyle(element).height; // Obtienes el valor computado de height, por ejemplo, "100px"
+    return parseFloat(heightString);
+}
+
+
+
+// Matrix utils ======================================
+
 export function getRight(obj: THREE.Object3D, space: Space = Space.Global): THREE.Vector3
 {
 	const matrix = getMatrix(obj, space);

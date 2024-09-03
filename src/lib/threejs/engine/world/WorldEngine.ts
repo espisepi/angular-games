@@ -3,13 +3,14 @@ import { IUpdatable } from '../interfaces/IUpdatable';
 import { InputManager } from '../core/InputManager';
 import { CameraOperator } from '../core/CameraOperator';
 import { IWorldEngineOptions } from '../interfaces/IWorldEngineOptions';
+import { RendererEngine } from '../core/RendererEngine';
+import { getElementHeight, getElementWidth } from '../core/FunctionLibrary';
 
 
 
 
 
 export class WorldEngine {
-  public renderer: THREE.WebGLRenderer;
 	public camera: THREE.PerspectiveCamera;
 
   public graphicsWorld: THREE.Scene;
@@ -24,10 +25,8 @@ export class WorldEngine {
   public inputManager: InputManager;
   public cameraOperator: CameraOperator;
 
+  public rendererEngine: RendererEngine;
 
-
-  public width: number;
-  public height: number;
 
   public params: any = {
   	Pointer_Lock: false,
@@ -47,52 +46,18 @@ export class WorldEngine {
     const { parent } = options;
     const scope = this;
 
-    // TODO: Refactor con metodo porque se repite
-    let widthString = window.getComputedStyle(parent).width; // Obtienes el valor computado de width, por ejemplo, "100px"
-    let heightString = window.getComputedStyle(parent).height; // Obtienes el valor computado de width, por ejemplo, "100px"
-    this.width = parseFloat(widthString);
-    this.height = parseFloat(heightString);
 
-
-
-    // Renderer
-		this.renderer = new THREE.WebGLRenderer();
-		this.renderer.setPixelRatio(window.devicePixelRatio);
-    this.renderer.setSize(this.width, this.height);
-		// this.renderer.setSize(window.innerWidth, window.innerHeight);
-		// this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-		// this.renderer.toneMappingExposure = 1.0;
-		// this.renderer.shadowMap.enabled = true;
-		// this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
-    // Canvas
-		parent.appendChild(this.renderer.domElement);
-		this.renderer.domElement.id = 'canvas';
-
-    // Auto window resize
-		function onWindowResize(): void
-		{
-      // TODO: Refactor con metodo porque se repite
-      let widthString = window.getComputedStyle(parent).width; // Obtienes el valor computado de width, por ejemplo, "100px"
-      let heightString = window.getComputedStyle(parent).height; // Obtienes el valor computado de width, por ejemplo, "100px"
-      scope.width = parseFloat(widthString);
-      scope.height = parseFloat(heightString);
-
-
-      scope.camera.aspect = scope.width / scope.height;
-			// scope.camera.aspect = window.innerWidth / window.innerHeight;
-			scope.camera.updateProjectionMatrix();
-      scope.renderer.setSize(scope.width, scope.height);
-			// scope.renderer.setSize(window.innerWidth, window.innerHeight);
-			// fxaaPass.uniforms['resolution'].value.set(1 / (window.innerWidth * pixelRatio), 1 / (window.innerHeight * pixelRatio));
-			// scope.composer.setSize(window.innerWidth * pixelRatio, window.innerHeight * pixelRatio);
-		}
-		window.addEventListener('resize', onWindowResize, false);
+    const width = getElementWidth(parent);
+    const height = getElementHeight(parent);
 
     // Three.js scene
 		this.graphicsWorld = new THREE.Scene();
-		this.camera = new THREE.PerspectiveCamera(80, this.width / this.height, 0.1, 1010);
+		this.camera = new THREE.PerspectiveCamera(80, width / height, 0.1, 1010);
     this.camera.position.set(0,0,3);
+
+    // Renderer
+    this.rendererEngine = new RendererEngine(parent, this.camera);
+
 
     // RenderLoop
 		this.clock = new THREE.Clock();
@@ -102,7 +67,7 @@ export class WorldEngine {
 		this.justRendered = false;
 
     // Initialization
-		this.inputManager = new InputManager(this, this.renderer.domElement);
+		this.inputManager = new InputManager(this, this.rendererEngine.renderer.domElement);
     this.cameraOperator = new CameraOperator(this, this.camera, this.params.Mouse_Sensitivity);
 
 
@@ -150,7 +115,7 @@ export class WorldEngine {
 		// Actual rendering with a FXAA ON/OFF switch
 		// if (this.params.FXAA) this.composer.render();
 		// else this.renderer.render(this.graphicsWorld, this.camera);
-    this.renderer.render(this.graphicsWorld, this.camera);
+    this.rendererEngine.renderer.render(this.graphicsWorld, this.camera);
 
 		// Measuring render time
 		this.renderDelta = this.clock.getDelta();

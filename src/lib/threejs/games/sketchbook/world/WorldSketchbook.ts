@@ -3,6 +3,8 @@ import { IUpdatable } from '../../../engine/interfaces/IUpdatable';
 import { InputManager } from '../../../engine/core/InputManager';
 import { CameraOperator } from '../../../engine/core/CameraOperator';
 import { WorldEngine } from '../../../engine/world/WorldEngine';
+import { IWorldEngineOptions } from '../../../engine/interfaces/IWorldEngineOptions';
+import { IWorldSketchbookOptions } from '../interfaces/IWorldSketchbookOptions';
 
 
 
@@ -10,9 +12,9 @@ export class WorldSketchbook extends WorldEngine {
 
   public mesh: THREE.Mesh;
 
-  constructor(parent: HTMLElement) {
+  constructor(options: IWorldSketchbookOptions) {
 
-    super(parent);
+    super(options as IWorldEngineOptions);
 
     // create mesh
     this.mesh = new THREE.Mesh(

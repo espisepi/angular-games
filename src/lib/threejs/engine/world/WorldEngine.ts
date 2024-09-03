@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { IUpdatable } from '../interfaces/IUpdatable';
 import { InputManager } from '../core/InputManager';
 import { CameraOperator } from '../core/CameraOperator';
+import { IWorldEngineOptions } from '../interfaces/IWorldEngineOptions';
 
 
 
@@ -42,7 +43,8 @@ export class WorldEngine {
 
   public updatables: IUpdatable[] = [];
 
-  constructor(parent: HTMLElement) {
+  constructor(options: IWorldEngineOptions) {
+    const { parent } = options;
     const scope = this;
 
     // TODO: Refactor con metodo porque se repite

@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
-import { WorldSketchbook } from '../lib/threejs/games/sketchbook/world/WorldSketchbook';
-import { IWorldSketchbookOptions } from '../lib/threejs/games/sketchbook/interfaces/IWorldSketchbookOptions';
+import { WorldSketchbook } from '../lib-sketchbook/threejs/games/sketchbook/world/WorldSketchbook';
+import { IWorldSketchbookOptions } from '../lib-sketchbook/threejs/games/sketchbook/interfaces/IWorldSketchbookOptions';
 
 @Component({
   selector: 'app-root',

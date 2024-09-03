@@ -6,7 +6,7 @@ import { WorldEngine } from '../../../engine/world/WorldEngine';
 
 
 
-export class World extends WorldEngine {
+export class WorldSketchbook extends WorldEngine {
 
   public mesh: THREE.Mesh;
 

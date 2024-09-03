@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
-import { World } from '../lib/threejs/games/sketchbook/world/World';
+import { WorldSketchbook } from '../lib/threejs/games/sketchbook/world/WorldSketchbook';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +21,6 @@ export class AppComponent implements AfterViewInit  {
     // Ejemplo de cómo podrías manipular el elemento
     this.divElement.nativeElement.style.backgroundColor = 'yellow';
 
-    const world = new World(this.divElement.nativeElement);
+    const world = new WorldSketchbook(this.divElement.nativeElement);
   }
 }

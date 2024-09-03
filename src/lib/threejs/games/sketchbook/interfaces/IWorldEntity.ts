@@ -1,4 +1,4 @@
-import { World } from '../world/World';
+import { World } from '../world/WorldSketchbook';
 import { EntityType } from '../enums/EntityType';
 import { IUpdatable } from '../../../engine/interfaces/IUpdatable';
 

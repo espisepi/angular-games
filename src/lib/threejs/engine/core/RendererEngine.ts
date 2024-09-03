@@ -71,7 +71,6 @@ export class RendererEngine {
   render(): number[] {
     this.requestDelta = this.clock.getDelta();
 
-
 		// Getting timeStep
 		let unscaledTimeStep = (this.requestDelta + this.renderDelta + this.logicDelta) ;
 		// let timeStep = unscaledTimeStep * this.params.Time_Scale;
@@ -99,8 +98,6 @@ export class RendererEngine {
 		this.renderDelta = this.clock.getDelta();
 
     return [ timeStep, unscaledTimeStep ];
-
-
 
   }
 }

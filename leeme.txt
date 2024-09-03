@@ -13,9 +13,9 @@ Sketchbook Pasos a Seguir:
   -- Podemos hacer esto gracias a que ya tenemos implementado Los Inputs (Paso 1)
   2.1 OK - Incluir MODO DIOS de Camara
 
-3 - Incluir Character con animaciones y fisicas
-  3.1 - Incluir Character con animaciones
-  3.2 - Incluir Character con fisicas
+3 - Incluir Character con fisicas y animaciones
+  3.1 - Incluir Character con fisicas
+  3.2 - Incluir Character con animaciones
 
 4 - Incluir Vehiculos
 

@@ -1,17 +1,17 @@
 import * as THREE from 'three';
 import * as Utils from './FunctionLibrary';
-import { World } from '../../games/sketchbook/world/World';
 import { IInputReceiver } from '../interfaces/IInputReceiver';
 import { KeyBinding } from './KeyBinding';
 // import { Character } from '../characters/Character';
 // import _ = require('lodash'); // NO USAR LODASH
 import { IUpdatable } from '../interfaces/IUpdatable';
+import { WorldEngine } from '../world/WorldEngine';
 
 export class CameraOperator implements IInputReceiver, IUpdatable
 {
 	public updateOrder: number = 4;
 
-	public world: World;
+	public world: WorldEngine;
 	public camera: THREE.Camera;
 	public target: THREE.Vector3;
 	public sensitivity: THREE.Vector2;
@@ -34,7 +34,7 @@ export class CameraOperator implements IInputReceiver, IUpdatable
 
 	// public characterCaller: Character;
 
-	constructor(world: World, camera: THREE.Camera, sensitivityX: number = 1, sensitivityY: number = sensitivityX * 0.8)
+	constructor(world: WorldEngine, camera: THREE.Camera, sensitivityX: number = 1, sensitivityY: number = sensitivityX * 0.8)
 	{
 		this.world = world;
 		this.camera = camera;

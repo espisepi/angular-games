@@ -1,12 +1,12 @@
-import { World } from '../../games/sketchbook/world/World';
 import { IInputReceiver } from '../interfaces/IInputReceiver';
 import { IUpdatable } from '../interfaces/IUpdatable';
+import { WorldEngine } from '../world/WorldEngine';
 
 export class InputManager implements IUpdatable
 {
 	public updateOrder: number = 3;
 
-	public world: World;
+	public world: WorldEngine;
 	public domElement: any;
 	public pointerLock: any;
 	public isLocked: boolean;
@@ -21,7 +21,7 @@ export class InputManager implements IUpdatable
 	public boundOnKeyDown: (evt: any) => void;
 	public boundOnKeyUp: (evt: any) => void;
 
-	constructor(world: World, domElement: HTMLElement)
+	constructor(world: WorldEngine, domElement: HTMLElement)
 	{
 		this.world = world;
 		this.pointerLock = world.params.Pointer_Lock;

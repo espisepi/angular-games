@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
-import { World } from '../lib/threejs/sketchbook/world/World';
+import { World } from '../lib/threejs/games/sketchbook/world/World';
 
 @Component({
   selector: 'app-root',

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
-import { IUpdatable } from '../interfaces/IUpdatable';
-import { InputManager } from '../core/InputManager';
-import { CameraOperator } from '../core/CameraOperator';
+import { IUpdatable } from '../../../engine/interfaces/IUpdatable';
+import { InputManager } from '../../../engine/core/InputManager';
+import { CameraOperator } from '../../../engine/core/CameraOperator';
 
 
 

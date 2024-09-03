@@ -1,4 +1,4 @@
-import { World } from '../world/World';
+import { World } from '../../games/sketchbook/world/World';
 import { IInputReceiver } from '../interfaces/IInputReceiver';
 import { IUpdatable } from '../interfaces/IUpdatable';
 

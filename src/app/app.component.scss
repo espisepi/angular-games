@@ -1,6 +1,10 @@
 
+// Actualmente el tamano lo decide la app que ejecute el canvas
+// .canvas-container {
+//   width: 300px;
+//   height:300px;
+// }
 
 .canvas-container {
-  width: 300px;
-  height:300px;
+  overflow: hidden;
 }

@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 import { WorldSketchbook } from '../libs/lib-sketchbook/threejs/games/sketchbook/world/WorldSketchbook';
 import { IWorldSketchbookOptions } from '../libs/lib-sketchbook/threejs/games/sketchbook/interfaces/IWorldSketchbookOptions';
+import { SepinacoGameEngine } from '../libs/lib-sepinaco-game-engine/SepinacoGameEngine';
 
 @Component({
   selector: 'app-root',
@@ -22,9 +23,11 @@ export class AppComponent implements AfterViewInit  {
     // Ejemplo de cómo podrías manipular el elemento
     this.divElement.nativeElement.style.backgroundColor = 'yellow';
 
-    const options: IWorldSketchbookOptions = {
-      parent: this.divElement.nativeElement
-    }
-    const world = new WorldSketchbook(options);
+    // const options: IWorldSketchbookOptions = {
+    //   parent: this.divElement.nativeElement
+    // }
+    // const world = new WorldSketchbook(options);
+
+    const sepinacoGameEngine = new SepinacoGameEngine(this.divElement.nativeElement);
   }
 }

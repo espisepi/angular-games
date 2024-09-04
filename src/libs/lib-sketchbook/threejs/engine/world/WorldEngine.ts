@@ -17,9 +17,6 @@ export class WorldEngine {
 
   public graphicsWorld: THREE.Scene;
 
-  public inputManager: InputManager;
-  public cameraOperator: CameraOperator;
-
   public controlsManager: ControlsManager;
 
   public rendererEngine: RendererEngine;
@@ -52,12 +49,6 @@ export class WorldEngine {
 
     // Renderer
     this.rendererEngine = new RendererEngine(parent, this.camera, this.graphicsWorld);
-
-
-    // Initialization
-		this.inputManager = new InputManager(this, this.rendererEngine.renderer.domElement);
-    this.cameraOperator = new CameraOperator(this, this.camera, this.params.Mouse_Sensitivity);
-
 
     // Inicialización de ControlsManager (solo la primera vez se debe pasar camera y el dom element)
     this.controlsManager =  ControlsManager.getInstance(this.camera, this.rendererEngine.renderer.domElement);

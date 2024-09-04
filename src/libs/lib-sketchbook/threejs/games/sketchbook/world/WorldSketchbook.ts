@@ -10,11 +10,18 @@ import { IWorldSketchbookOptions } from '../interfaces/IWorldSketchbookOptions';
 
 export class WorldSketchbook extends WorldEngine {
 
+  public inputManager: InputManager;
+  public cameraOperator: CameraOperator;
+
   public mesh: THREE.Mesh;
 
   constructor(options: IWorldSketchbookOptions) {
 
     super(options as IWorldEngineOptions);
+
+    this.inputManager = new InputManager(this, this.rendererEngine.renderer.domElement);
+    this.cameraOperator = new CameraOperator(this, this.camera, this.params.Mouse_Sensitivity);
+
 
     // create mesh
     this.mesh = new THREE.Mesh(
@@ -41,6 +48,7 @@ export class WorldSketchbook extends WorldEngine {
     this.mesh?.rotateY(0.001 * 5);
 
   }
+
 
 
 }

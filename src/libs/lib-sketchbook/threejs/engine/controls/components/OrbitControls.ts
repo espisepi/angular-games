@@ -7,15 +7,9 @@ import { TypeControls } from '../enums/TypeControls';
 export class OrbitControl extends AbstractControl {
     private control: OrbitControlsImpl;
 
-    private type = TypeControls.Orbit;
-
     constructor(camera: THREE.Camera, domElement: HTMLElement) {
         super(camera, domElement);
         this.control = new OrbitControlsImpl(camera, domElement);
-    }
-
-    getType(): TypeControls {
-      return this.type;
     }
 
     enable(): void {

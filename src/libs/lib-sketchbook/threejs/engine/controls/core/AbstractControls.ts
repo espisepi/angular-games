@@ -12,8 +12,6 @@ export abstract class AbstractControl {
         this.domElement = domElement;
     }
 
-    abstract getType(): TypeControls;
-
     abstract enable(): void;
     abstract disable(): void;
     abstract update(): void;

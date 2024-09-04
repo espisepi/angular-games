@@ -7,8 +7,7 @@ import { RendererEngine } from '../renderer/RendererEngine';
 import { getElementHeight, getElementWidth } from '../utils/FunctionLibrary';
 import { ControlsManager } from '../controls/manager/ControlsManager';
 import { TypeControls } from '../controls/enums/TypeControls';
-
-
+import { Stats } from '../features/stats/Stats';
 
 
 
@@ -20,6 +19,10 @@ export class WorldEngine {
   public controlsManager?: ControlsManager;
 
   public rendererEngine: RendererEngine;
+
+  public parent: HTMLElement;
+
+  stats?: Stats;
 
 
   public params: any = {
@@ -40,6 +43,8 @@ export class WorldEngine {
     const { parent } = options;
     const { typeControls } = options;
 
+    this.parent = parent;
+
     const width = getElementWidth(parent);
     const height = getElementHeight(parent);
 
@@ -59,13 +64,19 @@ export class WorldEngine {
       // this.setupControlsManager(TypeControls.Orbit);
     }
 
+    this.setupStats();
+
 
     // Render call
     this.render();
 
   }
 
-  public setupControlsManager(type: TypeControls): void {
+  private setupStats(): void {
+    this.stats = new Stats();
+  }
+
+  private setupControlsManager(type: TypeControls): void {
     this.controlsManager = new ControlsManager(this.camera, this.rendererEngine.renderer.domElement);
     this.controlsManager.setControl(type); // Puedes cambiar el tipo de control
   }
@@ -114,6 +125,7 @@ export class WorldEngine {
 		});
 
     this.controlsManager?.update();
+    this.stats?.update();
 	}
 
 

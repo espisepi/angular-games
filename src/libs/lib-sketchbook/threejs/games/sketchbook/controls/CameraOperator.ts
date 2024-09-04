@@ -1,11 +1,11 @@
 import * as THREE from 'three';
-import * as Utils from './FunctionLibrary';
-import { IInputReceiver } from '../interfaces/IInputReceiver';
-import { KeyBinding } from './KeyBinding';
+import * as Utils from '../../../engine/core/FunctionLibrary';
+import { IInputReceiver } from '../../../engine/interfaces/IInputReceiver';
+import { KeyBinding } from '../../../engine/core/KeyBinding';
 // import { Character } from '../characters/Character';
 // import _ = require('lodash'); // NO USAR LODASH
-import { IUpdatable } from '../interfaces/IUpdatable';
-import { WorldEngine } from '../world/WorldEngine';
+import { IUpdatable } from '../../../engine/interfaces/IUpdatable';
+import { WorldEngine } from '../../../engine/world/WorldEngine';
 
 export class CameraOperator implements IInputReceiver, IUpdatable
 {

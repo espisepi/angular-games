@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { IUpdatable } from '../../../engine/interfaces/IUpdatable';
-import { InputManager } from '../../../engine/core/InputManager';
-import { CameraOperator } from '../../../engine/core/CameraOperator';
+import { InputManager } from '../controls/InputManager';
+import { CameraOperator } from '../controls/CameraOperator';
 import { WorldEngine } from '../../../engine/world/WorldEngine';
 import { IWorldEngineOptions } from '../../../engine/interfaces/IWorldEngineOptions';
 import { IWorldSketchbookOptions } from '../interfaces/IWorldSketchbookOptions';

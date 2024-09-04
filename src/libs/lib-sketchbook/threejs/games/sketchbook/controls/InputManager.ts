@@ -1,6 +1,6 @@
-import { IInputReceiver } from '../interfaces/IInputReceiver';
-import { IUpdatable } from '../interfaces/IUpdatable';
-import { WorldEngine } from '../world/WorldEngine';
+import { IInputReceiver } from '../../../engine/interfaces/IInputReceiver';
+import { IUpdatable } from '../../../engine/interfaces/IUpdatable';
+import { WorldEngine } from '../../../engine/world/WorldEngine';
 
 export class InputManager implements IUpdatable
 {

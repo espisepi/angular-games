@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { IUpdatable } from '../interfaces/IUpdatable';
-import { InputManager } from '../core/InputManager';
-import { CameraOperator } from '../core/CameraOperator';
+import { InputManager } from '../../games/sketchbook/controls/InputManager';
+import { CameraOperator } from '../../games/sketchbook/controls/CameraOperator';
 import { IWorldEngineOptions } from '../interfaces/IWorldEngineOptions';
 import { RendererEngine } from '../core/RendererEngine';
 import { getElementHeight, getElementWidth } from '../core/FunctionLibrary';

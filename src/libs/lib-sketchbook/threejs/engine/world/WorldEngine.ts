@@ -58,7 +58,7 @@ export class WorldEngine {
     this.cameraOperator = new CameraOperator(this, this.camera, this.params.Mouse_Sensitivity);
 
 
-    // Inicialización de ControlsManager (solo la primera vez se debe pasar camera y renderer)
+    // Inicialización de ControlsManager (solo la primera vez se debe pasar camera y el dom element)
     this.controlsManager =  ControlsManager.getInstance(this.camera, this.rendererEngine.renderer.domElement);
     this.controlsManager.setControl('orbit'); // Puedes cambiar el tipo de control
 

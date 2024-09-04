@@ -1,8 +1,8 @@
-// src/managers/ControlsManager.ts
 import * as THREE from 'three';
 import { ControlsFactory } from '../factory/ControlsFactory';
 import { AbstractControl } from '../core/AbstractControls';
 
+// Singletone Class
 export class ControlsManager {
 
     private static instance: ControlsManager;

@@ -33,7 +33,8 @@ export class AppComponent implements AfterViewInit  {
 
     const options: IWorldEngineOptions = {
       parent: this.divElement.nativeElement,
-      typeControls: TypeControls.Orbit
+      typeControls: TypeControls.Orbit,
+      hasStats: true
     }
     const world = new WorldVisualizerModel(options);
 

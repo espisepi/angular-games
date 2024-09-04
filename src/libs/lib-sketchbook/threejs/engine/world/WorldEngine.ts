@@ -42,6 +42,7 @@ export class WorldEngine {
   constructor(options: IWorldEngineOptions) {
     const { parent } = options;
     const { typeControls } = options;
+    const { hasStats = true } = options;
 
     this.parent = parent;
 
@@ -64,7 +65,9 @@ export class WorldEngine {
       // this.setupControlsManager(TypeControls.Orbit);
     }
 
-    this.setupStats();
+    if(hasStats) {
+      this.setupStats();
+    }
 
 
     // Render call

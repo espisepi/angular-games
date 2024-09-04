@@ -1,4 +1,4 @@
-import { IInputReceiver } from '../../../engine/interfaces/IInputReceiver';
+import { IInputReceiver } from '../interfaces/IInputReceiver';
 import { IUpdatable } from '../../../engine/interfaces/IUpdatable';
 import { WorldSketchbook } from '../world/WorldSketchbook';
 

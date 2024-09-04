@@ -5,13 +5,15 @@ import { Space } from '../enums/Space';
 // Dom utils ======================================
 
 export function getElementWidth(element: HTMLElement): number {
-    let widthString = window.getComputedStyle(element).width; // Obtienes el valor computado de width, por ejemplo, "100px"
-    return parseFloat(widthString);
+    // let widthString = window.getComputedStyle(element).width; // Obtienes el valor computado de width, por ejemplo, "100px"
+    // return parseFloat(widthString);
+    return element.clientWidth;
 }
 
 export function getElementHeight(element: HTMLElement): number {
-    let heightString = window.getComputedStyle(element).height; // Obtienes el valor computado de height, por ejemplo, "100px"
-    return parseFloat(heightString);
+    // let heightString = window.getComputedStyle(element).height; // Obtienes el valor computado de height, por ejemplo, "100px"
+    // return parseFloat(heightString);
+    return element.clientHeight;
 }
 
 

@@ -23,11 +23,11 @@ export class AppComponent implements AfterViewInit  {
     // Ejemplo de cómo podrías manipular el elemento
     this.divElement.nativeElement.style.backgroundColor = 'yellow';
 
-    // const options: IWorldSketchbookOptions = {
-    //   parent: this.divElement.nativeElement
-    // }
-    // const world = new WorldSketchbook(options);
+    const options: IWorldSketchbookOptions = {
+      parent: this.divElement.nativeElement
+    }
+    const world = new WorldSketchbook(options);
 
-    const sepinacoGameEngine = new SepinacoGameEngine(this.divElement.nativeElement);
+    // const sepinacoGameEngine = new SepinacoGameEngine(this.divElement.nativeElement);
   }
 }

@@ -48,10 +48,14 @@ export class RendererEngine {
 		const onWindowResize = () =>
 		{
 
-      this.camera.aspect = this.width / this.height;
+      // this.camera.aspect = parent.clientWidth / parent.clientHeight;
+      this.camera.aspect = 1;
+
 			this.camera.updateProjectionMatrix();
 
-      this.renderer.setSize(this.width, this.height);
+      // console.log({width: parent.clientWidth, height: parent.clientHeight})
+
+      this.renderer.setSize(parent.clientWidth, parent.clientWidth);
 
 		}
 		window.addEventListener('resize', onWindowResize, false);

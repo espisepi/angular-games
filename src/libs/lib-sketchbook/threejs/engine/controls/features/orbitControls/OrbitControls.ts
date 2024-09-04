@@ -10,6 +10,7 @@ export class OrbitControl extends AbstractControl {
     constructor(camera: THREE.Camera, domElement: HTMLElement) {
         super(camera, domElement);
         this.control = new OrbitControlsImpl(camera, domElement);
+        this.control.enableDamping = true;
     }
 
     enable(): void {

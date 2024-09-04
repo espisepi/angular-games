@@ -36,18 +36,21 @@ export class ControlsManager {
 
 
     public setControl(type: TypeControls): void {
-        if(type === TypeControls.Orbit) {
-          this.currentControl = ControlsFactory.createControl(TypeControls.Orbit, this.camera, this.domElement);
-          this.currentControl.enable();
-        } else {
-          console.log('No implementado mas controles aun, solo orbit');
+
+        // Comprobar si el type es el mismo que el currentType,
+        // Si es el mismo no se hace nada
+        // Si cambia, se hace this.controls.dispose(); y se crea un nuevo currentControls
+        if(this.currentType === type ) return;
+
+        // Dispose del anterior controls
+        if(this.currentControl) {
+          this.currentControl.dispose();
         }
-        // if (!this.currentControl) {
-        //     this.currentControl = ControlsFactory.createControl(TypeControls.Orbit, this.camera, this.domElement);
-        //     this.currentControl.enable();
-        // } else {
-        //     console.log('Control already set and instantiated');
-        // }
+
+        // Instanciamos el nuevo controls
+        this.currentType = type;
+        this.currentControl = ControlsFactory.createControl(type, this.camera, this.domElement);
+        this.currentControl.enable();
     }
 
 

@@ -1,6 +1,6 @@
 // src/controls/ControlsFactory.ts
 import * as THREE from 'three';
-import { OrbitControl } from '../components/orbitControls/OrbitControls';
+import { OrbitControl } from '../features/orbitControls/OrbitControls';
 import { AbstractControl } from '../core/AbstractControls';
 import { TypeControls } from '../enums/TypeControls';
 import { Type } from '@angular/core';

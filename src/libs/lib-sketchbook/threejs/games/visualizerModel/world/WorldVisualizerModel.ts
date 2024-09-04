@@ -26,18 +26,12 @@ export class WorldVisualizerModel extends WorldEngine {
   }
 
 
-  /**
-	 * Rendering loop.
-	 * Implements fps limiter and frame-skipping
-	 * Calls world's "update" function before rendering.
-	 */
-	public override render(): void
-	{
-    super.render();
+ public override update(timeStep: number, unscaledTimeStep: number): void {
+  super.update(timeStep, unscaledTimeStep);
 
-    this.mesh?.rotateY(0.001 * 5);
+  this.mesh?.rotateY(0.1 * 5 * timeStep);
 
-  }
+ }
 
 
 

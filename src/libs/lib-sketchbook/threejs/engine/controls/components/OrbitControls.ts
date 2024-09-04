@@ -1,14 +1,14 @@
 // src/controls/OrbitControl.ts
 import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { OrbitControls as OrbitControlsImpl  } from 'three/addons/controls/OrbitControls.js';
 import { AbstractControl } from '../core/AbstractControls';
 
 export class OrbitControl extends AbstractControl {
-    private control: OrbitControls;
+    private control: OrbitControlsImpl;
 
     constructor(camera: THREE.Camera, domElement: HTMLElement) {
         super(camera, domElement);
-        this.control = new OrbitControls(camera, domElement);
+        this.control = new OrbitControlsImpl(camera, domElement);
     }
 
     enable(): void {

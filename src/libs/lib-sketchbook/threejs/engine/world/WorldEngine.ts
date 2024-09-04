@@ -38,7 +38,7 @@ export class WorldEngine {
 
   constructor(options: IWorldEngineOptions) {
     const { parent } = options;
-    const { type } = options;
+    const { typeControls } = options;
 
     const width = getElementWidth(parent);
     const height = getElementHeight(parent);
@@ -52,8 +52,8 @@ export class WorldEngine {
     this.rendererEngine = new RendererEngine(parent, this.camera, this.graphicsWorld);
 
     // Inicialización de ControlsManager
-    if(type) {
-      this.setupControlsManager(type);
+    if(typeControls) {
+      this.setupControlsManager(typeControls);
     } else {
       // Si no se selecciona el type, no instanciamos el controlsManager
       // this.setupControlsManager(TypeControls.Orbit);

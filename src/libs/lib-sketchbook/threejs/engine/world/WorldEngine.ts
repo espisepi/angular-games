@@ -3,7 +3,7 @@ import { IUpdatable } from '../interfaces/IUpdatable';
 import { InputManager } from '../../games/sketchbook/controls/InputManager';
 import { CameraOperator } from '../../games/sketchbook/controls/CameraOperator';
 import { IWorldEngineOptions } from '../interfaces/IWorldEngineOptions';
-import { RendererEngine } from '../core/RendererEngine';
+import { RendererEngine } from '../renderer/RendererEngine';
 import { getElementHeight, getElementWidth } from '../utils/FunctionLibrary';
 import { ControlsManager } from '../controls/manager/ControlsManager';
 import { TypeControls } from '../controls/enums/TypeControls';

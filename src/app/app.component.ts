@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
-import { WorldSketchbook } from '../libs/lib-sketchbook/threejs/games/sketchbook/world/WorldSketchbook';
-import { IWorldSketchbookOptions } from '../libs/lib-sketchbook/threejs/games/sketchbook/interfaces/IWorldSketchbookOptions';
-import { IWorldEngineOptions } from '../libs/lib-sketchbook/threejs/engine/interfaces/IWorldEngineOptions';
-import { WorldVisualizerModel } from '../libs/lib-sketchbook/threejs/games/visualizerModel/world/WorldVisualizerModel';
-import { TypeControls } from '../libs/lib-sketchbook/threejs/engine/controls/enums/TypeControls';
+import { WorldSketchbook } from '../libs/lib-sepinaco-game-engine/threejs/games/sketchbook/world/WorldSketchbook';
+import { IWorldSketchbookOptions } from '../libs/lib-sepinaco-game-engine/threejs/games/sketchbook/interfaces/IWorldSketchbookOptions';
+import { IWorldEngineOptions } from '../libs/lib-sepinaco-game-engine/threejs/engine/interfaces/IWorldEngineOptions';
+import { WorldVisualizerModel } from '../libs/lib-sepinaco-game-engine/threejs/games/visualizerModel/world/WorldVisualizerModel';
+import { TypeControls } from '../libs/lib-sepinaco-game-engine/threejs/engine/controls/enums/TypeControls';
 
 @Component({
   selector: 'app-root',

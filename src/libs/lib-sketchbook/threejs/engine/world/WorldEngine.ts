@@ -19,6 +19,8 @@ export class WorldEngine {
   public inputManager: InputManager;
   public cameraOperator: CameraOperator;
 
+  public controlsManager: ControlsManager;
+
   public rendererEngine: RendererEngine;
 
 
@@ -56,9 +58,10 @@ export class WorldEngine {
     this.cameraOperator = new CameraOperator(this, this.camera, this.params.Mouse_Sensitivity);
 
 
-    // Inicialización de ControlsManager
-    // this.controlsManager = new ControlsManager(this.camera, this.rendererEngine.renderer);
-    // this.controlsManager.setControl('orbit'); // Puedes cambiar el tipo de control
+    // Inicialización de ControlsManager (solo la primera vez se debe pasar camera y renderer)
+    this.controlsManager =  ControlsManager.getInstance(this.camera, this.rendererEngine.renderer);
+    this.controlsManager.setControl('orbit'); // Puedes cambiar el tipo de control
+
 
 
     // Render call
@@ -109,7 +112,7 @@ export class WorldEngine {
 			entity.update(timeStep, unscaledTimeStep);
 		});
 
-    // this.controlsManager.update();
+    this.controlsManager.update();
 	}
 
 

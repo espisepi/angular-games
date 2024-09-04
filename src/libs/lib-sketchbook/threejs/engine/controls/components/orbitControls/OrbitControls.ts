@@ -1,8 +1,8 @@
 // src/controls/OrbitControl.ts
 import * as THREE from 'three';
 import { OrbitControls as OrbitControlsImpl  } from 'three/addons/controls/OrbitControls.js';
-import { AbstractControl } from '../core/AbstractControls';
-import { TypeControls } from '../enums/TypeControls';
+import { AbstractControl } from '../../core/AbstractControls';
+import { TypeControls } from '../../enums/TypeControls';
 
 export class OrbitControl extends AbstractControl {
     private control: OrbitControlsImpl;

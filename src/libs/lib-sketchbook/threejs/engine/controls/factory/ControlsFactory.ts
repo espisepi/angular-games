@@ -5,10 +5,10 @@ import { AbstractControl } from '../core/AbstractControls';
 // Importa otras implementaciones de controles cuando sea necesario
 
 export class ControlsFactory {
-    static createControl(type: string, camera: THREE.Camera, renderer: THREE.WebGLRenderer): AbstractControl {
+    static createControl(type: string, camera: THREE.Camera, domElement: HTMLElement): AbstractControl {
         switch(type) {
             case 'orbit':
-                return new OrbitControl(camera, renderer);
+                return new OrbitControl(camera, domElement);
             // Añade otros casos para diferentes tipos de controles
             default:
                 throw new Error(`Control type "${type}" is not recognized.`);

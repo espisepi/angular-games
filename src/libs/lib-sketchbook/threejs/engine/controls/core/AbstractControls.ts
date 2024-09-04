@@ -3,11 +3,11 @@ import * as THREE from 'three';
 
 export abstract class AbstractControl {
     protected camera: THREE.Camera;
-    protected renderer: THREE.WebGLRenderer;
+    protected domElement: HTMLElement;
 
-    constructor(camera: THREE.Camera, renderer: THREE.WebGLRenderer) {
+    constructor(camera: THREE.Camera, domElement: HTMLElement) {
         this.camera = camera;
-        this.renderer = renderer;
+        this.domElement = domElement;
     }
 
     abstract enable(): void;

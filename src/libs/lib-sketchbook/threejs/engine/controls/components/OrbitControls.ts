@@ -6,9 +6,9 @@ import { AbstractControl } from '../core/AbstractControls';
 export class OrbitControl extends AbstractControl {
     private control: OrbitControls;
 
-    constructor(camera: THREE.Camera, renderer: THREE.WebGLRenderer) {
-        super(camera, renderer);
-        this.control = new OrbitControls(camera, renderer.domElement);
+    constructor(camera: THREE.Camera, domElement: HTMLElement) {
+        super(camera, domElement);
+        this.control = new OrbitControls(camera, domElement);
     }
 
     enable(): void {

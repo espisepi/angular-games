@@ -80,7 +80,7 @@ export class WorldEngine {
   }
 
   private setupStats(): void {
-    this.stats = new Stats();
+    this.stats = new Stats(this.updatablesManager);
   }
 
   private setupControlsManager(type: TypeControls): void {
@@ -115,10 +115,8 @@ export class WorldEngine {
 	// Handles all logic updates.
 	public update(timeStep: number, unscaledTimeStep: number): void
 	{
-
     this.updatablesManager?.update(timeStep, unscaledTimeStep);
     this.controlsManager?.update();
-    this.stats?.update();
 	}
 
 

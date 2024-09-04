@@ -17,7 +17,7 @@ export class WorldEngine {
 
   public graphicsWorld: THREE.Scene;
 
-  public controlsManager: ControlsManager;
+  public controlsManager?: ControlsManager;
 
   public rendererEngine: RendererEngine;
 
@@ -38,6 +38,7 @@ export class WorldEngine {
 
   constructor(options: IWorldEngineOptions) {
     const { parent } = options;
+    const { type } = options;
 
     const width = getElementWidth(parent);
     const height = getElementHeight(parent);
@@ -50,15 +51,23 @@ export class WorldEngine {
     // Renderer
     this.rendererEngine = new RendererEngine(parent, this.camera, this.graphicsWorld);
 
-    // Inicialización de ControlsManager (solo la primera vez se debe pasar camera y el dom element)
-    this.controlsManager =   new ControlsManager(this.camera, this.rendererEngine.renderer.domElement);
-    this.controlsManager.setControl(TypeControls.Orbit); // Puedes cambiar el tipo de control
-
+    // Inicialización de ControlsManager
+    if(type) {
+      this.setupControlsManager(type);
+    } else {
+      // Si no se selecciona el type, no instanciamos el controlsManager
+      // this.setupControlsManager(TypeControls.Orbit);
+    }
 
 
     // Render call
     this.render();
 
+  }
+
+  public setupControlsManager(type: TypeControls): void {
+    this.controlsManager = new ControlsManager(this.camera, this.rendererEngine.renderer.domElement);
+    this.controlsManager.setControl(type); // Puedes cambiar el tipo de control
   }
 
 
@@ -104,7 +113,7 @@ export class WorldEngine {
 			entity.update(timeStep, unscaledTimeStep);
 		});
 
-    this.controlsManager.update();
+    this.controlsManager?.update();
 	}
 
 

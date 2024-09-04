@@ -1,5 +1,0 @@
-
-// TODO:
-export class ControlsManager {
-
-}

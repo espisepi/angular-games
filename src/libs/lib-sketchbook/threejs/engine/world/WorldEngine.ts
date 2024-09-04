@@ -5,6 +5,7 @@ import { CameraOperator } from '../core/CameraOperator';
 import { IWorldEngineOptions } from '../interfaces/IWorldEngineOptions';
 import { RendererEngine } from '../core/RendererEngine';
 import { getElementHeight, getElementWidth } from '../core/FunctionLibrary';
+import { ControlsManager } from '../controls/manager/ControlsManager';
 
 
 
@@ -55,6 +56,10 @@ export class WorldEngine {
     this.cameraOperator = new CameraOperator(this, this.camera, this.params.Mouse_Sensitivity);
 
 
+    // Inicialización de ControlsManager
+    // this.controlsManager = new ControlsManager(this.camera, this.rendererEngine.renderer);
+    // this.controlsManager.setControl('orbit'); // Puedes cambiar el tipo de control
+
 
     // Render call
     this.render();
@@ -103,6 +108,8 @@ export class WorldEngine {
 		this.updatables.forEach((entity) => {
 			entity.update(timeStep, unscaledTimeStep);
 		});
+
+    // this.controlsManager.update();
 	}
 
 

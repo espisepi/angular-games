@@ -110,12 +110,6 @@ export class WorldEngine {
 		this.updatables.sort((a, b) => (a.updateOrder > b.updateOrder) ? 1 : -1);
 	}
 
-
-  public updateControls(controls: any): void
-	{
-    console.log("Update Controls, new Controls: " + controls);
-	}
-
   // Update
 	// Handles all logic updates.
 	public update(timeStep: number, unscaledTimeStep: number): void

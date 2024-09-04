@@ -2,7 +2,6 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 import { WorldSketchbook } from '../libs/lib-sketchbook/threejs/games/sketchbook/world/WorldSketchbook';
 import { IWorldSketchbookOptions } from '../libs/lib-sketchbook/threejs/games/sketchbook/interfaces/IWorldSketchbookOptions';
-import { SepinacoGameEngine } from '../libs/lib-sepinaco-game-engine/SepinacoGameEngine';
 import { IWorldEngineOptions } from '../libs/lib-sketchbook/threejs/engine/interfaces/IWorldEngineOptions';
 import { WorldVisualizerModel } from '../libs/lib-sketchbook/threejs/games/visualizerModel/world/WorldVisualizerModel';
 import { TypeControls } from '../libs/lib-sketchbook/threejs/engine/controls/enums/TypeControls';

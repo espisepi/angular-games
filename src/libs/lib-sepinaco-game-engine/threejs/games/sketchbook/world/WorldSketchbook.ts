@@ -10,8 +10,8 @@ import { IWorldSketchbookOptions } from '../interfaces/IWorldSketchbookOptions';
 
 export class WorldSketchbook extends WorldEngine {
 
-  public inputManager: InputManager;
-  public cameraOperator: CameraOperator;
+  public inputManager?: InputManager;
+  public cameraOperator?: CameraOperator;
 
   public mesh: THREE.Mesh;
 
@@ -19,9 +19,10 @@ export class WorldSketchbook extends WorldEngine {
 
     super(options as IWorldEngineOptions);
 
-    this.inputManager = new InputManager(this, this.rendererEngine.renderer.domElement);
-    this.cameraOperator = new CameraOperator(this, this.camera, this.params.Mouse_Sensitivity);
-
+    if(this.updatablesManager) {
+      this.inputManager = new InputManager(this.updatablesManager, this, this.rendererEngine.renderer.domElement);
+      this.cameraOperator = new CameraOperator(this.updatablesManager, this, this.camera, this.params.Mouse_Sensitivity);
+    }
 
     // create mesh
     this.mesh = new THREE.Mesh(

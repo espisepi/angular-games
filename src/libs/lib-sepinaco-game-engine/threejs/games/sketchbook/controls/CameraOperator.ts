@@ -6,6 +6,7 @@ import { KeyBinding } from './KeyBinding';
 // import _ = require('lodash'); // NO USAR LODASH
 import { IUpdatable } from '../../../engine/interfaces/IUpdatable';
 import { WorldSketchbook } from '../world/WorldSketchbook';
+import { UpdatablesManager } from '../../../engine/updatables/UpdatablesManager';
 
 export class CameraOperator implements IInputReceiver, IUpdatable
 {
@@ -34,7 +35,7 @@ export class CameraOperator implements IInputReceiver, IUpdatable
 
 	// public characterCaller: Character;
 
-	constructor(world: WorldSketchbook, camera: THREE.Camera, sensitivityX: number = 1, sensitivityY: number = sensitivityX * 0.8)
+	constructor(updatablesManager: UpdatablesManager, world: WorldSketchbook, camera: THREE.Camera, sensitivityX: number = 1, sensitivityY: number = sensitivityX * 0.8)
 	{
 		this.world = world;
 		this.camera = camera;
@@ -62,11 +63,11 @@ export class CameraOperator implements IInputReceiver, IUpdatable
 
     this.initGodCameraControls()
 
-		world.registerUpdatable(this);
+		updatablesManager.registerUpdatable(this);
 	}
 
   public initGodCameraControls(): void {
-    this.world.inputManager.setInputReceiver(this);
+    this.world.inputManager?.setInputReceiver(this);
   }
 
 	public setSensitivity(sensitivityX: number, sensitivityY: number = sensitivityX): void

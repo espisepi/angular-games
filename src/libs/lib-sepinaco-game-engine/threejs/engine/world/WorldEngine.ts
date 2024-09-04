@@ -6,6 +6,7 @@ import { getElementHeight, getElementWidth } from '../utils/FunctionLibrary';
 import { ControlsManager } from '../controls/manager/ControlsManager';
 import { TypeControls } from '../controls/enums/TypeControls';
 import { Stats } from '../features/stats/Stats';
+import { UpdatablesManager } from '../updatables/UpdatablesManager';
 
 
 
@@ -15,6 +16,8 @@ export class WorldEngine {
   public graphicsWorld: THREE.Scene;
 
   public controlsManager?: ControlsManager;
+
+  public updatablesManager?: UpdatablesManager;
 
   public rendererEngine: RendererEngine;
 
@@ -35,7 +38,7 @@ export class WorldEngine {
 		Sun_Rotation: 145,
   };
 
-  public updatables: IUpdatable[] = [];
+
 
   constructor(options: IWorldEngineOptions) {
     const { parent } = options;
@@ -54,6 +57,9 @@ export class WorldEngine {
 
     // Renderer
     this.rendererEngine = new RendererEngine(parent, this.camera, this.graphicsWorld);
+
+    // Updatables manager
+    this.updatablesManager = new UpdatablesManager();
 
     // Inicialización de ControlsManager
     if(typeControls) {
@@ -104,21 +110,13 @@ export class WorldEngine {
 
   }
 
-  public registerUpdatable(registree: IUpdatable): void
-	{
-		this.updatables.push(registree);
-		this.updatables.sort((a, b) => (a.updateOrder > b.updateOrder) ? 1 : -1);
-	}
 
   // Update
 	// Handles all logic updates.
 	public update(timeStep: number, unscaledTimeStep: number): void
 	{
-		// Update registred objects
-		this.updatables.forEach((entity) => {
-			entity.update(timeStep, unscaledTimeStep);
-		});
 
+    this.updatablesManager?.update(timeStep, unscaledTimeStep);
     this.controlsManager?.update();
     this.stats?.update();
 	}

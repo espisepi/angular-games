@@ -1,6 +1,7 @@
 import { IInputReceiver } from '../interfaces/IInputReceiver';
 import { IUpdatable } from '../../../engine/interfaces/IUpdatable';
 import { WorldSketchbook } from '../world/WorldSketchbook';
+import { UpdatablesManager } from '../../../engine/updatables/UpdatablesManager';
 
 export class InputManager implements IUpdatable
 {
@@ -21,7 +22,7 @@ export class InputManager implements IUpdatable
 	public boundOnKeyDown: (evt: any) => void;
 	public boundOnKeyUp: (evt: any) => void;
 
-	constructor(world: WorldSketchbook, domElement: HTMLElement)
+	constructor( updatablesManager: UpdatablesManager, world: WorldSketchbook, domElement: HTMLElement)
 	{
 		this.world = world;
 		this.pointerLock = world.params.Pointer_Lock;
@@ -54,7 +55,7 @@ export class InputManager implements IUpdatable
 		document.addEventListener('keydown', this.boundOnKeyDown, false);
 		document.addEventListener('keyup', this.boundOnKeyUp, false);
 
-		world.registerUpdatable(this);
+		updatablesManager.registerUpdatable(this);
 	}
 
 	public update(timestep: number, unscaledTimeStep: number): void

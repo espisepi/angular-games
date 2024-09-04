@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { getElementHeight, getElementWidth } from './FunctionLibrary';
+import { getElementHeight, getElementWidth } from '../utils/FunctionLibrary';
 
 
 export class RendererEngine {

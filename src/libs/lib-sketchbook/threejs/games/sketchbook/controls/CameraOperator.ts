@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import * as Utils from '../../../engine/core/FunctionLibrary';
+import * as Utils from '../../../engine/utils/FunctionLibrary';
 import { IInputReceiver } from '../interfaces/IInputReceiver';
 import { KeyBinding } from './KeyBinding';
 // import { Character } from '../characters/Character';

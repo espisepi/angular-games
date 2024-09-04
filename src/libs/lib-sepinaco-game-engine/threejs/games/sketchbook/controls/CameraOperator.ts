@@ -35,9 +35,9 @@ export class CameraOperator implements IInputReceiver, IUpdatable
 
 	// public characterCaller: Character;
 
-  public inputManager: InputManager;
+  public inputManager?: InputManager | null;
 
-	constructor(updatablesManager: UpdatablesManager, inputManager: InputManager, camera: THREE.Camera, sensitivityX: number = 1, sensitivityY: number = sensitivityX * 0.8)
+	constructor(updatablesManager: UpdatablesManager, inputManager: InputManager | null = null, camera: THREE.Camera, sensitivityX: number = 1, sensitivityY: number = sensitivityX * 0.8)
 	{
     this.inputManager = inputManager;
 		this.camera = camera;

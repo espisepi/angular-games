@@ -2,12 +2,12 @@ import { IInputReceiver } from '../interfaces/IInputReceiver';
 import { IUpdatable } from '../../../engine/interfaces/IUpdatable';
 import { WorldSketchbook } from '../world/WorldSketchbook';
 import { UpdatablesManager } from '../../../engine/updatables/UpdatablesManager';
+import { CameraOperator } from './CameraOperator';
 
 export class InputManager implements IUpdatable
 {
 	public updateOrder: number = 3;
 
-	public world: WorldSketchbook;
 	public domElement: any;
 	public pointerLock: any;
 	public isLocked: boolean;
@@ -22,10 +22,10 @@ export class InputManager implements IUpdatable
 	public boundOnKeyDown: (evt: any) => void;
 	public boundOnKeyUp: (evt: any) => void;
 
-	constructor( updatablesManager: UpdatablesManager, world: WorldSketchbook, domElement: HTMLElement)
+	constructor( updatablesManager: UpdatablesManager, domElement: HTMLElement, pointerLock: boolean = false )
 	{
-		this.world = world;
-		this.pointerLock = world.params.Pointer_Lock;
+
+		this.pointerLock = pointerLock;
 		this.domElement = domElement || document.body;
 		this.isLocked = false;
 
@@ -60,11 +60,6 @@ export class InputManager implements IUpdatable
 
 	public update(timestep: number, unscaledTimeStep: number): void
 	{
-		if (this.inputReceiver === undefined && this.world !== undefined && this.world.cameraOperator !== undefined)
-		{
-			this.setInputReceiver(this.world.cameraOperator);
-		}
-
 		this.inputReceiver?.inputReceiverUpdate(unscaledTimeStep);
 	}
 

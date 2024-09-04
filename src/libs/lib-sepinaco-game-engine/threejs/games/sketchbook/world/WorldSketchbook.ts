@@ -20,7 +20,7 @@ export class WorldSketchbook extends WorldEngine {
     super(options as IWorldEngineOptions);
 
     if(this.updatablesManager) {
-      this.inputManager = new InputManager(this.updatablesManager, this, this.rendererEngine.renderer.domElement);
+      this.inputManager = new InputManager(this.updatablesManager, this.rendererEngine.renderer.domElement);
       this.cameraOperator = new CameraOperator(this.updatablesManager, this.inputManager, this.camera, this.params.Mouse_Sensitivity);
     }
 

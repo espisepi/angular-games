@@ -25,17 +25,17 @@ export class AppComponent implements AfterViewInit  {
     // Ejemplo de cómo podrías manipular el elemento
     this.divElement.nativeElement.style.backgroundColor = 'yellow';
 
-    const options: IWorldSketchbookOptions = {
-      parent: this.divElement.nativeElement
-    }
-    const world = new WorldSketchbook(options);
-
-    // const options: IWorldEngineOptions = {
-    //   parent: this.divElement.nativeElement,
-    //   typeControls: TypeControls.Orbit,
-    //   hasStats: true
+    // const options: IWorldSketchbookOptions = {
+    //   parent: this.divElement.nativeElement
     // }
-    // const world = new WorldVisualizerModel(options);
+    // const world = new WorldSketchbook(options);
+
+    const options: IWorldEngineOptions = {
+      parent: this.divElement.nativeElement,
+      typeControls: TypeControls.Orbit,
+      hasStats: true
+    }
+    const world = new WorldVisualizerModel(options);
 
     // const sepinacoGameEngine = new SepinacoGameEngine(this.divElement.nativeElement);
   }

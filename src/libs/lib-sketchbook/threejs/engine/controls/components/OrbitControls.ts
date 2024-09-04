@@ -2,13 +2,20 @@
 import * as THREE from 'three';
 import { OrbitControls as OrbitControlsImpl  } from 'three/addons/controls/OrbitControls.js';
 import { AbstractControl } from '../core/AbstractControls';
+import { TypeControls } from '../enums/TypeControls';
 
 export class OrbitControl extends AbstractControl {
     private control: OrbitControlsImpl;
 
+    private type = TypeControls.Orbit;
+
     constructor(camera: THREE.Camera, domElement: HTMLElement) {
         super(camera, domElement);
         this.control = new OrbitControlsImpl(camera, domElement);
+    }
+
+    getType(): TypeControls {
+      return this.type;
     }
 
     enable(): void {
@@ -21,5 +28,9 @@ export class OrbitControl extends AbstractControl {
 
     update(): void {
         this.control.update();
+    }
+
+    dispose(): void {
+      this.control.dispose();
     }
 }

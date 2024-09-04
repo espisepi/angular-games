@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { ControlsFactory } from '../factory/ControlsFactory';
 import { AbstractControl } from '../core/AbstractControls';
+import { TypeControls } from '../enums/TypeControls';
 
 // Singletone Class
 export class ControlsManager {
@@ -9,6 +10,8 @@ export class ControlsManager {
     private camera: THREE.Camera;
     private domElement: HTMLElement;
     private currentControl: AbstractControl | null = null;
+
+    private currentType: TypeControls | null = null;
 
 
     // El constructor es privado para evitar la creación directa de la clase desde fuera.
@@ -32,13 +35,19 @@ export class ControlsManager {
     }
 
 
-    public setControl(type: string): void {
-        if (!this.currentControl) {
-            this.currentControl = ControlsFactory.createControl(type, this.camera, this.domElement);
-            this.currentControl.enable();
+    public setControl(type: TypeControls): void {
+        if(type === TypeControls.Orbit) {
+          this.currentControl = ControlsFactory.createControl(TypeControls.Orbit, this.camera, this.domElement);
+          this.currentControl.enable();
         } else {
-            console.log('Control already set and instantiated');
+          console.log('No implementado mas controles aun, solo orbit');
         }
+        // if (!this.currentControl) {
+        //     this.currentControl = ControlsFactory.createControl(TypeControls.Orbit, this.camera, this.domElement);
+        //     this.currentControl.enable();
+        // } else {
+        //     console.log('Control already set and instantiated');
+        // }
     }
 
 

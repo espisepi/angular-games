@@ -2,12 +2,14 @@
 import * as THREE from 'three';
 import { OrbitControl } from '../components/OrbitControls';
 import { AbstractControl } from '../core/AbstractControls';
+import { TypeControls } from '../enums/TypeControls';
+import { Type } from '@angular/core';
 // Importa otras implementaciones de controles cuando sea necesario
 
 export class ControlsFactory {
-    static createControl(type: string, camera: THREE.Camera, domElement: HTMLElement): AbstractControl {
+    static createControl(type: TypeControls, camera: THREE.Camera, domElement: HTMLElement): AbstractControl {
         switch(type) {
-            case 'orbit':
+            case TypeControls.Orbit:
                 return new OrbitControl(camera, domElement);
             // Añade otros casos para diferentes tipos de controles
             default:

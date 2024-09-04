@@ -6,6 +6,7 @@ import { IWorldEngineOptions } from '../interfaces/IWorldEngineOptions';
 import { RendererEngine } from '../core/RendererEngine';
 import { getElementHeight, getElementWidth } from '../core/FunctionLibrary';
 import { ControlsManager } from '../controls/manager/ControlsManager';
+import { TypeControls } from '../controls/enums/TypeControls';
 
 
 
@@ -60,7 +61,7 @@ export class WorldEngine {
 
     // Inicialización de ControlsManager (solo la primera vez se debe pasar camera y el dom element)
     this.controlsManager =  ControlsManager.getInstance(this.camera, this.rendererEngine.renderer.domElement);
-    this.controlsManager.setControl('orbit'); // Puedes cambiar el tipo de control
+    this.controlsManager.setControl(TypeControls.Orbit); // Puedes cambiar el tipo de control
 
 
 

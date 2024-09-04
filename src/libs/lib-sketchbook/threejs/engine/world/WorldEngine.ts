@@ -51,7 +51,7 @@ export class WorldEngine {
     this.rendererEngine = new RendererEngine(parent, this.camera, this.graphicsWorld);
 
     // Inicialización de ControlsManager (solo la primera vez se debe pasar camera y el dom element)
-    this.controlsManager =  ControlsManager.getInstance(this.camera, this.rendererEngine.renderer.domElement);
+    this.controlsManager =   new ControlsManager(this.camera, this.rendererEngine.renderer.domElement);
     this.controlsManager.setControl(TypeControls.Orbit); // Puedes cambiar el tipo de control
 
 

@@ -15,25 +15,10 @@ export class ControlsManager {
 
 
     // El constructor es privado para evitar la creación directa de la clase desde fuera.
-    private constructor(camera: THREE.Camera, domElement: HTMLElement) {
+    constructor(camera: THREE.Camera, domElement: HTMLElement) {
         this.camera = camera;
         this.domElement = domElement;
     }
-
-
-    // Método estático para obtener la única instancia de la clase (Singleton)
-    // Inicialización de ControlsManager (solo la primera vez se debe pasar camera y renderer)
-    // this.controlsManager =  ControlsManager.getInstance(this.camera, this.rendererEngine.renderer.domElement);
-    public static getInstance(camera?: THREE.Camera, domElement?: HTMLElement): ControlsManager {
-        if (!ControlsManager.instance) {
-            if (!camera || !domElement) {
-                throw new Error('Camera and Renderer must be provided for the first instantiation.');
-            }
-            ControlsManager.instance = new ControlsManager(camera, domElement);
-        }
-        return ControlsManager.instance;
-    }
-
 
     public setControl(type: TypeControls): void {
 

@@ -1,7 +1,7 @@
-
 import * as THREE from 'three';
 import { GraphicsWorld } from '../../world/graphicsWorld/GraphicsWorld';
 import { UpdatablesManager } from '../../updatables/UpdatablesManager';
+import { BoxMesh } from '../prefabs/box/BoxMesh';
 
 // TODO: Esto tiene que ser muy basica para sustituirlo
 // por el de ScenarioSketchbook en el game de Sketchbook
@@ -10,31 +10,29 @@ import { UpdatablesManager } from '../../updatables/UpdatablesManager';
 export class Scenario {
 
   private graphicsWorld: GraphicsWorld;
+  private updatablesManager: UpdatablesManager;
 
   constructor(graphicsWorld:GraphicsWorld, updatablesManager: UpdatablesManager)
 	{
     this.graphicsWorld = graphicsWorld;
+    this.updatablesManager = updatablesManager;
 
 
-    this.initScenario();
+    this.initLights();
+    this.initObjects();
   }
 
-  private initScenario() {
+  private initLights(): void {
     // light
     const light = new THREE.AmbientLight();
     this.graphicsWorld.add(light);
+  }
 
+  private initObjects(): void {
     // create mesh
-    const mesh = new THREE.Mesh(
-      new THREE.BoxGeometry(1,1,1),
-      new THREE.MeshBasicMaterial({
-        wireframe: true,
-        color: new THREE.Color('green')
-      })
-    );
-
+    const mesh = new BoxMesh();
+    this.updatablesManager.registerUpdatable(mesh);
     this.graphicsWorld.add(mesh);
-
   }
 
 }

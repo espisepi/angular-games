@@ -5,24 +5,22 @@ import { ScenarioManager } from '../../../engine/scenarios/manager/ScenarioManag
 import { ScenarioManagerVisualizerModel } from '../scenarios/manager/ScenarioManagerVisualizerModel';
 
 export class WorldVisualizerModel extends WorldEngine {
-
-
   constructor(params: IWorldEngineParams) {
-
     super(params as IWorldEngineParams);
-
   }
 
-
- public override update(timeStep: number, unscaledTimeStep: number): void {
-  super.update(timeStep, unscaledTimeStep);
- }
+  public override update(timeStep: number, unscaledTimeStep: number): void {
+    super.update(timeStep, unscaledTimeStep);
+  }
 
   protected override createScenarioManager(): ScenarioManager | null {
-    if(this.updatablesManager && this.loadingManager) {
-      return new ScenarioManagerVisualizerModel(this.graphicsWorld, this.updatablesManager, this.loadingManager);
+    if (this.updatablesManager && this.loadingManager) {
+      return new ScenarioManagerVisualizerModel(
+        this.graphicsWorld,
+        this.updatablesManager,
+        this.loadingManager
+      );
     }
     return null;
   }
-
 }

@@ -60,11 +60,7 @@ export class WorldEngine {
     this.camera.position.set(0, 0, 3);
 
     // Create Renderer Manager (Threejs renderer)
-    this.rendererManager = new RendererManager(
-      parent,
-      this.camera,
-      this.graphicsManager
-    );
+    this.rendererManager = this.createRendererManager();
 
     // Create Loading Manager
     this.loadingManager = new LoadingManager();
@@ -96,6 +92,15 @@ export class WorldEngine {
       );
     }
     return null;
+  }
+
+  // Override this method to use custom Renderer Manager
+  protected createRendererManager(): RendererManager {
+    return new RendererManager(
+      this.parent,
+      this.camera,
+      this.graphicsManager
+    );
   }
 
   // Override this method to use custom Graphics Manager

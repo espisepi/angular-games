@@ -4,13 +4,6 @@ import { UpdatablesManager } from '../../../../engine/updatables/UpdatablesManag
 import { GraphicsWorld } from '../../../../engine/world/graphicsWorld/GraphicsWorld';
 import { LoadingManager } from '../../../../engine/loading/manager/LoadingManager';
 
-// TODO: Hacer los scenarios o cambios de escenas y tener en cuenta el dispose de los objetos: https://threejs.org/manual/#en/cleanup
-// https://threejs.org/manual/#en/cleanup
-// Resumen:
-// boxGeometry.dispose();
-// boxTexture.dispose();
-// boxMaterial.dispose();
-
 export class ScenarioVisualizerModel extends Scenario {
   constructor(
     graphicsWorld: GraphicsWorld,
@@ -49,3 +42,13 @@ export class ScenarioVisualizerModel extends Scenario {
     );
   }
 }
+
+
+
+
+// Hacer los scenarios o cambios de escenas y tener en cuenta el dispose de los objetos: https://threejs.org/manual/#en/cleanup
+// https://threejs.org/manual/#en/cleanup
+// Resumen:
+// boxGeometry.dispose();
+// boxTexture.dispose();
+// boxMaterial.dispose();

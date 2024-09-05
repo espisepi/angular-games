@@ -53,7 +53,7 @@ export class WorldEngine {
     const height = getElementHeight(parent);
 
     // Create Graphics Manager (Threejs scene)
-    this.graphicsManager = new GraphicsManager();
+    this.graphicsManager = this.createGraphicsManager();
 
     // Create Camera Manager (Threejs camera) (TODO CameraManager xD)
     this.camera = new THREE.PerspectiveCamera(80, width / height, 0.1, 1010);
@@ -96,6 +96,11 @@ export class WorldEngine {
       );
     }
     return null;
+  }
+
+  // Override this method to use custom Graphics Manager
+  protected createGraphicsManager(): GraphicsManager {
+    return new GraphicsManager();
   }
 
   // Override this method to use custom Controls Manager

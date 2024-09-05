@@ -71,7 +71,7 @@ export class WorldEngine {
     this.updatablesManager = new UpdatablesManager();
 
     // Inicialización de ControlsManager
-    this.controlsManager = this.createControlsManager();
+    this.controlsManager = this.createControlsManager(typeControls);
 
     // Inicializacion del ScenarioManager
     this.scenarioManager = this.createScenarioManager();

@@ -1,3 +1,4 @@
+import { LoadingManager } from './../../loading/manager/LoadingManager';
 import { GraphicsWorld } from '../../world/graphicsWorld/GraphicsWorld';
 import { UpdatablesManager } from '../../updatables/UpdatablesManager';
 import { IUpdatable } from '../../interfaces/IUpdatable';
@@ -17,19 +18,41 @@ export class ScenarioManager {
 
   private graphicsWorld: GraphicsWorld;
   private updatablesManager: UpdatablesManager;
+  private loadingManager: LoadingManager;
 
   private currentScenario: Scenario;
 
-  constructor(graphicsWorld: GraphicsWorld, updatablesManager: UpdatablesManager) {
+  constructor(graphicsWorld: GraphicsWorld, updatablesManager: UpdatablesManager, loadingManager: LoadingManager) {
     this.graphicsWorld = graphicsWorld;
     this.updatablesManager = updatablesManager;
+    this.loadingManager = loadingManager;
 
-    this.currentScenario = new Scenario(graphicsWorld,updatablesManager);
+    this.currentScenario = this.createScenario();
+  }
+
+  // override this method to use custom Scenario
+  protected createScenario(): Scenario {
+    return  new Scenario( this.graphicsWorld, this.updatablesManager, this.loadingManager );
   }
 
   // loadScene(loadingManager: LoadingManager, gltf: any): void;
   // launchScenario(scenarioID: string, loadingManager?: LoadingManager): void;
   // restartScenario(): void;
+
+
+  // Public methods ===========================
+
+  public getGraphicsWorld(): GraphicsWorld {
+    return this.graphicsWorld;
+  }
+
+  public getUpdatablesManager(): UpdatablesManager {
+    return this.updatablesManager;
+  }
+
+  public getLoadingManager(): LoadingManager {
+    return this.loadingManager;
+  }
 
 
 

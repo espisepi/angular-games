@@ -1,0 +1,58 @@
+
+
+Pregunta chatgpt:
+
+Tengo este error en typescript, como lo soluciono? Class 'ScenarioManagerVisualizerModel' incorrectly extends base class 'ScenarioManager'.
+  Types have separate declarations of a private property 'createScenario'.ts(2415)
+class ScenarioManagerVisualizerModel
+
+=====================================
+
+Solucion chatgpt:
+
+Este error ocurre porque en TypeScript, cuando una clase hija extiende de una clase padre, no puede tener una propiedad o método privado con el mismo nombre que uno de la clase padre. En tu caso, ambas clases (`ScenarioManager` y `ScenarioManagerVisualizerModel`) tienen una propiedad o método privado llamado `createScenario`.
+
+Dado que los miembros privados no se pueden compartir entre clases, TypeScript detecta un conflicto entre ambas declaraciones, ya que la clase hija no puede acceder ni sobrescribir miembros privados de la clase padre.
+
+### Soluciones posibles:
+
+1. **Convertir `createScenario` en una propiedad protegida (`protected`)**:
+   Si `createScenario` debe ser accesible desde la clase hija, puedes cambiar su visibilidad a `protected` en la clase base (`ScenarioManager`). Esto permitirá que la clase hija acceda a la propiedad o método.
+
+```typescript
+class ScenarioManager {
+  protected createScenario() {
+    // Implementación
+  }
+}
+
+class ScenarioManagerVisualizerModel extends ScenarioManager {
+  protected createScenario() {
+    // Implementación
+  }
+}
+```
+
+2. **Renombrar la propiedad o método en la clase hija**:
+   Si `createScenario` debe seguir siendo privado en ambas clases y no es necesario que tengan el mismo nombre, puedes cambiar el nombre de una de las propiedades para evitar el conflicto.
+
+```typescript
+class ScenarioManager {
+  private createScenario() {
+    // Implementación
+  }
+}
+
+class ScenarioManagerVisualizerModel extends ScenarioManager {
+  private createVisualizerScenario() {
+    // Implementación
+  }
+}
+```
+
+3. **Reevaluar si `createScenario` necesita estar en ambas clases**:
+   Si el método `createScenario` de la clase hija no necesita redefinir la funcionalidad del método en la clase base, podrías eliminarlo de la clase hija.
+
+---
+
+Evalúa cuál de estas soluciones se adapta mejor a tu caso y ajusta tu código en consecuencia.

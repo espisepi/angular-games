@@ -80,7 +80,10 @@ export class WorldEngine {
     }
 
     // Inicializacion del ScenarioManager
-    this.createScenarioManager();
+    const scenarioManager = this.createScenarioManager();
+    if(scenarioManager) {
+      this.scenarioManager = scenarioManager;
+    }
 
     if(hasStats) {
       this.setupStats();
@@ -93,10 +96,11 @@ export class WorldEngine {
   }
 
   // override this method to use custom ScenarioManager
-  private createScenarioManager(): void {
-    if(this.updatablesManager) {
-      this.scenarioManager = new ScenarioManager(this.graphicsWorld, this.updatablesManager);
+  protected createScenarioManager(): ScenarioManager | null {
+    if(this.updatablesManager && this.loadingManager) {
+      return new ScenarioManager(this.graphicsWorld, this.updatablesManager, this.loadingManager);
     }
+    return null;
   }
 
   private setupStats(): void {

@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GraphicsWorld } from '../../world/graphicsWorld/GraphicsWorld';
 import { UpdatablesManager } from '../../updatables/UpdatablesManager';
 import { BoxMesh } from '../prefabs/box/BoxMesh';
+import { LoadingManager } from '../../loading/manager/LoadingManager';
 
 // TODO: Esto tiene que ser muy basica para sustituirlo
 // por el de ScenarioSketchbook en el game de Sketchbook
@@ -11,29 +12,47 @@ export class Scenario {
 
   private graphicsWorld: GraphicsWorld;
   private updatablesManager: UpdatablesManager;
+  private loadingManager: LoadingManager;
 
-  constructor(graphicsWorld:GraphicsWorld, updatablesManager: UpdatablesManager)
+  constructor(graphicsWorld:GraphicsWorld, updatablesManager: UpdatablesManager, loadingManager: LoadingManager)
 	{
     this.graphicsWorld = graphicsWorld;
     this.updatablesManager = updatablesManager;
+    this.loadingManager = loadingManager;
 
 
     this.initLights();
     this.initObjects();
   }
 
-  private initLights(): void {
+  protected initLights(): void {
     // light
     const light = new THREE.AmbientLight();
     this.graphicsWorld.add(light);
   }
 
-  private initObjects(): void {
+  protected initObjects(): void {
     // create mesh
     const mesh = new BoxMesh();
     this.updatablesManager.registerUpdatable(mesh);
     this.graphicsWorld.add(mesh);
   }
+
+  // Public methods ========================
+
+  public getGraphicsWorld(): GraphicsWorld {
+    return this.graphicsWorld;
+  }
+
+  public getUpdatablesManager(): UpdatablesManager {
+    return this.updatablesManager;
+  }
+
+  public getLoadingManager(): LoadingManager {
+    return this.loadingManager;
+  }
+
+
 
 }
 

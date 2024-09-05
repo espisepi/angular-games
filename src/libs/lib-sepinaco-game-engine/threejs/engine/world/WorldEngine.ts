@@ -104,7 +104,7 @@ export class WorldEngine {
   protected createRendererManager(): RendererManager {
     return new RendererManager(
       this.parent,
-      this.cameraManager.getCamera(),
+      this.cameraManager,
       this.graphicsManager
     );
   }

@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { getElementHeight, getElementWidth } from '../utils/FunctionLibrary';
 import { GraphicsManager } from '../graphics/GraphicsManager';
+import { CameraManager } from '../cameras/manager/CameraManager';
 
 export class RendererManager {
   private clock: THREE.Clock;
@@ -17,6 +18,7 @@ export class RendererManager {
   private width: number;
   private height: number;
 
+  private cameraManager: CameraManager;
   private camera: THREE.PerspectiveCamera;
 
   private graphicsManager: GraphicsManager;
@@ -29,11 +31,14 @@ export class RendererManager {
 
   constructor(
     parent: HTMLElement,
-    camera: THREE.PerspectiveCamera,
+    cameraManager: CameraManager,
     graphicsManager: GraphicsManager
   ) {
     this.parent = parent;
-    this.camera = camera;
+
+    this.cameraManager = cameraManager;
+    this.camera = this.cameraManager.getCamera();
+
     this.graphicsManager = graphicsManager;
     this.scene = this.graphicsManager.getScene();
 

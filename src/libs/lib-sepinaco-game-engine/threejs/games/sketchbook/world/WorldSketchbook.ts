@@ -18,21 +18,20 @@ export class WorldSketchbook extends WorldEngine {
 
     this.inputManager = this.createInputManager();
     this.cameraOperator = this.createCameraOperator();
-
   }
 
   private createInputManager(): InputManager | null {
-    if(this.updatablesManager) {
+    if (this.updatablesManager) {
       return new InputManager(
-          this.updatablesManager,
-          this.rendererEngine.renderer.domElement
-        );
+        this.updatablesManager,
+        this.rendererEngine.renderer.domElement
+      );
     }
     return null;
   }
 
   private createCameraOperator(): CameraOperator | null {
-    if(this.updatablesManager) {
+    if (this.updatablesManager) {
       return new CameraOperator(
         this.updatablesManager,
         this.inputManager,

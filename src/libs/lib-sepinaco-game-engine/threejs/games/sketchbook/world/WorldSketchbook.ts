@@ -12,8 +12,6 @@ export class WorldSketchbook extends WorldEngine {
   public inputManager?: InputManager;
   public cameraOperator?: CameraOperator;
 
-  public mesh: THREE.Mesh;
-
   constructor(params: IWorldSketchbookParams) {
     super(params as IWorldEngineParams);
 
@@ -29,25 +27,13 @@ export class WorldSketchbook extends WorldEngine {
         this.params.Mouse_Sensitivity
       );
     }
-
-    // create mesh
-    this.mesh = new THREE.Mesh(
-      new THREE.BoxGeometry(1, 1, 1),
-      new THREE.MeshBasicMaterial({
-        wireframe: true,
-        color: new THREE.Color('green'),
-      })
-    );
-    this.graphicsWorld.add(this.mesh);
   }
 
   public override update(timeStep: number, unscaledTimeStep: number): void {
     super.update(timeStep, unscaledTimeStep);
-
-    this.mesh?.rotateY(0.1 * 5 * timeStep);
   }
 
-   protected override createScenarioManager(): ScenarioManager | null {
+  protected override createScenarioManager(): ScenarioManager | null {
     if (this.updatablesManager && this.loadingManager) {
       return new ScenarioManagerSketchbook(
         this.graphicsWorld,

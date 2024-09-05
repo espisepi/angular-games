@@ -50,14 +50,11 @@ export class WorldEngine {
 
     this.parent = parent;
 
-    const width = getElementWidth(parent);
-    const height = getElementHeight(parent);
-
     // Create Graphics Manager (Threejs scene) (can be override by custom graphics manager)
     this.graphicsManager = this.createGraphicsManager();
 
     // Create Camera Manager (Threejs camera) (can be override by custom camera manager)
-    this.cameraManager = this.createCameraManager(width, height);
+    this.cameraManager = this.createCameraManager();
 
     // Create Renderer Manager (Threejs renderer) (can be override by custom renderer manager)
     this.rendererManager = this.createRendererManager();
@@ -99,7 +96,11 @@ export class WorldEngine {
   }
 
   // Override this method to use custom Camera Manager
-  protected createCameraManager(width: number, height: number): CameraManager {
+  protected createCameraManager(): CameraManager {
+    const parent = this.getParent();
+    const width = getElementWidth(parent);
+    const height = getElementHeight(parent);
+
     return new CameraManager(width, height);
   }
 

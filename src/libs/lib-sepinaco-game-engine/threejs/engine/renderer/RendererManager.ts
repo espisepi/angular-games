@@ -28,7 +28,6 @@ export class RendererManager {
 
   // ===========================
 
-
   constructor(
     parent: HTMLElement,
     cameraManager: CameraManager,

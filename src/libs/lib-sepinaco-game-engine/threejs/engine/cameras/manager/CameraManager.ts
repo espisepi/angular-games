@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 export class CameraManager {
-
   private width: number;
   private height: number;
 
@@ -15,7 +14,12 @@ export class CameraManager {
 
   // Override this method to use custom PerspectiveCamera
   protected createCamera(): THREE.PerspectiveCamera {
-    const camera = new THREE.PerspectiveCamera(80, this.width / this.height, 0.1, 1010);
+    const camera = new THREE.PerspectiveCamera(
+      80,
+      this.width / this.height,
+      0.1,
+      1010
+    );
     camera.position.set(0, 0, 3);
     return camera;
   }

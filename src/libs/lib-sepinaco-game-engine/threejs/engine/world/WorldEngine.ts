@@ -13,7 +13,6 @@ import { ScenarioManager } from '../scenarios/manager/ScenarioManager';
 import { CameraManager } from '../cameras/manager/CameraManager';
 
 export class WorldEngine {
-
   public graphicsManager: GraphicsManager;
 
   public cameraManager: CameraManager;
@@ -115,8 +114,10 @@ export class WorldEngine {
   }
 
   // Override this method to use custom Controls Manager
-  protected createControlsManager(typeControls?: TypeControls): ControlsManager | null {
-    if(!this.updatablesManager) return null;
+  protected createControlsManager(
+    typeControls?: TypeControls
+  ): ControlsManager | null {
+    if (!this.updatablesManager) return null;
     // Create controlsManager
     const controlsManager = new ControlsManager(
       this.cameraManager.getCamera(),
@@ -125,7 +126,7 @@ export class WorldEngine {
     );
 
     // Set controls
-    if(typeControls) {
+    if (typeControls) {
       controlsManager.setControl(typeControls);
     } else {
       // Si no se selecciona el type, no instanciamos ningun control
@@ -138,7 +139,6 @@ export class WorldEngine {
   private setupStats(): void {
     this.stats = new Stats(this.updatablesManager);
   }
-
 
   /**
    * Rendering loop.
@@ -162,5 +162,4 @@ export class WorldEngine {
   public update(timeStep: number, unscaledTimeStep: number): void {
     this.updatablesManager?.update(timeStep, unscaledTimeStep);
   }
-
 }

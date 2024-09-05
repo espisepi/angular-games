@@ -7,27 +7,43 @@ import { IWorldEngineParams } from '../../../engine/interfaces/IWorldEngineParam
 import { IWorldSketchbookParams } from '../interfaces/IWorldSketchbookParams';
 import { ScenarioManager } from '../../../engine/scenarios/manager/ScenarioManager';
 import { ScenarioManagerSketchbook } from '../scenarios/manager/ScenarioManagerSketchbook';
+import { UpdatablesManager } from '../../../engine/updatables/UpdatablesManager';
 
 export class WorldSketchbook extends WorldEngine {
-  public inputManager?: InputManager;
-  public cameraOperator?: CameraOperator;
+  public inputManager?: InputManager | null;
+  public cameraOperator?: CameraOperator | null;
 
   constructor(params: IWorldSketchbookParams) {
     super(params as IWorldEngineParams);
 
-    if (this.updatablesManager) {
-      this.inputManager = new InputManager(
-        this.updatablesManager,
-        this.rendererEngine.renderer.domElement
-      );
-      this.cameraOperator = new CameraOperator(
+    this.inputManager = this.createInputManager();
+    this.cameraOperator = this.createCameraOperator();
+
+  }
+
+  private createInputManager(): InputManager | null {
+    if(this.updatablesManager) {
+      return new InputManager(
+          this.updatablesManager,
+          this.rendererEngine.renderer.domElement
+        );
+    }
+    return null;
+  }
+
+  private createCameraOperator(): CameraOperator | null {
+    if(this.updatablesManager) {
+      return new CameraOperator(
         this.updatablesManager,
         this.inputManager,
         this.camera,
         this.params.Mouse_Sensitivity
       );
     }
+    return null;
   }
+
+  // override methods to modify logic of parent class WorldEngine ================
 
   // public override update(timeStep: number, unscaledTimeStep: number): void {
   //   super.update(timeStep, unscaledTimeStep);

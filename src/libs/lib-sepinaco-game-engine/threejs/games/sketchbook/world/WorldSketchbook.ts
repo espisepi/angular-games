@@ -44,10 +44,6 @@ export class WorldSketchbook extends WorldEngine {
 
   // override methods to modify logic of parent class WorldEngine ================
 
-  // public override update(timeStep: number, unscaledTimeStep: number): void {
-  //   super.update(timeStep, unscaledTimeStep);
-  // }
-
   protected override createScenarioManager(): ScenarioManager | null {
     if (this.updatablesManager && this.loadingManager) {
       return new ScenarioManagerSketchbook(
@@ -58,4 +54,8 @@ export class WorldSketchbook extends WorldEngine {
     }
     return null;
   }
+
+  // public override update(timeStep: number, unscaledTimeStep: number): void {
+  //   super.update(timeStep, unscaledTimeStep);
+  // }
 }

@@ -54,13 +54,13 @@ export class WorldEngine {
     const width = getElementWidth(parent);
     const height = getElementHeight(parent);
 
-    // Create Graphics Manager (Threejs scene)
+    // Create Graphics Manager (Threejs scene) (can be override by custom graphics manager)
     this.graphicsManager = this.createGraphicsManager();
 
-    // Create Camera Manager (Threejs camera)
+    // Create Camera Manager (Threejs camera) (can be override by custom camera manager)
     this.cameraManager = this.createCameraManager(width, height);
 
-    // Create Renderer Manager (Threejs renderer)
+    // Create Renderer Manager (Threejs renderer) (can be override by custom renderer manager)
     this.rendererManager = this.createRendererManager();
 
     // Create Loading Manager

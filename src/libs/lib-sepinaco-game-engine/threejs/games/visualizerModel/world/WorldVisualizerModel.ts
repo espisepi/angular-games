@@ -9,10 +9,6 @@ export class WorldVisualizerModel extends WorldEngine {
     super(params as IWorldEngineParams);
   }
 
-  // public override update(timeStep: number, unscaledTimeStep: number): void {
-  //   super.update(timeStep, unscaledTimeStep);
-  // }
-
   protected override createScenarioManager(): ScenarioManager | null {
     const updatablesManager = this.getUpdatablesManager();
     const loadingManager = this.getLoadingManager();

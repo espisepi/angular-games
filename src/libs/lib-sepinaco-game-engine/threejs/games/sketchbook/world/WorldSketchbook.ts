@@ -73,11 +73,7 @@ export class WorldSketchbook extends WorldEngine {
     return null;
   }
 
-  // public override update(timeStep: number, unscaledTimeStep: number): void {
-  //   super.update(timeStep, unscaledTimeStep);
-  // }
-
-  // public methods
+  // public methods ==========================
 
   public getInputManager(): InputManager | null | undefined {
     return this.inputManager;

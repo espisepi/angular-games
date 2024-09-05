@@ -34,12 +34,12 @@ export class WorldEngine {
     Pointer_Lock: false,
     Mouse_Sensitivity: 0.3,
     Time_Scale: 1,
-    Shadows: true,
-    FXAA: true,
-    Debug_Physics: false,
-    Debug_FPS: false,
-    Sun_Elevation: 50,
-    Sun_Rotation: 145,
+    // Shadows: true,
+    // FXAA: true,
+    // Debug_Physics: false,
+    // Debug_FPS: false,
+    // Sun_Elevation: 50,
+    // Sun_Rotation: 145,
   };
 
   constructor(params: IWorldEngineParams) {

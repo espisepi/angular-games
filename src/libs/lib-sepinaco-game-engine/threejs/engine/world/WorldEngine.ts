@@ -8,13 +8,14 @@ import { TypeControls } from '../controls/enums/TypeControls';
 import { Stats } from '../features/stats/Stats';
 import { UpdatablesManager } from '../updatables/UpdatablesManager';
 import { LoadingManager } from '../loading/manager/LoadingManager';
+import { GraphicsWorld } from './graphicsWorld/GraphicsWorld';
 
 
 
 export class WorldEngine {
 	public camera: THREE.PerspectiveCamera;
 
-  public graphicsWorld: THREE.Scene;
+  public graphicsWorld: GraphicsWorld;
 
   public controlsManager?: ControlsManager;
 
@@ -54,12 +55,12 @@ export class WorldEngine {
     const height = getElementHeight(parent);
 
     // Three.js scene
-		this.graphicsWorld = new THREE.Scene();
+		this.graphicsWorld = new GraphicsWorld();
 		this.camera = new THREE.PerspectiveCamera(80, width / height, 0.1, 1010);
     this.camera.position.set(0,0,3);
 
     // Renderer
-    this.rendererEngine = new RendererEngine(parent, this.camera, this.graphicsWorld);
+    this.rendererEngine = new RendererEngine(parent, this.camera, this.graphicsWorld.getScene());
 
     // Loading manager
     this.loadingManager = new LoadingManager();

@@ -4,6 +4,13 @@ import { UpdatablesManager } from '../../../../engine/updatables/UpdatablesManag
 import { GraphicsWorld } from '../../../../engine/world/graphicsWorld/GraphicsWorld';
 import { LoadingManager } from '../../../../engine/loading/manager/LoadingManager';
 
+// TODO: Hacer los scenarios o cambios de escenas y tener en cuenta el dispose de los objetos: https://threejs.org/manual/#en/cleanup
+// https://threejs.org/manual/#en/cleanup
+// Resumen:
+// boxGeometry.dispose();
+// boxTexture.dispose();
+// boxMaterial.dispose();
+
 export class ScenarioVisualizerModel extends Scenario {
   constructor(
     graphicsWorld: GraphicsWorld,
@@ -27,27 +34,10 @@ export class ScenarioVisualizerModel extends Scenario {
     this.loadGLTF();
   }
 
-  // TODO: Hacer los scenarios o cambios de escenas y tener en cuenta el dispose de los objetos: https://threejs.org/manual/#en/cleanup
-  // https://threejs.org/manual/#en/cleanup
-  // Resumen:
-  // boxGeometry.dispose();
-  // boxTexture.dispose();
-  // boxMaterial.dispose();
   private loadGLTF(): void {
     if (!this.getLoadingManager()) return;
     this.getLoadingManager().onFinishedCallback = () => {
-      // this.update(1, 1);
-      // this.setTimeScale(1);
-      // Swal.fire({
-      // 	title: 'Welcome to Sketchbook!',
-      // 	text: 'Feel free to explore the world and interact with available vehicles. There are also various scenarios ready to launch from the right panel.',
-      // 	footer: '<a href="https://github.com/swift502/Sketchbook" target="_blank">GitHub page</a><a href="https://discord.gg/fGuEqCe" target="_blank">Discord server</a>',
-      // 	confirmButtonText: 'Okay',
-      // 	buttonsStyling: false,
-      // 	onClose: () => {
-      // 		UIManager.setUserInterfaceVisible(true);
-      // 	}
-      // });
+      console.log('finished loading gltf! :)');
     };
     this.getLoadingManager()?.loadGLTF(
       '/assets/models/boxman.glb',

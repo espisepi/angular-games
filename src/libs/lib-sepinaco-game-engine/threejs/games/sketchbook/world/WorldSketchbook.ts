@@ -8,6 +8,7 @@ import { IWorldSketchbookParams } from '../interfaces/IWorldSketchbookParams';
 import { ScenarioManager } from '../../../engine/scenarios/manager/ScenarioManager';
 import { ScenarioManagerSketchbook } from '../scenarios/manager/ScenarioManagerSketchbook';
 import { UpdatablesManager } from '../../../engine/updatables/UpdatablesManager';
+import { CameraManager } from '../../../engine/cameras/manager/CameraManager';
 
 export class WorldSketchbook extends WorldEngine {
   public inputManager?: InputManager | null;
@@ -35,7 +36,7 @@ export class WorldSketchbook extends WorldEngine {
       return new CameraOperator(
         this.updatablesManager,
         this.inputManager,
-        this.camera,
+        this.cameraManager.getCamera(),
         this.params.Mouse_Sensitivity
       );
     }

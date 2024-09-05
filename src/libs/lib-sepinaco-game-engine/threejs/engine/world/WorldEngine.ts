@@ -10,11 +10,13 @@ import { UpdatablesManager } from '../updatables/UpdatablesManager';
 import { LoadingManager } from '../loading/manager/LoadingManager';
 import { GraphicsManager } from '../graphics/GraphicsManager';
 import { ScenarioManager } from '../scenarios/manager/ScenarioManager';
+import { CameraManager } from '../cameras/manager/CameraManager';
 
 export class WorldEngine {
-  public camera: THREE.PerspectiveCamera;
 
   public graphicsManager: GraphicsManager;
+
+  public cameraManager: CameraManager;
 
   public controlsManager?: ControlsManager | null;
 
@@ -55,9 +57,8 @@ export class WorldEngine {
     // Create Graphics Manager (Threejs scene)
     this.graphicsManager = this.createGraphicsManager();
 
-    // Create Camera Manager (Threejs camera) (TODO CameraManager xD)
-    this.camera = new THREE.PerspectiveCamera(80, width / height, 0.1, 1010);
-    this.camera.position.set(0, 0, 3);
+    // Create Camera Manager (Threejs camera)
+    this.cameraManager = this.createCameraManager(width, height);
 
     // Create Renderer Manager (Threejs renderer)
     this.rendererManager = this.createRendererManager();
@@ -94,11 +95,16 @@ export class WorldEngine {
     return null;
   }
 
+  // Override this method to use custom Camera Manager
+  protected createCameraManager(width: number, height: number): CameraManager {
+    return new CameraManager(width, height);
+  }
+
   // Override this method to use custom Renderer Manager
   protected createRendererManager(): RendererManager {
     return new RendererManager(
       this.parent,
-      this.camera,
+      this.cameraManager.getCamera(),
       this.graphicsManager
     );
   }
@@ -113,7 +119,7 @@ export class WorldEngine {
     if(!this.updatablesManager) return null;
     // Create controlsManager
     const controlsManager = new ControlsManager(
-      this.camera,
+      this.cameraManager.getCamera(),
       this.rendererManager.getRenderer().domElement,
       this.updatablesManager
     );
@@ -156,4 +162,5 @@ export class WorldEngine {
   public update(timeStep: number, unscaledTimeStep: number): void {
     this.updatablesManager?.update(timeStep, unscaledTimeStep);
   }
+
 }

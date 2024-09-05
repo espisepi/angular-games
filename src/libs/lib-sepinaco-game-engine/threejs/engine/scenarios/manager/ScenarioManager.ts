@@ -1,6 +1,7 @@
 import { GraphicsWorld } from '../../world/graphicsWorld/GraphicsWorld';
 import { UpdatablesManager } from '../../updatables/UpdatablesManager';
 import { IUpdatable } from '../../interfaces/IUpdatable';
+import { Scenario } from '../core/Scenario';
 
 
 // TODO: Hacer los scenarios o cambios de escenas y tener en cuenta el dispose de los objetos: https://threejs.org/manual/#en/cleanup
@@ -17,11 +18,13 @@ export class ScenarioManager {
   private graphicsWorld: GraphicsWorld;
   private updatablesManager: UpdatablesManager;
 
-  private currentScenario: any;
+  private currentScenario: Scenario;
 
   constructor(graphicsWorld: GraphicsWorld, updatablesManager: UpdatablesManager) {
     this.graphicsWorld = graphicsWorld;
     this.updatablesManager = updatablesManager;
+
+    this.currentScenario = new Scenario(graphicsWorld,updatablesManager);
   }
 
   // loadScene(loadingManager: LoadingManager, gltf: any): void;

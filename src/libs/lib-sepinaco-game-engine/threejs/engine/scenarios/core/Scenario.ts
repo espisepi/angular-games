@@ -1,8 +1,41 @@
 
+import * as THREE from 'three';
+import { GraphicsWorld } from '../../world/graphicsWorld/GraphicsWorld';
+import { UpdatablesManager } from '../../updatables/UpdatablesManager';
+
 // TODO: Esto tiene que ser muy basica para sustituirlo
 // por el de ScenarioSketchbook en el game de Sketchbook
 
+// Se encarga de instanciar y anadir a graphicsWorld todos los objetos
 export class Scenario {
+
+  private graphicsWorld: GraphicsWorld;
+
+  constructor(graphicsWorld:GraphicsWorld, updatablesManager: UpdatablesManager)
+	{
+    this.graphicsWorld = graphicsWorld;
+
+
+    this.initScenario();
+  }
+
+  private initScenario() {
+    // light
+    const light = new THREE.AmbientLight();
+    this.graphicsWorld.add(light);
+
+    // create mesh
+    const mesh = new THREE.Mesh(
+      new THREE.BoxGeometry(1,1,1),
+      new THREE.MeshBasicMaterial({
+        wireframe: true,
+        color: new THREE.Color('green')
+      })
+    );
+
+    this.graphicsWorld.add(mesh);
+
+  }
 
 }
 

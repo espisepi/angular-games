@@ -5,25 +5,10 @@ import { IWorldEngineParams } from '../../../engine/interfaces/IWorldEngineParam
 export class WorldVisualizerModel extends WorldEngine {
 
 
-  public mesh: THREE.Mesh;
-
   constructor(params: IWorldEngineParams) {
 
     super(params as IWorldEngineParams);
 
-    // light
-    const light = new THREE.AmbientLight();
-    this.graphicsWorld.add(light);
-
-    // create mesh
-    this.mesh = new THREE.Mesh(
-      new THREE.BoxGeometry(1,1,1),
-      new THREE.MeshBasicMaterial({
-        wireframe: true,
-        color: new THREE.Color('green')
-      })
-    );
-    this.graphicsWorld.add(this.mesh);
 
     // Load GLTF
     this.loadGLTF();
@@ -33,8 +18,6 @@ export class WorldVisualizerModel extends WorldEngine {
 
  public override update(timeStep: number, unscaledTimeStep: number): void {
   super.update(timeStep, unscaledTimeStep);
-
-  this.mesh?.rotateY(0.1 * 5 * timeStep);
 
  }
 

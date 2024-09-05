@@ -9,6 +9,7 @@ import { Stats } from '../features/stats/Stats';
 import { UpdatablesManager } from '../updatables/UpdatablesManager';
 import { LoadingManager } from '../loading/manager/LoadingManager';
 import { GraphicsWorld } from './graphicsWorld/GraphicsWorld';
+import { ScenarioManager } from '../scenarios/manager/ScenarioManager';
 
 
 
@@ -24,6 +25,8 @@ export class WorldEngine {
   public loadingManager?: LoadingManager;
 
   public rendererEngine: RendererEngine;
+
+  private scenarioManager: ScenarioManager;
 
   public parent: HTMLElement;
 
@@ -75,6 +78,9 @@ export class WorldEngine {
       // Si no se selecciona el type, no instanciamos el controlsManager
       // this.setupControlsManager(TypeControls.Orbit);
     }
+
+    // Inicializacion del ScenarioManager
+    this.scenarioManager = new ScenarioManager(this.graphicsWorld, this.updatablesManager);
 
     if(hasStats) {
       this.setupStats();

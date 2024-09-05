@@ -16,7 +16,7 @@ export class WorldEngine {
 
   public graphicsWorld: GraphicsWorld;
 
-  public controlsManager?: ControlsManager;
+  public controlsManager?: ControlsManager | null;
 
   public updatablesManager?: UpdatablesManager;
 
@@ -96,11 +96,13 @@ export class WorldEngine {
     return null;
   }
 
-  protected createControlsManager(typeControls?: TypeControls): ControlsManager {
+  protected createControlsManager(typeControls?: TypeControls): ControlsManager | null {
+    if(!this.updatablesManager) return null;
     // Create controlsManager
     const controlsManager = new ControlsManager(
       this.camera,
-      this.rendererEngine.renderer.domElement
+      this.rendererEngine.renderer.domElement,
+      this.updatablesManager
     );
 
     // Set controls
@@ -140,6 +142,5 @@ export class WorldEngine {
   // Handles all logic updates.
   public update(timeStep: number, unscaledTimeStep: number): void {
     this.updatablesManager?.update(timeStep, unscaledTimeStep);
-    this.controlsManager?.update();
   }
 }

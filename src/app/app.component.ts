@@ -9,9 +9,9 @@ import { TypeControls } from '../libs/lib-sepinaco-game-engine/threejs/engine/co
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent implements AfterViewInit  {
+export class AppComponent implements AfterViewInit {
   title = 'angular-games';
 
   // Usa @ViewChild para obtener una referencia al elemento
@@ -33,8 +33,8 @@ export class AppComponent implements AfterViewInit  {
     const params: IWorldEngineParams = {
       parent: this.divElement.nativeElement,
       typeControls: TypeControls.Orbit,
-      hasStats: true
-    }
+      hasStats: true,
+    };
     const world = new WorldVisualizerModel(params);
 
     // const sepinacoGameEngine = new SepinacoGameEngine(this.divElement.nativeElement);

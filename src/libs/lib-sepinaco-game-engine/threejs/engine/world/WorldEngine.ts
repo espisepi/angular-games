@@ -24,7 +24,7 @@ export class WorldEngine {
 
   public rendererEngine: RendererEngine;
 
-  private scenarioManager?: ScenarioManager;
+  private scenarioManager?: ScenarioManager | null;
 
   public parent: HTMLElement;
 
@@ -74,10 +74,7 @@ export class WorldEngine {
     this.controlsManager = this.createControlsManager();
 
     // Inicializacion del ScenarioManager
-    const scenarioManager = this.createScenarioManager();
-    if (scenarioManager) {
-      this.scenarioManager = scenarioManager;
-    }
+    this.scenarioManager = this.createScenarioManager();
 
     if (hasStats) {
       this.setupStats();

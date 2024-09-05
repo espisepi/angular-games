@@ -63,7 +63,7 @@ export class WorldEngine {
     this.rendererManager = new RendererManager(
       parent,
       this.camera,
-      this.graphicsManager.getScene()
+      this.graphicsManager
     );
 
     // Create Loading Manager

@@ -52,12 +52,14 @@ export class WorldEngine {
     const width = getElementWidth(parent);
     const height = getElementHeight(parent);
 
-    // Three.js scene
+    // Create Graphics Manager (Threejs scene)
     this.graphicsManager = new GraphicsManager();
+
+    // Create Camera Manager (Threejs camera) (TODO CameraManager xD)
     this.camera = new THREE.PerspectiveCamera(80, width / height, 0.1, 1010);
     this.camera.position.set(0, 0, 3);
 
-    // Create Renderer Manager
+    // Create Renderer Manager (Threejs renderer)
     this.rendererManager = new RendererManager(
       parent,
       this.camera,

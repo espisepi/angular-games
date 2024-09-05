@@ -14,11 +14,15 @@ export class WorldVisualizerModel extends WorldEngine {
   // }
 
   protected override createScenarioManager(): ScenarioManager | null {
-    if (this.updatablesManager && this.loadingManager) {
+    const updatablesManager = this.getUpdatablesManager();
+    const loadingManager = this.getLoadingManager();
+    const graphicsManager = this.getGraphicsManager();
+
+    if (updatablesManager && loadingManager) {
       return new ScenarioManagerVisualizerModel(
-        this.graphicsManager,
-        this.updatablesManager,
-        this.loadingManager
+        graphicsManager,
+        updatablesManager,
+        loadingManager
       );
     }
     return null;

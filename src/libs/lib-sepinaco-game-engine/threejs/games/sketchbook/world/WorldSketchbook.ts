@@ -5,6 +5,8 @@ import { CameraOperator } from '../controls/CameraOperator';
 import { WorldEngine } from '../../../engine/world/WorldEngine';
 import { IWorldEngineParams } from '../../../engine/interfaces/IWorldEngineParams';
 import { IWorldSketchbookParams } from '../interfaces/IWorldSketchbookParams';
+import { ScenarioManager } from '../../../engine/scenarios/manager/ScenarioManager';
+import { ScenarioManagerSketchbook } from '../scenarios/manager/ScenarioManagerSketchbook';
 
 export class WorldSketchbook extends WorldEngine {
   public inputManager?: InputManager;
@@ -45,7 +47,14 @@ export class WorldSketchbook extends WorldEngine {
     this.mesh?.rotateY(0.1 * 5 * timeStep);
   }
 
-  // TODO: Hacer override de los managers
-  // que he creado en sketchbook en vez de los del core
-  // por medio de getters override en donde se devuelve la instancia del manager
+   protected override createScenarioManager(): ScenarioManager | null {
+    if (this.updatablesManager && this.loadingManager) {
+      return new ScenarioManagerSketchbook(
+        this.graphicsWorld,
+        this.updatablesManager,
+        this.loadingManager
+      );
+    }
+    return null;
+  }
 }

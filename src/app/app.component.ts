@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 
 import { WorldSketchbook } from '../libs/lib-sepinaco-game-engine/threejs/games/sketchbook/world/WorldSketchbook';
-import { IWorldSketchbookOptions } from '../libs/lib-sepinaco-game-engine/threejs/games/sketchbook/interfaces/IWorldSketchbookOptions';
-import { IWorldEngineOptions } from '../libs/lib-sepinaco-game-engine/threejs/engine/interfaces/IWorldEngineOptions';
+import { IWorldSketchbookParams } from '../libs/lib-sepinaco-game-engine/threejs/games/sketchbook/interfaces/IWorldSketchbookParams';
+import { IWorldEngineParams } from '../libs/lib-sepinaco-game-engine/threejs/engine/interfaces/IWorldEngineParams';
 import { WorldVisualizerModel } from '../libs/lib-sepinaco-game-engine/threejs/games/visualizerModel/world/WorldVisualizerModel';
 import { TypeControls } from '../libs/lib-sepinaco-game-engine/threejs/engine/controls/enums/TypeControls';
 
@@ -25,17 +25,17 @@ export class AppComponent implements AfterViewInit  {
     // Ejemplo de cómo podrías manipular el elemento
     this.divElement.nativeElement.style.backgroundColor = 'yellow';
 
-    // const options: IWorldSketchbookOptions = {
+    // const params: IWorldSketchbookParams = {
     //   parent: this.divElement.nativeElement
     // }
-    // const world = new WorldSketchbook(options);
+    // const world = new WorldSketchbook(params);
 
-    const options: IWorldEngineOptions = {
+    const params: IWorldEngineParams = {
       parent: this.divElement.nativeElement,
       typeControls: TypeControls.Orbit,
       hasStats: true
     }
-    const world = new WorldVisualizerModel(options);
+    const world = new WorldVisualizerModel(params);
 
     // const sepinacoGameEngine = new SepinacoGameEngine(this.divElement.nativeElement);
   }

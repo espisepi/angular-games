@@ -3,8 +3,8 @@ import { IUpdatable } from '../../../engine/interfaces/IUpdatable';
 import { InputManager } from '../controls/InputManager';
 import { CameraOperator } from '../controls/CameraOperator';
 import { WorldEngine } from '../../../engine/world/WorldEngine';
-import { IWorldEngineOptions } from '../../../engine/interfaces/IWorldEngineOptions';
-import { IWorldSketchbookOptions } from '../interfaces/IWorldSketchbookOptions';
+import { IWorldEngineParams } from '../../../engine/interfaces/IWorldEngineParams';
+import { IWorldSketchbookParams } from '../interfaces/IWorldSketchbookParams';
 
 
 
@@ -15,9 +15,9 @@ export class WorldSketchbook extends WorldEngine {
 
   public mesh: THREE.Mesh;
 
-  constructor(options: IWorldSketchbookOptions) {
+  constructor(params: IWorldSketchbookParams) {
 
-    super(options as IWorldEngineOptions);
+    super(params as IWorldEngineParams);
 
     if(this.updatablesManager) {
       this.inputManager = new InputManager(this.updatablesManager, this.rendererEngine.renderer.domElement);

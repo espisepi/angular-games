@@ -2,7 +2,7 @@ import { TypeControls } from '../controls/enums/TypeControls';
 
 
 
-export interface IWorldEngineOptions {
+export interface IWorldEngineParams {
   parent: HTMLElement;
   typeControls?: TypeControls;
   hasStats?: boolean;

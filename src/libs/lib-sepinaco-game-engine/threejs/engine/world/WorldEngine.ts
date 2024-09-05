@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { IUpdatable } from '../interfaces/IUpdatable';
-import { IWorldEngineOptions } from '../interfaces/IWorldEngineOptions';
+import { IWorldEngineParams } from '../interfaces/IWorldEngineParams';
 import { RendererEngine } from '../renderer/RendererEngine';
 import { getElementHeight, getElementWidth } from '../utils/FunctionLibrary';
 import { ControlsManager } from '../controls/manager/ControlsManager';
@@ -44,10 +44,10 @@ export class WorldEngine {
 
 
 
-  constructor(options: IWorldEngineOptions) {
-    const { parent } = options;
-    const { typeControls } = options;
-    const { hasStats = true } = options;
+  constructor(params: IWorldEngineParams) {
+    const { parent } = params;
+    const { typeControls } = params;
+    const { hasStats = true } = params;
 
     this.parent = parent;
 

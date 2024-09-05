@@ -1,15 +1,15 @@
 import * as THREE from 'three';
 import { WorldEngine } from '../../../engine/world/WorldEngine';
-import { IWorldEngineOptions } from '../../../engine/interfaces/IWorldEngineOptions';
+import { IWorldEngineParams } from '../../../engine/interfaces/IWorldEngineParams';
 
 export class WorldVisualizerModel extends WorldEngine {
 
 
   public mesh: THREE.Mesh;
 
-  constructor(options: IWorldEngineOptions) {
+  constructor(params: IWorldEngineParams) {
 
-    super(options as IWorldEngineOptions);
+    super(params as IWorldEngineParams);
 
     // light
     const light = new THREE.AmbientLight();

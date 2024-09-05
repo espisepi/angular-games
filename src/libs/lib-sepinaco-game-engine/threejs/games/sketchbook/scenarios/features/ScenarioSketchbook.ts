@@ -22,7 +22,9 @@ export class ScenarioSketchbook extends Scenario {
 
   // My lights for this Scenario
   protected override initLights(): void {
+    // init default lights
     super.initLights();
+
     // new light
     const light = new THREE.PointLight(0xff0000);
     this.getGraphicsWorld().add(light);
@@ -30,6 +32,9 @@ export class ScenarioSketchbook extends Scenario {
 
   // My objects for this Scenario
   protected override initObjects(): void {
+    // init default object
+    super.initObjects();
+
     // Load GLTF
     this.loadGLTF();
   }

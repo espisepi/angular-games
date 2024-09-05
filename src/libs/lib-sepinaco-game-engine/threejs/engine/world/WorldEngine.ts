@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { IUpdatable } from '../interfaces/IUpdatable';
 import { IWorldEngineParams } from '../interfaces/IWorldEngineParams';
-import { RendererEngine } from '../renderer/RendererEngine';
+import { RendererManager } from '../renderer/RendererManager';
 import { getElementHeight, getElementWidth } from '../utils/FunctionLibrary';
 import { ControlsManager } from '../controls/manager/ControlsManager';
 import { TypeControls } from '../controls/enums/TypeControls';
@@ -22,7 +22,7 @@ export class WorldEngine {
 
   public loadingManager?: LoadingManager;
 
-  public rendererEngine: RendererEngine;
+  public rendererManager: RendererManager;
 
   private scenarioManager?: ScenarioManager | null;
 
@@ -58,7 +58,7 @@ export class WorldEngine {
     this.camera.position.set(0, 0, 3);
 
     // Renderer
-    this.rendererEngine = new RendererEngine(
+    this.rendererManager = new RendererManager(
       parent,
       this.camera,
       this.graphicsWorld.getScene()
@@ -101,7 +101,7 @@ export class WorldEngine {
     // Create controlsManager
     const controlsManager = new ControlsManager(
       this.camera,
-      this.rendererEngine.renderer.domElement,
+      this.rendererManager.renderer.domElement,
       this.updatablesManager
     );
 
@@ -132,7 +132,7 @@ export class WorldEngine {
     });
 
     // Update render RenderEngine
-    const [timeStep, unscaledTimeStep] = this.rendererEngine.render();
+    const [timeStep, unscaledTimeStep] = this.rendererManager.render();
 
     // Logic
     this.update(timeStep, unscaledTimeStep);

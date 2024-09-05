@@ -11,6 +11,8 @@ import { LoadingManager } from '../../../../engine/loading/manager/LoadingManage
 // boxTexture.dispose();
 // boxMaterial.dispose();
 
+// TODO: Integrar aqui sketchbook leyendo el escenario tal y como se lee en el sketchbook original
+
 export class ScenarioSketchbook extends Scenario {
   constructor(
     graphicsWorld: GraphicsWorld,

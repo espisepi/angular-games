@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { getElementHeight, getElementWidth } from '../utils/FunctionLibrary';
 
-export class RendererEngine {
+export class RendererManager {
   public clock: THREE.Clock;
   public renderDelta: number;
   public logicDelta: number;

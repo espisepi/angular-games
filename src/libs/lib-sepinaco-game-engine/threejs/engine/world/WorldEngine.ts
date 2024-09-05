@@ -26,7 +26,7 @@ export class WorldEngine {
 
   public rendererEngine: RendererEngine;
 
-  private scenarioManager: ScenarioManager;
+  private scenarioManager?: ScenarioManager;
 
   public parent: HTMLElement;
 
@@ -80,7 +80,7 @@ export class WorldEngine {
     }
 
     // Inicializacion del ScenarioManager
-    this.scenarioManager = new ScenarioManager(this.graphicsWorld, this.updatablesManager);
+    this.createScenarioManager();
 
     if(hasStats) {
       this.setupStats();
@@ -90,6 +90,13 @@ export class WorldEngine {
     // Render call
     this.render();
 
+  }
+
+  // override this method to use custom ScenarioManager
+  private createScenarioManager(): void {
+    if(this.updatablesManager) {
+      this.scenarioManager = new ScenarioManager(this.graphicsWorld, this.updatablesManager);
+    }
   }
 
   private setupStats(): void {

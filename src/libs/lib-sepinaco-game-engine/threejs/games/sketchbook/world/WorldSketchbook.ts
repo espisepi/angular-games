@@ -43,6 +43,12 @@ export class WorldSketchbook extends WorldEngine {
     this.mesh?.rotateY(0.1 * 5 * timeStep);
   }
 
+  // TODO: Hacer override de los managers
+  // que he creado en sketchbook en vez de los del core
+  // por medio de getters override en donde se devuelve la instancia del manager
+
+
+
 
 
 

@@ -57,23 +57,23 @@ export class WorldEngine {
     this.camera = new THREE.PerspectiveCamera(80, width / height, 0.1, 1010);
     this.camera.position.set(0, 0, 3);
 
-    // Renderer
+    // Create Renderer Manager
     this.rendererManager = new RendererManager(
       parent,
       this.camera,
       this.graphicsWorld.getScene()
     );
 
-    // Loading manager
+    // Create Loading Manager
     this.loadingManager = new LoadingManager();
 
-    // Updatables manager
+    // Create Updatables Manager
     this.updatablesManager = new UpdatablesManager();
 
-    // Inicialización de ControlsManager
+    //  Create Controls Manager (can be override by custom controls manager)
     this.controlsManager = this.createControlsManager(typeControls);
 
-    // Inicializacion del ScenarioManager
+    //  Create Scenario Manager (can be override by custom scenario manager)
     this.scenarioManager = this.createScenarioManager();
 
     if (hasStats) {
@@ -84,7 +84,7 @@ export class WorldEngine {
     this.render();
   }
 
-  // override this method to use custom ScenarioManager
+  // Override this method to use custom Scenario Manager
   protected createScenarioManager(): ScenarioManager | null {
     if (this.updatablesManager && this.loadingManager) {
       return new ScenarioManager(
@@ -96,6 +96,7 @@ export class WorldEngine {
     return null;
   }
 
+  // Override this method to use custom Controls Manager
   protected createControlsManager(typeControls?: TypeControls): ControlsManager | null {
     if(!this.updatablesManager) return null;
     // Create controlsManager

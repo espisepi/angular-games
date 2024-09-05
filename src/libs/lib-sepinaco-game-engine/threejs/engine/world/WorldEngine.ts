@@ -84,11 +84,15 @@ export class WorldEngine {
 
   // Override this method to use custom Scenario Manager
   protected createScenarioManager(): ScenarioManager | null {
-    if (this.updatablesManager && this.loadingManager) {
+    const updatablesManager = this.getUpdatablesManager();
+    const loadingManager = this.getLoadingManager();
+    const graphicsManager = this.getGraphicsManager();
+
+    if (updatablesManager && loadingManager) {
       return new ScenarioManager(
-        this.graphicsManager,
-        this.updatablesManager,
-        this.loadingManager
+        graphicsManager,
+        updatablesManager,
+        loadingManager
       );
     }
     return null;
@@ -101,10 +105,14 @@ export class WorldEngine {
 
   // Override this method to use custom Renderer Manager
   protected createRendererManager(): RendererManager {
+    const parent = this.getParent();
+    const cameraManager = this.getCameraManager();
+    const graphicsManager = this.getGraphicsManager();
+
     return new RendererManager(
-      this.parent,
-      this.cameraManager,
-      this.graphicsManager
+      parent,
+      cameraManager,
+      graphicsManager
     );
   }
 
@@ -117,12 +125,24 @@ export class WorldEngine {
   protected createControlsManager(
     typeControls?: TypeControls
   ): ControlsManager | null {
-    if (!this.updatablesManager) return null;
+
+    const updatablesManager = this.getUpdatablesManager();
+
+    const cameraManager = this.getCameraManager();
+    const camera = cameraManager.getCamera();
+
+    const rendererManager = this.getRendererManager();
+    const renderer = rendererManager?.getRenderer();
+    const domElement = renderer?.domElement;
+
+    if (!updatablesManager) return null;
+    if(!domElement) return null;
+
     // Create controlsManager
     const controlsManager = new ControlsManager(
-      this.cameraManager.getCamera(),
-      this.rendererManager.getRenderer().domElement,
-      this.updatablesManager
+      camera,
+      domElement,
+      updatablesManager
     );
 
     // Set controls
@@ -187,6 +207,10 @@ export class WorldEngine {
 
   public getScenarioManager(): ScenarioManager | null | undefined {
     return this.scenarioManager;
+  }
+
+  public getParent(): HTMLElement {
+    return this.parent;
   }
 
 }

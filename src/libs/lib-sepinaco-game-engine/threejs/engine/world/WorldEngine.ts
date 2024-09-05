@@ -101,7 +101,7 @@ export class WorldEngine {
     // Create controlsManager
     const controlsManager = new ControlsManager(
       this.camera,
-      this.rendererManager.renderer.domElement,
+      this.rendererManager.getRenderer().domElement,
       this.updatablesManager
     );
 

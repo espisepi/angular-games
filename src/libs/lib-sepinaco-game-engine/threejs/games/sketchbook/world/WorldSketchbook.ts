@@ -24,7 +24,7 @@ export class WorldSketchbook extends WorldEngine {
     if (this.updatablesManager) {
       return new InputManager(
         this.updatablesManager,
-        this.rendererManager.renderer.domElement
+        this.rendererManager.getRenderer().domElement
       );
     }
     return null;

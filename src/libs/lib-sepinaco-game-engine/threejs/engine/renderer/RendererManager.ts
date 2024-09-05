@@ -11,7 +11,7 @@ export class RendererManager {
 
   // ============================
 
-  public renderer: THREE.WebGLRenderer;
+  private renderer: THREE.WebGLRenderer;
 
   public width: number;
   public height: number;
@@ -100,5 +100,11 @@ export class RendererManager {
     this.renderDelta = this.clock.getDelta();
 
     return [timeStep, unscaledTimeStep];
+  }
+
+  // public methods ====================
+
+  public getRenderer(): THREE.Renderer {
+    return this.renderer;
   }
 }

@@ -13,14 +13,11 @@ export class LoadingManager
 	constructor()
 	{
 		this.gltfLoader = new GLTFLoader();
-
-		// this.world.setTimeScale(0);
-		UIManager.setUserInterfaceVisible(false);
-		UIManager.setLoadingScreenVisible(true);
 	}
 
 	public loadGLTF(path: string, onLoadingFinished: (gltf: any) => void): void
 	{
+    this.setVisibleUILoading(true);
 		let trackerEntry = this.addLoadingEntry(path);
 
 		this.gltfLoader.load(path,
@@ -63,10 +60,12 @@ export class LoadingManager
 			}
 			else
 			{
-				UIManager.setUserInterfaceVisible(true);
+				// UIManager.setUserInterfaceVisible(true); // seteado en el metodo setVisibleUILoading
 			}
 
-			UIManager.setLoadingScreenVisible(false);
+			// UIManager.setLoadingScreenVisible(false);  // seteado en el metodo setVisibleUILoading
+      this.setVisibleUILoading(false);
+
 		}
 	}
 
@@ -116,4 +115,15 @@ export class LoadingManager
 		}
 		return true;
 	}
+
+  private setVisibleUILoading(isVisible: boolean): void {
+    if(isVisible) {
+      // this.world.setTimeScale(0);
+      UIManager.setUserInterfaceVisible(false);
+      UIManager.setLoadingScreenVisible(true);
+    } else {
+      UIManager.setUserInterfaceVisible(true);
+      UIManager.setLoadingScreenVisible(false);
+    }
+  }
 }

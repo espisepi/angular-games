@@ -7,6 +7,7 @@ import { ControlsManager } from '../controls/manager/ControlsManager';
 import { TypeControls } from '../controls/enums/TypeControls';
 import { Stats } from '../features/stats/Stats';
 import { UpdatablesManager } from '../updatables/UpdatablesManager';
+import { LoadingManager } from '../loading/manager/LoadingManager';
 
 
 
@@ -18,6 +19,8 @@ export class WorldEngine {
   public controlsManager?: ControlsManager;
 
   public updatablesManager?: UpdatablesManager;
+
+  public loadingManager?: LoadingManager;
 
   public rendererEngine: RendererEngine;
 
@@ -57,6 +60,9 @@ export class WorldEngine {
 
     // Renderer
     this.rendererEngine = new RendererEngine(parent, this.camera, this.graphicsWorld);
+
+    // Loading manager
+    this.loadingManager = new LoadingManager();
 
     // Updatables manager
     this.updatablesManager = new UpdatablesManager();

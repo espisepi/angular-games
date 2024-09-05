@@ -38,6 +38,12 @@ export class WorldVisualizerModel extends WorldEngine {
 
  }
 
+// TODO: Hacer los scenarios o cambios de escenas y tener en cuenta el dispose de los objetos: https://threejs.org/manual/#en/cleanup
+// https://threejs.org/manual/#en/cleanup
+// Resumen:
+// boxGeometry.dispose();
+// boxTexture.dispose();
+// boxMaterial.dispose();
  private loadGLTF(): void {
   if(!this.loadingManager) return;
   this.loadingManager.onFinishedCallback = () =>
@@ -56,7 +62,6 @@ export class WorldVisualizerModel extends WorldEngine {
 				// 	}
 				// });
 		};
-    // TODO: Poner bien las rutas de archivo (fijarse en yuka dive)
 	this.loadingManager?.loadGLTF('/assets/models/boxman.glb', (gltf: any) =>
 			{
 				// this.loadScene(loadingManager, gltf);

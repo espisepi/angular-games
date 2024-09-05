@@ -71,12 +71,7 @@ export class WorldEngine {
     this.updatablesManager = new UpdatablesManager();
 
     // Inicialización de ControlsManager
-    if (typeControls) {
-      this.setupControlsManager(typeControls);
-    } else {
-      // Si no se selecciona el type, no instanciamos el controlsManager
-      // this.setupControlsManager(TypeControls.Orbit);
-    }
+    this.controlsManager = this.createControlsManager();
 
     // Inicializacion del ScenarioManager
     const scenarioManager = this.createScenarioManager();
@@ -104,17 +99,28 @@ export class WorldEngine {
     return null;
   }
 
+  protected createControlsManager(typeControls?: TypeControls): ControlsManager {
+    // Create controlsManager
+    const controlsManager = new ControlsManager(
+      this.camera,
+      this.rendererEngine.renderer.domElement
+    );
+
+    // Set controls
+    if(typeControls) {
+      controlsManager.setControl(typeControls);
+    } else {
+      // Si no se selecciona el type, no instanciamos ningun control
+      // controlsManager.setControl(TypeControls.Orbit);
+    }
+
+    return controlsManager;
+  }
+
   private setupStats(): void {
     this.stats = new Stats(this.updatablesManager);
   }
 
-  private setupControlsManager(type: TypeControls): void {
-    this.controlsManager = new ControlsManager(
-      this.camera,
-      this.rendererEngine.renderer.domElement
-    );
-    this.controlsManager.setControl(type); // Puedes cambiar el tipo de control
-  }
 
   /**
    * Rendering loop.

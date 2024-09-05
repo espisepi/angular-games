@@ -1,0 +1,120 @@
+La clave de todo es anadir en el fichero angular.json lo siguiente
+para que angular tenga en cuenta la carpeta assets al realizar la compilacion:
+
+// angular.json
+ "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/angular-games",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              },
+              "src/assets" <----------- ESTA ES LA LINEA IMPORTANTE
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          },
+
+
+    ============================================================
+
+    Pregunta chatgpt:
+
+    Lo he puesto en la carpeta de assets y esta ruta me da este error: 
+    http://localhost:4200/assets/models/boxman.glb : Cannot GET /assets/models/boxman.glb
+
+    ============================================================
+
+    Respuesta chatgpt:
+
+    Gracias por el detalle del error. El hecho de que obtengas "Cannot GET /assets/models/boxman.glb" indica que Angular no está sirviendo correctamente el archivo. Vamos a revisar algunos puntos clave que podrían estar causando el problema y corregirlo.
+
+### 1. Verifica la configuración de `angular.json`
+
+La carpeta `assets` debe estar correctamente incluida en la configuración de `angular.json` para que Angular la sirva durante el desarrollo. Aquí es donde se especifica qué archivos y carpetas deben copiarse a la carpeta de salida (`dist`) cuando compilas o sirves tu aplicación.
+
+1. Abre el archivo `angular.json` en la raíz de tu proyecto.
+2. Busca la sección de `build` para tu aplicación. Debería tener una configuración que se vea así:
+
+```json
+{
+  "projects": {
+    "your-project-name": {
+      "architect": {
+        "build": {
+          "options": {
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+Aquí, asegúrate de que `"src/assets"` esté presente en la lista de `assets`. Si no está, añádelo, guarda el archivo y vuelve a compilar el proyecto con:
+
+```bash
+ng serve
+```
+
+### 2. Verifica que el archivo `.glb` esté efectivamente en `src/assets/models/`
+
+Es posible que el archivo `.glb` no esté en la ubicación correcta. Asegúrate de que la estructura de carpetas sea la siguiente:
+
+```
+src/
+  assets/
+    models/
+      boxman.glb
+```
+
+Puedes verificarlo yendo manualmente al directorio en tu editor de código o explorador de archivos.
+
+### 3. Limpiar y volver a compilar la aplicación
+
+Después de verificar los pasos anteriores, si todo parece estar en orden, puede que Angular necesite recompilar para asegurarse de que todos los archivos de `assets` se copien correctamente a la carpeta de salida.
+
+Para limpiar el caché y recompilar:
+
+```bash
+ng cache clean
+ng serve
+```
+
+### 4. Verifica los permisos del archivo
+
+Verifica que el archivo `.glb` no esté restringido por permisos o algo que impida que sea accesible. Asegúrate de que tenga los permisos adecuados para ser servido por el servidor local de Angular.
+
+### 5. Si usas una configuración de enrutamiento avanzado
+
+En algunos casos, si tienes configuraciones especiales de enrutamiento o estás utilizando rutas en modo `hash` o `path`, puede haber conflictos con cómo se sirve el archivo. Pero este problema es menos común y generalmente se soluciona al asegurarse de que los `assets` están bien configurados.
+
+### Resumen de acciones a seguir:
+
+1. Verifica el archivo `angular.json` para confirmar que `"src/assets"` está incluido en la sección de `assets`.
+2. Asegúrate de que el archivo `.glb` esté correctamente ubicado en `src/assets/models/`.
+3. Limpia el caché y recompila la aplicación (`ng cache clean` y `ng serve`).
+4. Revisa los permisos del archivo `.glb` para asegurarte de que no estén restringidos.
+
+Si realizas estas verificaciones, debería funcionar y el archivo debería ser accesible en la ruta `/assets/models/boxman.glb`.
+

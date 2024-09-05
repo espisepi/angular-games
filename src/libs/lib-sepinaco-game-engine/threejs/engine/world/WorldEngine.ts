@@ -157,4 +157,36 @@ export class WorldEngine {
   public update(timeStep: number, unscaledTimeStep: number): void {
     this.updatablesManager?.update(timeStep, unscaledTimeStep);
   }
+
+
+  // Public Method to expose to exterior
+
+  public getGraphicsManager(): GraphicsManager {
+    return this.graphicsManager;
+  }
+
+  public getCameraManager(): CameraManager {
+    return this.cameraManager;
+  }
+
+  public getControlsManager(): ControlsManager | null | undefined {
+    return this.controlsManager;
+  }
+
+  public getUpdatablesManager(): UpdatablesManager | undefined {
+    return this.updatablesManager;
+  }
+
+  public getLoadingManager(): LoadingManager | undefined {
+    return this.loadingManager;
+  }
+
+  public getRendererManager(): RendererManager | undefined {
+    return this.rendererManager;
+  }
+
+  public getScenarioManager(): ScenarioManager | null | undefined {
+    return this.scenarioManager;
+  }
+
 }

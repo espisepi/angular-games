@@ -78,6 +78,11 @@ export class RendererManager {
     this.justRendered = false;
   }
 
+  /**
+   * Rendering loop.
+   * Implements fps limiter and frame-skipping
+   * Calls world's "update" function before rendering.
+   */
   render(): number[] {
     this.requestDelta = this.clock.getDelta();
 

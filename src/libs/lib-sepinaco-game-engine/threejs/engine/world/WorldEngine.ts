@@ -140,11 +140,6 @@ export class WorldEngine {
     this.stats = new Stats(this.updatablesManager);
   }
 
-  /**
-   * Rendering loop.
-   * Implements fps limiter and frame-skipping
-   * Calls world's "update" function before rendering.
-   */
   public render(): void {
     requestAnimationFrame(() => {
       this.render();

@@ -16,7 +16,7 @@ export class WorldVisualizerModel extends WorldEngine {
   protected override createScenarioManager(): ScenarioManager | null {
     if (this.updatablesManager && this.loadingManager) {
       return new ScenarioManagerVisualizerModel(
-        this.graphicsWorld,
+        this.graphicsManager,
         this.updatablesManager,
         this.loadingManager
       );

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { GraphicsWorld } from '../../world/graphicsWorld/GraphicsWorld';
+import { GraphicsManager } from '../../graphics/GraphicsManager';
 import { UpdatablesManager } from '../../updatables/UpdatablesManager';
 import { BoxMesh } from '../prefabs/box/BoxMesh';
 import { LoadingManager } from '../../loading/manager/LoadingManager';
@@ -7,18 +7,18 @@ import { LoadingManager } from '../../loading/manager/LoadingManager';
 // TODO: Esto tiene que ser muy basica para sustituirlo
 // por el de ScenarioSketchbook en el game de Sketchbook
 
-// Se encarga de instanciar y anadir a graphicsWorld todos los objetos
+// Se encarga de instanciar y anadir a graphicsManager todos los objetos
 export class Scenario {
-  private graphicsWorld: GraphicsWorld;
+  private graphicsManager: GraphicsManager;
   private updatablesManager: UpdatablesManager;
   private loadingManager: LoadingManager;
 
   constructor(
-    graphicsWorld: GraphicsWorld,
+    graphicsManager: GraphicsManager,
     updatablesManager: UpdatablesManager,
     loadingManager: LoadingManager
   ) {
-    this.graphicsWorld = graphicsWorld;
+    this.graphicsManager = graphicsManager;
     this.updatablesManager = updatablesManager;
     this.loadingManager = loadingManager;
 
@@ -30,7 +30,7 @@ export class Scenario {
   protected initLights(): void {
     // light
     const light = new THREE.AmbientLight();
-    this.graphicsWorld.add(light);
+    this.graphicsManager.add(light);
   }
 
   // override this method to create custom objects
@@ -38,13 +38,13 @@ export class Scenario {
     // create mesh
     const mesh = new BoxMesh();
     this.updatablesManager.registerUpdatable(mesh);
-    this.graphicsWorld.add(mesh);
+    this.graphicsManager.add(mesh);
   }
 
   // Public methods ========================
 
-  public getGraphicsWorld(): GraphicsWorld {
-    return this.graphicsWorld;
+  public getGraphicsWorld(): GraphicsManager {
+    return this.graphicsManager;
   }
 
   public getUpdatablesManager(): UpdatablesManager {

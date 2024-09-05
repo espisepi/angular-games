@@ -93,7 +93,7 @@ export class RendererManager {
 
     // Actual rendering with a FXAA ON/OFF switch
     // if (this.params.FXAA) this.composer.render();
-    // else this.renderer.render(this.graphicsWorld, this.camera);
+    // else this.renderer.render(this.graphicsManager, this.camera);
     this.renderer.render(this.scene, this.camera);
 
     // Measuring render time

@@ -47,7 +47,7 @@ export class WorldSketchbook extends WorldEngine {
   protected override createScenarioManager(): ScenarioManager | null {
     if (this.updatablesManager && this.loadingManager) {
       return new ScenarioManagerSketchbook(
-        this.graphicsWorld,
+        this.graphicsManager,
         this.updatablesManager,
         this.loadingManager
       );

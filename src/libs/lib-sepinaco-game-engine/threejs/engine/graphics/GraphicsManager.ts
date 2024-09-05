@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export class GraphicsWorld {
+export class GraphicsManager {
   private scene: THREE.Scene;
 
   constructor() {

@@ -1,16 +1,16 @@
 import * as THREE from 'three';
 import { Scenario } from '../../../../engine/scenarios/core/Scenario';
 import { UpdatablesManager } from '../../../../engine/updatables/UpdatablesManager';
-import { GraphicsWorld } from '../../../../engine/world/graphicsWorld/GraphicsWorld';
+import { GraphicsManager } from '../../../../engine/graphics/GraphicsManager';
 import { LoadingManager } from '../../../../engine/loading/manager/LoadingManager';
 
 export class ScenarioVisualizerModel extends Scenario {
   constructor(
-    graphicsWorld: GraphicsWorld,
+    graphicsManager: GraphicsManager,
     updatablesManager: UpdatablesManager,
     loadingManager: LoadingManager
   ) {
-    super(graphicsWorld, updatablesManager, loadingManager);
+    super(graphicsManager, updatablesManager, loadingManager);
   }
 
   // My lights for this Scenario

@@ -8,13 +8,13 @@ import { TypeControls } from '../controls/enums/TypeControls';
 import { Stats } from '../features/stats/Stats';
 import { UpdatablesManager } from '../updatables/UpdatablesManager';
 import { LoadingManager } from '../loading/manager/LoadingManager';
-import { GraphicsWorld } from './graphicsWorld/GraphicsWorld';
+import { GraphicsManager } from '../graphics/GraphicsManager';
 import { ScenarioManager } from '../scenarios/manager/ScenarioManager';
 
 export class WorldEngine {
   public camera: THREE.PerspectiveCamera;
 
-  public graphicsWorld: GraphicsWorld;
+  public graphicsManager: GraphicsManager;
 
   public controlsManager?: ControlsManager | null;
 
@@ -53,7 +53,7 @@ export class WorldEngine {
     const height = getElementHeight(parent);
 
     // Three.js scene
-    this.graphicsWorld = new GraphicsWorld();
+    this.graphicsManager = new GraphicsManager();
     this.camera = new THREE.PerspectiveCamera(80, width / height, 0.1, 1010);
     this.camera.position.set(0, 0, 3);
 
@@ -61,7 +61,7 @@ export class WorldEngine {
     this.rendererManager = new RendererManager(
       parent,
       this.camera,
-      this.graphicsWorld.getScene()
+      this.graphicsManager.getScene()
     );
 
     // Create Loading Manager
@@ -88,7 +88,7 @@ export class WorldEngine {
   protected createScenarioManager(): ScenarioManager | null {
     if (this.updatablesManager && this.loadingManager) {
       return new ScenarioManager(
-        this.graphicsWorld,
+        this.graphicsManager,
         this.updatablesManager,
         this.loadingManager
       );

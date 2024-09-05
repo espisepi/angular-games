@@ -2,16 +2,16 @@ import { LoadingManager } from '../../../../engine/loading/manager/LoadingManage
 import { Scenario } from '../../../../engine/scenarios/core/Scenario';
 import { ScenarioManager } from '../../../../engine/scenarios/manager/ScenarioManager';
 import { UpdatablesManager } from '../../../../engine/updatables/UpdatablesManager';
-import { GraphicsWorld } from '../../../../engine/world/graphicsWorld/GraphicsWorld';
+import { GraphicsManager } from '../../../../engine/graphics/GraphicsManager';
 import { ScenarioSketchbook } from '../features/ScenarioSketchbook';
 
 export class ScenarioManagerSketchbook extends ScenarioManager {
   constructor(
-    graphicsWorld: GraphicsWorld,
+    graphicsManager: GraphicsManager,
     updatablesManager: UpdatablesManager,
     loadingManager: LoadingManager
   ) {
-    super(graphicsWorld, updatablesManager, loadingManager);
+    super(graphicsManager, updatablesManager, loadingManager);
   }
 
   protected override createScenario(): Scenario {

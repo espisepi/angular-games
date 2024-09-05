@@ -1,5 +1,5 @@
 import { LoadingManager } from './../../loading/manager/LoadingManager';
-import { GraphicsWorld } from '../../world/graphicsWorld/GraphicsWorld';
+import { GraphicsManager } from '../../graphics/GraphicsManager';
 import { UpdatablesManager } from '../../updatables/UpdatablesManager';
 import { IUpdatable } from '../../interfaces/IUpdatable';
 import { Scenario } from '../core/Scenario';
@@ -14,18 +14,18 @@ import { Scenario } from '../core/Scenario';
 // No quiero hacer IUpdatable a ScenarioManager
 // porque quiero hacer IUpdatables
 export class ScenarioManager {
-  private graphicsWorld: GraphicsWorld;
+  private graphicsManager: GraphicsManager;
   private updatablesManager: UpdatablesManager;
   private loadingManager: LoadingManager;
 
   private currentScenario: Scenario;
 
   constructor(
-    graphicsWorld: GraphicsWorld,
+    graphicsManager: GraphicsManager,
     updatablesManager: UpdatablesManager,
     loadingManager: LoadingManager
   ) {
-    this.graphicsWorld = graphicsWorld;
+    this.graphicsManager = graphicsManager;
     this.updatablesManager = updatablesManager;
     this.loadingManager = loadingManager;
 
@@ -35,7 +35,7 @@ export class ScenarioManager {
   // override this method to use custom Scenario
   protected createScenario(): Scenario {
     return new Scenario(
-      this.graphicsWorld,
+      this.graphicsManager,
       this.updatablesManager,
       this.loadingManager
     );
@@ -47,8 +47,8 @@ export class ScenarioManager {
 
   // Public methods ===========================
 
-  public getGraphicsWorld(): GraphicsWorld {
-    return this.graphicsWorld;
+  public getGraphicsWorld(): GraphicsManager {
+    return this.graphicsManager;
   }
 
   public getUpdatablesManager(): UpdatablesManager {

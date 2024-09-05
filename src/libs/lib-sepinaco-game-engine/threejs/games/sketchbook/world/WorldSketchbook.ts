@@ -9,6 +9,8 @@ import { ScenarioManager } from '../../../engine/scenarios/manager/ScenarioManag
 import { ScenarioManagerSketchbook } from '../scenarios/manager/ScenarioManagerSketchbook';
 import { UpdatablesManager } from '../../../engine/updatables/UpdatablesManager';
 import { CameraManager } from '../../../engine/cameras/manager/CameraManager';
+import { LoadingManager } from '../../../engine/loading/manager/LoadingManager';
+import { GraphicsManager } from '../../../engine/graphics/GraphicsManager';
 
 export class WorldSketchbook extends WorldEngine {
   public inputManager?: InputManager | null;
@@ -22,22 +24,33 @@ export class WorldSketchbook extends WorldEngine {
   }
 
   private createInputManager(): InputManager | null {
-    if (this.updatablesManager) {
+    const updatablesManager = this.getUpdatablesManager();
+    const rendererManager = this.getRendererManager();
+    const renderer = rendererManager?.getRenderer();
+    const domElement = renderer?.domElement;
+
+    if (updatablesManager && domElement) {
       return new InputManager(
-        this.updatablesManager,
-        this.rendererManager.getRenderer().domElement
+        updatablesManager,
+        domElement
       );
     }
     return null;
   }
 
   private createCameraOperator(): CameraOperator | null {
-    if (this.updatablesManager) {
+    const updatablesManager = this.getUpdatablesManager();
+    const cameraManager = this.getCameraManager();
+    const camera = cameraManager.getCamera();
+    const inputManager = this.getInputManager();
+    const mouseSensivity = this.params.Mouse_Sensitivity;
+
+    if (updatablesManager) {
       return new CameraOperator(
-        this.updatablesManager,
-        this.inputManager,
-        this.cameraManager.getCamera(),
-        this.params.Mouse_Sensitivity
+        updatablesManager,
+        inputManager,
+        camera,
+        mouseSensivity
       );
     }
     return null;
@@ -46,11 +59,15 @@ export class WorldSketchbook extends WorldEngine {
   // override methods to modify logic of parent class WorldEngine ================
 
   protected override createScenarioManager(): ScenarioManager | null {
-    if (this.updatablesManager && this.loadingManager) {
+    const updatablesManager = this.getUpdatablesManager();
+    const loadingManager = this.getLoadingManager();
+    const graphicsManager = this.getGraphicsManager();
+
+    if (updatablesManager && loadingManager) {
       return new ScenarioManagerSketchbook(
-        this.graphicsManager,
-        this.updatablesManager,
-        this.loadingManager
+        graphicsManager,
+        updatablesManager,
+        loadingManager
       );
     }
     return null;
@@ -59,4 +76,10 @@ export class WorldSketchbook extends WorldEngine {
   // public override update(timeStep: number, unscaledTimeStep: number): void {
   //   super.update(timeStep, unscaledTimeStep);
   // }
+
+  // public methods
+
+  public getInputManager(): InputManager | null | undefined {
+    return this.inputManager;
+  }
 }

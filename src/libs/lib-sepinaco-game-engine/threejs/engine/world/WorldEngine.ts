@@ -13,17 +13,17 @@ import { ScenarioManager } from '../scenarios/manager/ScenarioManager';
 import { CameraManager } from '../cameras/manager/CameraManager';
 
 export class WorldEngine {
-  public graphicsManager: GraphicsManager;
+  private graphicsManager: GraphicsManager;
 
-  public cameraManager: CameraManager;
+  private cameraManager: CameraManager;
 
-  public controlsManager?: ControlsManager | null;
+  private controlsManager?: ControlsManager | null;
 
-  public updatablesManager?: UpdatablesManager;
+  private updatablesManager?: UpdatablesManager;
 
-  public loadingManager?: LoadingManager;
+  private loadingManager?: LoadingManager;
 
-  public rendererManager: RendererManager;
+  private rendererManager: RendererManager;
 
   private scenarioManager?: ScenarioManager | null;
 

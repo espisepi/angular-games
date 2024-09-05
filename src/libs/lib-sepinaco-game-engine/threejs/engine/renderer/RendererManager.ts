@@ -2,23 +2,23 @@ import * as THREE from 'three';
 import { getElementHeight, getElementWidth } from '../utils/FunctionLibrary';
 
 export class RendererManager {
-  public clock: THREE.Clock;
-  public renderDelta: number;
-  public logicDelta: number;
-  public requestDelta?: number;
-  public sinceLastFrame: number;
-  public justRendered: boolean;
+  private clock: THREE.Clock;
+  private renderDelta: number;
+  private logicDelta: number;
+  private requestDelta?: number;
+  private sinceLastFrame: number;
+  private justRendered: boolean;
 
   // ============================
 
   private renderer: THREE.WebGLRenderer;
 
-  public width: number;
-  public height: number;
+  private width: number;
+  private height: number;
 
-  public camera: THREE.PerspectiveCamera;
-  public scene: THREE.Scene;
-  public parent: HTMLElement;
+  private camera: THREE.PerspectiveCamera;
+  private scene: THREE.Scene;
+  private parent: HTMLElement;
 
   // ===========================
 

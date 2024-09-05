@@ -9,9 +9,9 @@ export class WorldVisualizerModel extends WorldEngine {
     super(params as IWorldEngineParams);
   }
 
-  public override update(timeStep: number, unscaledTimeStep: number): void {
-    super.update(timeStep, unscaledTimeStep);
-  }
+  // public override update(timeStep: number, unscaledTimeStep: number): void {
+  //   super.update(timeStep, unscaledTimeStep);
+  // }
 
   protected override createScenarioManager(): ScenarioManager | null {
     if (this.updatablesManager && this.loadingManager) {

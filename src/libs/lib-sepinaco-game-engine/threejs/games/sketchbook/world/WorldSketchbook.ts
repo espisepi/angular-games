@@ -29,9 +29,9 @@ export class WorldSketchbook extends WorldEngine {
     }
   }
 
-  public override update(timeStep: number, unscaledTimeStep: number): void {
-    super.update(timeStep, unscaledTimeStep);
-  }
+  // public override update(timeStep: number, unscaledTimeStep: number): void {
+  //   super.update(timeStep, unscaledTimeStep);
+  // }
 
   protected override createScenarioManager(): ScenarioManager | null {
     if (this.updatablesManager && this.loadingManager) {

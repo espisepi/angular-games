@@ -6,7 +6,6 @@ import { TypeControls } from '../enums/TypeControls';
 // Singletone Class
 export class ControlsManager {
 
-    private static instance: ControlsManager;
     private camera: THREE.Camera;
     private domElement: HTMLElement;
     private currentControl: AbstractControl | null = null;

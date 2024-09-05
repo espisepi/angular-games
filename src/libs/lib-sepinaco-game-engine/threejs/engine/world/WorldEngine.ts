@@ -11,10 +11,8 @@ import { LoadingManager } from '../loading/manager/LoadingManager';
 import { GraphicsWorld } from './graphicsWorld/GraphicsWorld';
 import { ScenarioManager } from '../scenarios/manager/ScenarioManager';
 
-
-
 export class WorldEngine {
-	public camera: THREE.PerspectiveCamera;
+  public camera: THREE.PerspectiveCamera;
 
   public graphicsWorld: GraphicsWorld;
 
@@ -32,20 +30,17 @@ export class WorldEngine {
 
   stats?: Stats;
 
-
   public params: any = {
-  	Pointer_Lock: false,
-		Mouse_Sensitivity: 0.3,
-		Time_Scale: 1,
-		Shadows: true,
-		FXAA: true,
-		Debug_Physics: false,
-		Debug_FPS: false,
-		Sun_Elevation: 50,
-		Sun_Rotation: 145,
+    Pointer_Lock: false,
+    Mouse_Sensitivity: 0.3,
+    Time_Scale: 1,
+    Shadows: true,
+    FXAA: true,
+    Debug_Physics: false,
+    Debug_FPS: false,
+    Sun_Elevation: 50,
+    Sun_Rotation: 145,
   };
-
-
 
   constructor(params: IWorldEngineParams) {
     const { parent } = params;
@@ -58,12 +53,16 @@ export class WorldEngine {
     const height = getElementHeight(parent);
 
     // Three.js scene
-		this.graphicsWorld = new GraphicsWorld();
-		this.camera = new THREE.PerspectiveCamera(80, width / height, 0.1, 1010);
-    this.camera.position.set(0,0,3);
+    this.graphicsWorld = new GraphicsWorld();
+    this.camera = new THREE.PerspectiveCamera(80, width / height, 0.1, 1010);
+    this.camera.position.set(0, 0, 3);
 
     // Renderer
-    this.rendererEngine = new RendererEngine(parent, this.camera, this.graphicsWorld.getScene());
+    this.rendererEngine = new RendererEngine(
+      parent,
+      this.camera,
+      this.graphicsWorld.getScene()
+    );
 
     // Loading manager
     this.loadingManager = new LoadingManager();
@@ -72,7 +71,7 @@ export class WorldEngine {
     this.updatablesManager = new UpdatablesManager();
 
     // Inicialización de ControlsManager
-    if(typeControls) {
+    if (typeControls) {
       this.setupControlsManager(typeControls);
     } else {
       // Si no se selecciona el type, no instanciamos el controlsManager
@@ -81,24 +80,26 @@ export class WorldEngine {
 
     // Inicializacion del ScenarioManager
     const scenarioManager = this.createScenarioManager();
-    if(scenarioManager) {
+    if (scenarioManager) {
       this.scenarioManager = scenarioManager;
     }
 
-    if(hasStats) {
+    if (hasStats) {
       this.setupStats();
     }
 
-
     // Render call
     this.render();
-
   }
 
   // override this method to use custom ScenarioManager
   protected createScenarioManager(): ScenarioManager | null {
-    if(this.updatablesManager && this.loadingManager) {
-      return new ScenarioManager(this.graphicsWorld, this.updatablesManager, this.loadingManager);
+    if (this.updatablesManager && this.loadingManager) {
+      return new ScenarioManager(
+        this.graphicsWorld,
+        this.updatablesManager,
+        this.loadingManager
+      );
     }
     return null;
   }
@@ -108,41 +109,34 @@ export class WorldEngine {
   }
 
   private setupControlsManager(type: TypeControls): void {
-    this.controlsManager = new ControlsManager(this.camera, this.rendererEngine.renderer.domElement);
+    this.controlsManager = new ControlsManager(
+      this.camera,
+      this.rendererEngine.renderer.domElement
+    );
     this.controlsManager.setControl(type); // Puedes cambiar el tipo de control
   }
 
-
   /**
-	 * Rendering loop.
-	 * Implements fps limiter and frame-skipping
-	 * Calls world's "update" function before rendering.
-	 */
-	public render(): void
-	{
-
-		requestAnimationFrame(() =>
-		{
-			this.render();
-		});
+   * Rendering loop.
+   * Implements fps limiter and frame-skipping
+   * Calls world's "update" function before rendering.
+   */
+  public render(): void {
+    requestAnimationFrame(() => {
+      this.render();
+    });
 
     // Update render RenderEngine
-    const [ timeStep, unscaledTimeStep ] = this.rendererEngine.render();
+    const [timeStep, unscaledTimeStep] = this.rendererEngine.render();
 
-		// Logic
-		this.update(timeStep, unscaledTimeStep);
-
+    // Logic
+    this.update(timeStep, unscaledTimeStep);
   }
 
-
   // Update
-	// Handles all logic updates.
-	public update(timeStep: number, unscaledTimeStep: number): void
-	{
+  // Handles all logic updates.
+  public update(timeStep: number, unscaledTimeStep: number): void {
     this.updatablesManager?.update(timeStep, unscaledTimeStep);
     this.controlsManager?.update();
-	}
-
-
-
+  }
 }

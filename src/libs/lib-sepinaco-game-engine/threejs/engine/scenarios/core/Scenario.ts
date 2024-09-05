@@ -9,28 +9,31 @@ import { LoadingManager } from '../../loading/manager/LoadingManager';
 
 // Se encarga de instanciar y anadir a graphicsWorld todos los objetos
 export class Scenario {
-
   private graphicsWorld: GraphicsWorld;
   private updatablesManager: UpdatablesManager;
   private loadingManager: LoadingManager;
 
-  constructor(graphicsWorld:GraphicsWorld, updatablesManager: UpdatablesManager, loadingManager: LoadingManager)
-	{
+  constructor(
+    graphicsWorld: GraphicsWorld,
+    updatablesManager: UpdatablesManager,
+    loadingManager: LoadingManager
+  ) {
     this.graphicsWorld = graphicsWorld;
     this.updatablesManager = updatablesManager;
     this.loadingManager = loadingManager;
-
 
     this.initLights();
     this.initObjects();
   }
 
+  // override this method to create custom lights
   protected initLights(): void {
     // light
     const light = new THREE.AmbientLight();
     this.graphicsWorld.add(light);
   }
 
+  // override this method to create custom objects
   protected initObjects(): void {
     // create mesh
     const mesh = new BoxMesh();
@@ -51,9 +54,6 @@ export class Scenario {
   public getLoadingManager(): LoadingManager {
     return this.loadingManager;
   }
-
-
-
 }
 
 // import { ISpawnPoint } from '../interfaces/ISpawnPoint';

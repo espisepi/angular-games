@@ -1,13 +1,10 @@
 import * as THREE from 'three';
 
-
-
 export class GraphicsWorld {
-
   private scene: THREE.Scene;
 
   constructor() {
-    this.scene = new THREE.Scene()
+    this.scene = new THREE.Scene();
   }
 
   getScene(): THREE.Scene {
@@ -21,5 +18,4 @@ export class GraphicsWorld {
   remove(...object: THREE.Object3D[]): void {
     this.scene.remove(...object);
   }
-
 }

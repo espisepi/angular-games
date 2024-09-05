@@ -3,17 +3,16 @@ import * as THREE from 'three';
 import { TypeControls } from '../enums/TypeControls';
 
 export abstract class AbstractControl {
-    protected camera: THREE.Camera;
-    protected domElement: HTMLElement;
+  protected camera: THREE.Camera;
+  protected domElement: HTMLElement;
 
+  constructor(camera: THREE.Camera, domElement: HTMLElement) {
+    this.camera = camera;
+    this.domElement = domElement;
+  }
 
-    constructor(camera: THREE.Camera, domElement: HTMLElement) {
-        this.camera = camera;
-        this.domElement = domElement;
-    }
-
-    abstract enable(): void;
-    abstract disable(): void;
-    abstract update(): void;
-    abstract dispose(): void;
+  abstract enable(): void;
+  abstract disable(): void;
+  abstract update(): void;
+  abstract dispose(): void;
 }

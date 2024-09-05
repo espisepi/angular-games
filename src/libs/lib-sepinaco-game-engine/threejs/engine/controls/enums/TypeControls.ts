@@ -1,5 +1,4 @@
-export enum TypeControls
-{
-	Orbit = 'orbit',
-	Undefined = 'undefined'
+export enum TypeControls {
+  Orbit = 'orbit',
+  Undefined = 'undefined',
 }

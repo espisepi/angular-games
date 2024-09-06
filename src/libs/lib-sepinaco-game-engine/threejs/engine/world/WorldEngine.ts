@@ -86,7 +86,7 @@ export class WorldEngine {
     this.render();
   }
 
-  public render(): void {
+  protected render(): void {
     requestAnimationFrame(() => {
       this.render();
     });
@@ -99,11 +99,11 @@ export class WorldEngine {
   }
 
   // Update (Handles all logic updates)
-  public update(timeStep: number, unscaledTimeStep: number): void {
+  protected update(timeStep: number, unscaledTimeStep: number): void {
     this.updatablesManager?.update(timeStep, unscaledTimeStep);
   }
 
-  private setupStats(): void {
+  protected setupStats(): void {
     this.stats = new Stats(this.updatablesManager);
   }
 

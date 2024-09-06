@@ -5,10 +5,14 @@ import { VectorSpringSimulator } from '../../../../../engine/physics/core/spring
 import { RelativeSpringSimulator } from '../../../../../engine/physics/core/spring_simulation/RelativeSpringSimulator';
 import { EntityType } from '../../../enums/EntityType';
 import { KeyBinding } from '../../../controls/KeyBinding';
-import { CapsuleCollider, CapsuleColliderParams } from '../../../../../engine/physics/features/cannon-physics/colliders/CapsuleCollider';
+import {
+  CapsuleCollider,
+  CapsuleColliderParams,
+} from '../../../../../engine/physics/features/cannon-physics/colliders/CapsuleCollider';
 import { GroundImpactData } from './GroundImpactData';
 import { ICharacterState } from '../../../interfaces/ICharacterState';
 import { ICharacterAI } from '../../../interfaces/ICharacterAI';
+import { Idle } from './character_states/Idle';
 
 export class Character extends THREE.Object3D {
   public updateOrder: number = 1;
@@ -148,12 +152,101 @@ export class Character extends THREE.Object3D {
     // };
 
     // States
-    // this.setState(new Idle(this));
+    this.setState(new Idle(this));
   }
 
   private setAnimations(animations: THREE.AnimationClip[]): void {
     this.animations = animations;
   }
+
+  public setArcadeVelocityInfluence(
+    x: number,
+    y: number = x,
+    z: number = x
+  ): void {
+    this.arcadeVelocityInfluence.set(x, y, z);
+  }
+
+  public setArcadeVelocityTarget(velZ: number, velX: number = 0, velY: number = 0): void
+	{
+		this.velocityTarget.z = velZ;
+		this.velocityTarget.x = velX;
+		this.velocityTarget.y = velY;
+	}
+
+  /**
+   * Set state to the player. Pass state class (function) name.
+   * @param {function} State
+   */
+  public setState(state: ICharacterState): void {
+    this.charState = state;
+    this.charState.onInputChange();
+  }
+
+  public setAnimation(clipName: string, fadeIn: number): number {
+    if (this.mixer !== undefined) {
+      // gltf
+      let clip = THREE.AnimationClip.findByName(this.animations, clipName);
+
+      let action = this.mixer.clipAction(clip);
+      if (action === null) {
+        console.error(`Animation ${clipName} not found!`);
+        return 0;
+      }
+
+      this.mixer.stopAllAction();
+      action.fadeIn(fadeIn);
+      action.play();
+
+      return action.getClip().duration;
+    }
+    return 0;
+  }
+
+  public update(timeStep: number): void
+	{
+		this.behaviour?.update(timeStep);
+		// this.vehicleEntryInstance?.update(timeStep);
+		// console.log(this.occupyingSeat);
+		this.charState?.update(timeStep);
+
+		// this.visuals.position.copy(this.modelOffset);
+		// if (this.physicsEnabled) this.springMovement(timeStep);
+		// if (this.physicsEnabled) this.springRotation(timeStep);
+		// if (this.physicsEnabled) this.rotateModel();
+
+    if (this.mixer !== undefined) this.mixer.update(timeStep);
+
+		// Sync physics/graphics
+		if (this.physicsEnabled)
+		{
+			this.position.set(
+				this.characterCapsule.body.interpolatedPosition.x,
+				this.characterCapsule.body.interpolatedPosition.y,
+				this.characterCapsule.body.interpolatedPosition.z
+			);
+		}
+		else {
+			let newPos = new THREE.Vector3();
+			this.getWorldPosition(newPos);
+
+			// this.characterCapsule.body.position.copy(Utils.cannonVector(newPos));
+			// this.characterCapsule.body.interpolatedPosition.copy(Utils.cannonVector(newPos));
+		}
+
+		this.updateMatrixWorld();
+	}
+
+  public springMovement(timeStep: number): void
+	{
+		// Simulator
+		this.velocitySimulator.target.copy(this.velocityTarget);
+		this.velocitySimulator.simulate(timeStep);
+
+		// Update values
+		this.velocity.copy(this.velocitySimulator.position);
+		this.acceleration.copy(this.velocitySimulator.velocity);
+	}
 
   // public methods ==================
 

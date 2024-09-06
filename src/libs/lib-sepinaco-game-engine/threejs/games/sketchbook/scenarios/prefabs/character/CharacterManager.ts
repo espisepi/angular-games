@@ -63,7 +63,7 @@ export class CharacterManager implements IUpdatable {
 
 
   update(timestep: number, unscaledTimeStep: number): void {
-
+    this.character?.update(timestep);
   }
 
   public getGraphicsManager(): GraphicsManager {

@@ -7,6 +7,8 @@ import { EntityType } from '../../../enums/EntityType';
 import { KeyBinding } from '../../../controls/KeyBinding';
 import { CapsuleCollider } from '../../../../../engine/physics/features/cannon-physics/colliders/CapsuleCollider';
 import { GroundImpactData } from './GroundImpactData';
+import { ICharacterState } from '../../../interfaces/ICharacterState';
+import { ICharacterAI } from '../../../interfaces/ICharacterAI';
 
 export class Character extends THREE.Object3D {
   public updateOrder: number = 1;
@@ -49,8 +51,8 @@ export class Character extends THREE.Object3D {
   public groundImpactData: GroundImpactData = new GroundImpactData();
   public raycastBox!: THREE.Mesh;
 
-  // public charState: ICharacterState;
-  // public behaviour: ICharacterAI;
+  public charState!: ICharacterState;
+  public behaviour!: ICharacterAI;
 
   // Vehicles
   // public controlledObject: IControllable;

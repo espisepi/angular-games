@@ -40,6 +40,7 @@ export class ScenarioManager {
   protected createScenario(): Scenario {
     return new Scenario(
       this.graphicsManager,
+      this.physicsManager,
       this.updatablesManager,
       this.loadingManager
     );

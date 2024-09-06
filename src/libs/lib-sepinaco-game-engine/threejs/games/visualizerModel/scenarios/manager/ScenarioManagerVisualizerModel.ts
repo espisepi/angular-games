@@ -19,6 +19,7 @@ export class ScenarioManagerVisualizerModel extends ScenarioManager {
   protected override createScenario(): Scenario {
     return new ScenarioVisualizerModel(
       this.getGraphicsWorld(),
+      this.getPhysicsManager(),
       this.getUpdatablesManager(),
       this.getLoadingManager()
     );

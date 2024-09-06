@@ -3,14 +3,16 @@ import { Scenario } from '../../../../engine/scenarios/features/scenario/Scenari
 import { UpdatablesManager } from '../../../../engine/updatables/manager/UpdatablesManager';
 import { GraphicsManager } from '../../../../engine/graphics/manager/GraphicsManager';
 import { LoadingManager } from '../../../../engine/loading/manager/LoadingManager';
+import { PhysicsManager } from '../../../../engine/physics/manager/PhysicsManager';
 
 export class ScenarioVisualizerModel extends Scenario {
   constructor(
     graphicsManager: GraphicsManager,
+    physicsManager: PhysicsManager | null | undefined,
     updatablesManager: UpdatablesManager,
     loadingManager: LoadingManager
   ) {
-    super(graphicsManager, updatablesManager, loadingManager);
+    super(graphicsManager, physicsManager, updatablesManager, loadingManager);
   }
 
   // My lights for this Scenario

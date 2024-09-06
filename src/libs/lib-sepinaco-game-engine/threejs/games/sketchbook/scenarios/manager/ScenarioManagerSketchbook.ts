@@ -19,6 +19,7 @@ export class ScenarioManagerSketchbook extends ScenarioManager {
   protected override createScenario(): Scenario {
     return new ScenarioSketchbook(
       this.getGraphicsWorld(),
+      this.getPhysicsManager(),
       this.getUpdatablesManager(),
       this.getLoadingManager()
     );

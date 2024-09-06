@@ -3,19 +3,23 @@ import { GraphicsManager } from '../../../graphics/manager/GraphicsManager';
 import { UpdatablesManager } from '../../../updatables/manager/UpdatablesManager';
 import { BoxMesh } from '../../prefabs/box/BoxMesh';
 import { LoadingManager } from '../../../loading/manager/LoadingManager';
+import { PhysicsManager } from '../../../physics/manager/PhysicsManager';
 
 
 export class Scenario {
   private graphicsManager: GraphicsManager;
+  private physicsManager: PhysicsManager | null | undefined;
   private updatablesManager: UpdatablesManager;
   private loadingManager: LoadingManager;
 
   constructor(
     graphicsManager: GraphicsManager,
+    physicsManager: PhysicsManager | null | undefined,
     updatablesManager: UpdatablesManager,
     loadingManager: LoadingManager
   ) {
     this.graphicsManager = graphicsManager;
+    this.physicsManager = physicsManager;
     this.updatablesManager = updatablesManager;
     this.loadingManager = loadingManager;
 

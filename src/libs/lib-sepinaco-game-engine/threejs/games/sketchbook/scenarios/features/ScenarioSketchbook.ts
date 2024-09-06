@@ -3,6 +3,7 @@ import { Scenario } from '../../../../engine/scenarios/features/scenario/Scenari
 import { UpdatablesManager } from '../../../../engine/updatables/manager/UpdatablesManager';
 import { GraphicsManager } from '../../../../engine/graphics/manager/GraphicsManager';
 import { LoadingManager } from '../../../../engine/loading/manager/LoadingManager';
+import { PhysicsManager } from '../../../../engine/physics/manager/PhysicsManager';
 
 // TODO: Hacer los scenarios o cambios de escenas y tener en cuenta el dispose de los objetos: https://threejs.org/manual/#en/cleanup
 // https://threejs.org/manual/#en/cleanup
@@ -16,10 +17,11 @@ import { LoadingManager } from '../../../../engine/loading/manager/LoadingManage
 export class ScenarioSketchbook extends Scenario {
   constructor(
     graphicsManager: GraphicsManager,
+    physicsManager: PhysicsManager | null | undefined,
     updatablesManager: UpdatablesManager,
     loadingManager: LoadingManager
   ) {
-    super(graphicsManager, updatablesManager, loadingManager);
+    super(graphicsManager, physicsManager, updatablesManager, loadingManager);
   }
 
   // My lights for this Scenario

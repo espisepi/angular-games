@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { getElementHeight, getElementWidth } from '../utils/FunctionLibrary';
-import { GraphicsManager } from '../graphics/GraphicsManager';
+import { GraphicsManager } from '../graphics/manager/GraphicsManager';
 import { CameraManager } from '../cameras/manager/CameraManager';
 
 export class RendererManager {

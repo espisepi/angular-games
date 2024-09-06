@@ -2,7 +2,7 @@ import { LoadingManager } from '../../../../engine/loading/manager/LoadingManage
 import { Scenario } from '../../../../engine/scenarios/core/Scenario';
 import { ScenarioManager } from '../../../../engine/scenarios/manager/ScenarioManager';
 import { UpdatablesManager } from '../../../../engine/updatables/UpdatablesManager';
-import { GraphicsManager } from '../../../../engine/graphics/GraphicsManager';
+import { GraphicsManager } from '../../../../engine/graphics/manager/GraphicsManager';
 import { ScenarioSketchbook } from '../features/ScenarioSketchbook';
 
 export class ScenarioManagerSketchbook extends ScenarioManager {

@@ -6,7 +6,7 @@ import { TypeControls } from '../controls/enums/TypeControls';
 import { Stats } from '../features/stats/Stats';
 import { UpdatablesManager } from '../updatables/UpdatablesManager';
 import { LoadingManager } from '../loading/manager/LoadingManager';
-import { GraphicsManager } from '../graphics/GraphicsManager';
+import { GraphicsManager } from '../graphics/manager/GraphicsManager';
 import { ScenarioManager } from '../scenarios/manager/ScenarioManager';
 import { CameraManager } from '../cameras/manager/CameraManager';
 

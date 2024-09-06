@@ -1,5 +1,5 @@
 import { LoadingManager } from './../../loading/manager/LoadingManager';
-import { GraphicsManager } from '../../graphics/GraphicsManager';
+import { GraphicsManager } from '../../graphics/manager/GraphicsManager';
 import { UpdatablesManager } from '../../updatables/UpdatablesManager';
 import { IUpdatable } from '../../interfaces/IUpdatable';
 import { Scenario } from '../core/Scenario';

@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { Scenario } from '../../../../engine/scenarios/core/Scenario';
 import { UpdatablesManager } from '../../../../engine/updatables/UpdatablesManager';
-import { GraphicsManager } from '../../../../engine/graphics/GraphicsManager';
+import { GraphicsManager } from '../../../../engine/graphics/manager/GraphicsManager';
 import { LoadingManager } from '../../../../engine/loading/manager/LoadingManager';
 
 // TODO: Hacer los scenarios o cambios de escenas y tener en cuenta el dispose de los objetos: https://threejs.org/manual/#en/cleanup

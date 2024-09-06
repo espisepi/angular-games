@@ -1,4 +1,3 @@
-import * as THREE from 'three';
 import { WorldEngine } from '../../../engine/world/WorldEngine';
 import { IWorldEngineParams } from '../../../engine/interfaces/IWorldEngineParams';
 import { ScenarioManager } from '../../../engine/scenarios/manager/ScenarioManager';

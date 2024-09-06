@@ -1,6 +1,6 @@
 import { GLTFLoader } from 'three-stdlib';
 import { LoadingTrackerEntry } from '../core/LoadingTrackerEntry';
-import { UIManager } from '../../ui/UIManager';
+import { UIManager } from '../../ui/manager/UIManager';
 
 export class LoadingManager {
   public firstLoad: boolean = true;

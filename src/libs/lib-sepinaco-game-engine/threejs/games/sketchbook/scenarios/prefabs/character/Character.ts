@@ -5,7 +5,7 @@ import { VectorSpringSimulator } from '../../../../../engine/physics/core/spring
 import { RelativeSpringSimulator } from '../../../../../engine/physics/core/spring_simulation/RelativeSpringSimulator';
 import { EntityType } from '../../../enums/EntityType';
 import { KeyBinding } from '../../../controls/KeyBinding';
-import { CapsuleCollider } from '../../../../../engine/physics/features/cannon-physics/colliders/CapsuleCollider';
+import { CapsuleCollider, CapsuleColliderParams } from '../../../../../engine/physics/features/cannon-physics/colliders/CapsuleCollider';
 import { GroundImpactData } from './GroundImpactData';
 import { ICharacterState } from '../../../interfaces/ICharacterState';
 import { ICharacterAI } from '../../../interfaces/ICharacterAI';
@@ -78,10 +78,77 @@ export class Character extends THREE.Object3D {
 
     this.mixer = new THREE.AnimationMixer(gltf.scene);
 
-    // this.velocitySimulator = new VectorSpringSimulator(60, this.defaultVelocitySimulatorMass, this.defaultVelocitySimulatorDamping);
-    // this.rotationSimulator = new RelativeSpringSimulator(60, this.defaultRotationSimulatorMass, this.defaultRotationSimulatorDamping);
+    this.velocitySimulator = new VectorSpringSimulator(
+      60,
+      this.defaultVelocitySimulatorMass,
+      this.defaultVelocitySimulatorDamping
+    );
+    this.rotationSimulator = new RelativeSpringSimulator(
+      60,
+      this.defaultRotationSimulatorMass,
+      this.defaultRotationSimulatorDamping
+    );
 
-    // this.viewVector = new THREE.Vector3();
+    this.viewVector = new THREE.Vector3();
+
+    // Actions
+    this.actions = {
+      up: new KeyBinding('KeyW'),
+      down: new KeyBinding('KeyS'),
+      left: new KeyBinding('KeyA'),
+      right: new KeyBinding('KeyD'),
+      run: new KeyBinding('ShiftLeft'),
+      jump: new KeyBinding('Space'),
+      use: new KeyBinding('KeyE'),
+      enter: new KeyBinding('KeyF'),
+      enter_passenger: new KeyBinding('KeyG'),
+      seat_switch: new KeyBinding('KeyX'),
+      primary: new KeyBinding('Mouse0'),
+      secondary: new KeyBinding('Mouse1'),
+    };
+
+    // Physics
+    // Player Capsule
+    this.characterCapsule = new CapsuleCollider({
+      mass: 1,
+      position: new CANNON.Vec3(),
+      height: 0.5,
+      radius: 0.25,
+      segments: 8,
+      friction: 0.0,
+    } as CapsuleColliderParams);
+    // capsulePhysics.physical.collisionFilterMask = ~CollisionGroups.Trimesh;
+    // this.characterCapsule.body.shapes.forEach((shape) => {
+    //   // tslint:disable-next-line: no-bitwise
+    //   shape.collisionFilterMask = ~CollisionGroups.TrimeshColliders;
+    // });
+    // this.characterCapsule.body.allowSleep = false;
+
+    // Move character to different collision group for raycasting
+    // this.characterCapsule.body.collisionFilterGroup = 2;
+
+    // Disable character rotation
+    this.characterCapsule.body.fixedRotation = true;
+    this.characterCapsule.body.updateMassProperties();
+
+    // Ray cast debug
+    const boxGeo = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+    const boxMat = new THREE.MeshLambertMaterial({
+      color: 0xff0000,
+    });
+    this.raycastBox = new THREE.Mesh(boxGeo, boxMat);
+    this.raycastBox.visible = false;
+
+    // Physics pre/post step callback bindings
+    // this.characterCapsule.body.preStep = (body: CANNON.Body) => {
+    //   this.physicsPreStep(body, this);
+    // };
+    // this.characterCapsule.body.postStep = (body: CANNON.Body) => {
+    //   this.physicsPostStep(body, this);
+    // };
+
+    // States
+    // this.setState(new Idle(this));
   }
 
   private setAnimations(animations: THREE.AnimationClip[]): void {

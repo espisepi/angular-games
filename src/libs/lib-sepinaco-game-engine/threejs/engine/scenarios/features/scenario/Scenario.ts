@@ -4,10 +4,7 @@ import { UpdatablesManager } from '../../../updatables/manager/UpdatablesManager
 import { BoxMesh } from '../../prefabs/box/BoxMesh';
 import { LoadingManager } from '../../../loading/manager/LoadingManager';
 
-// TODO: Esto tiene que ser muy basica para sustituirlo
-// por el de ScenarioSketchbook en el game de Sketchbook
 
-// Se encarga de instanciar y anadir a graphicsManager todos los objetos
 export class Scenario {
   private graphicsManager: GraphicsManager;
   private updatablesManager: UpdatablesManager;

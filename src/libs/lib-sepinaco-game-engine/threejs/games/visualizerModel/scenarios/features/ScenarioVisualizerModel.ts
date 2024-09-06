@@ -18,7 +18,7 @@ export class ScenarioVisualizerModel extends Scenario {
     super.initLights();
     // new light
     const light = new THREE.PointLight(0xff0000);
-    this.getGraphicsWorld().add(light);
+    this.getGraphicsManager().add(light);
   }
 
   // My objects for this Scenario
@@ -37,7 +37,7 @@ export class ScenarioVisualizerModel extends Scenario {
       (gltf: any) => {
         // this.loadScene(loadingManager, gltf);
         console.log('OYEEE GLTF: ', gltf);
-        this.getGraphicsWorld().add(gltf.scene);
+        this.getGraphicsManager().add(gltf.scene);
       }
     );
   }

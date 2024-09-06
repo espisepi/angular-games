@@ -29,7 +29,7 @@ export class ScenarioSketchbook extends Scenario {
 
     // new light
     const light = new THREE.PointLight(0xff0000);
-    this.getGraphicsWorld().add(light);
+    this.getGraphicsManager().add(light);
   }
 
   // My objects for this Scenario
@@ -51,7 +51,7 @@ export class ScenarioSketchbook extends Scenario {
       (gltf: any) => {
         // this.loadScene(loadingManager, gltf);
         console.log('OYEEE GLTF: ', gltf);
-        this.getGraphicsWorld().add(gltf.scene);
+        this.getGraphicsManager().add(gltf.scene);
       }
     );
   }

@@ -2,7 +2,7 @@ import { LoadingManager } from './../../loading/manager/LoadingManager';
 import { GraphicsManager } from '../../graphics/manager/GraphicsManager';
 import { UpdatablesManager } from '../../updatables/manager/UpdatablesManager';
 import { IUpdatable } from '../../interfaces/IUpdatable';
-import { Scenario } from '../core/Scenario';
+import { Scenario } from '../features/scenario/Scenario';
 
 // TODO: Hacer los scenarios o cambios de escenas y tener en cuenta el dispose de los objetos: https://threejs.org/manual/#en/cleanup
 // TODO: Seguir la misma arquitectura que con controls: manager, factory, features

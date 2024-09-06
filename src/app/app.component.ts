@@ -5,6 +5,7 @@ import { IWorldSketchbookParams } from '../libs/lib-sepinaco-game-engine/threejs
 import { IWorldEngineParams } from '../libs/lib-sepinaco-game-engine/threejs/engine/interfaces/IWorldEngineParams';
 import { WorldVisualizerModel } from '../libs/lib-sepinaco-game-engine/threejs/games/visualizerModel/world/WorldVisualizerModel';
 import { TypeControls } from '../libs/lib-sepinaco-game-engine/threejs/engine/controls/enums/TypeControls';
+import { Color } from 'three';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +30,13 @@ export class AppComponent implements AfterViewInit {
       parent: this.divElement.nativeElement
     }
     const world = new WorldSketchbook(params);
+
+    // world.getGraphicsManager().getScene().traverse((child: any)=> {
+    //   console.log(child)
+    //   if(child.material) {
+    //     child.material.color = new Color('red')
+    //   }
+    // })
 
     // const params: IWorldEngineParams = {
     //   parent: this.divElement.nativeElement,

@@ -79,6 +79,31 @@ export class WorldEngine {
     this.render();
   }
 
+  public render(): void {
+    requestAnimationFrame(() => {
+      this.render();
+    });
+
+    // Update render RenderEngine
+    const [timeStep, unscaledTimeStep] = this.rendererManager.render();
+
+    // Logic
+    this.update(timeStep, unscaledTimeStep);
+  }
+
+  // Update
+  // Handles all logic updates.
+  public update(timeStep: number, unscaledTimeStep: number): void {
+    this.updatablesManager?.update(timeStep, unscaledTimeStep);
+  }
+
+  private setupStats(): void {
+    this.stats = new Stats(this.updatablesManager);
+  }
+
+
+  // Override Methods to modify when extends WorldEngine ========================
+
   // Override this method to use custom Scenario Manager
   protected createScenarioManager(): ScenarioManager | null {
     const updatablesManager = this.getUpdatablesManager();
@@ -157,30 +182,9 @@ export class WorldEngine {
     return controlsManager;
   }
 
-  private setupStats(): void {
-    this.stats = new Stats(this.updatablesManager);
-  }
 
-  public render(): void {
-    requestAnimationFrame(() => {
-      this.render();
-    });
+  // Public Method to expose to exterior =======================
 
-    // Update render RenderEngine
-    const [timeStep, unscaledTimeStep] = this.rendererManager.render();
-
-    // Logic
-    this.update(timeStep, unscaledTimeStep);
-  }
-
-  // Update
-  // Handles all logic updates.
-  public update(timeStep: number, unscaledTimeStep: number): void {
-    this.updatablesManager?.update(timeStep, unscaledTimeStep);
-  }
-
-
-  // Public Method to expose to exterior
 
   public getGraphicsManager(): GraphicsManager {
     return this.graphicsManager;

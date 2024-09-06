@@ -42,16 +42,20 @@ export class ScenarioSketchbook extends Scenario {
   }
 
   private loadGLTF(): void {
-    if (!this.getLoadingManager()) return;
-    this.getLoadingManager().onFinishedCallback = () => {
-      console.log('finished loading gltf! :)');
+    const loadingManager = this.getLoadingManager();
+    const graphicsManager = this.getGraphicsManager();
+
+    if (!loadingManager) return;
+
+    loadingManager.onFinishedCallback = () => {
+      console.log('finished loading manager! :)');
     };
+
     this.getLoadingManager()?.loadGLTF(
       '/assets/models/boxman.glb',
       (gltf: any) => {
-        // this.loadScene(loadingManager, gltf);
-        console.log('OYEEE GLTF: ', gltf);
-        this.getGraphicsManager().add(gltf.scene);
+        console.log('gltf loaded: ', gltf);
+        graphicsManager.add(gltf.scene);
       }
     );
   }

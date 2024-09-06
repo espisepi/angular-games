@@ -1,7 +1,7 @@
 import * as THREE from 'three';
-import { getElementHeight, getElementWidth } from '../utils/FunctionLibrary';
-import { GraphicsManager } from '../graphics/manager/GraphicsManager';
-import { CameraManager } from '../cameras/manager/CameraManager';
+import { getElementHeight, getElementWidth } from '../../utils/FunctionLibrary';
+import { GraphicsManager } from '../../graphics/manager/GraphicsManager';
+import { CameraManager } from '../../cameras/manager/CameraManager';
 
 export class RendererManager {
   private clock: THREE.Clock;

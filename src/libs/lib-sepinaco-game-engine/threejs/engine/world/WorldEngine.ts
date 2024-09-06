@@ -1,5 +1,5 @@
 import { IWorldEngineParams } from '../interfaces/IWorldEngineParams';
-import { RendererManager } from '../renderer/RendererManager';
+import { RendererManager } from '../renderer/manager/RendererManager';
 import { getElementHeight, getElementWidth } from '../utils/FunctionLibrary';
 import { ControlsManager } from '../controls/manager/ControlsManager';
 import { TypeControls } from '../controls/enums/TypeControls';

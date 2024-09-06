@@ -60,4 +60,8 @@ export class Scenario {
   public getLoadingManager(): LoadingManager {
     return this.loadingManager;
   }
+
+  public getPhysicsManager(): PhysicsManager | null | undefined {
+    return this.physicsManager;
+  }
 }

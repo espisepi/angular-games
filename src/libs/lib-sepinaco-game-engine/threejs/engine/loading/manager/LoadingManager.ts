@@ -1,4 +1,4 @@
-import { GLTFLoader } from 'three-stdlib';
+import { GLTF, GLTFLoader } from 'three-stdlib';
 import { LoadingTrackerEntry } from '../core/LoadingTrackerEntry';
 import { UIManager } from '../../ui/manager/UIManager';
 
@@ -19,7 +19,7 @@ export class LoadingManager {
 
     this.gltfLoader.load(
       path,
-      (gltf: any) => {
+      (gltf: GLTF) => {
         onLoadingFinished(gltf);
         this.doneLoading(trackerEntry);
       },

@@ -91,8 +91,7 @@ export class WorldEngine {
     this.update(timeStep, unscaledTimeStep);
   }
 
-  // Update
-  // Handles all logic updates.
+  // Update (Handles all logic updates)
   public update(timeStep: number, unscaledTimeStep: number): void {
     this.updatablesManager?.update(timeStep, unscaledTimeStep);
   }

@@ -6,7 +6,7 @@ import { KeyBinding } from './KeyBinding';
 // import _ = require('lodash'); // NO USAR LODASH
 import { IUpdatable } from '../../../engine/interfaces/IUpdatable';
 import { WorldSketchbook } from '../world/WorldSketchbook';
-import { UpdatablesManager } from '../../../engine/updatables/UpdatablesManager';
+import { UpdatablesManager } from '../../../engine/updatables/manager/UpdatablesManager';
 import { InputManager } from './InputManager';
 
 export class CameraOperator implements IInputReceiver, IUpdatable {

@@ -1,4 +1,4 @@
-import { IUpdatable } from '../interfaces/IUpdatable';
+import { IUpdatable } from '../../interfaces/IUpdatable';
 
 export class UpdatablesManager {
   private _updatables: IUpdatable[] = [];

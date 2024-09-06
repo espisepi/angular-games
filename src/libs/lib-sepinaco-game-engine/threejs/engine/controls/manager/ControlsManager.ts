@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { ControlsFactory } from '../factory/ControlsFactory';
 import { AbstractControl } from '../core/AbstractControls';
 import { TypeControls } from '../enums/TypeControls';
-import { UpdatablesManager } from '../../updatables/UpdatablesManager';
+import { UpdatablesManager } from '../../updatables/manager/UpdatablesManager';
 import { IUpdatable } from '../../interfaces/IUpdatable';
 
 // Singletone Class

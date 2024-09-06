@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { GraphicsManager } from '../../graphics/manager/GraphicsManager';
-import { UpdatablesManager } from '../../updatables/UpdatablesManager';
+import { UpdatablesManager } from '../../updatables/manager/UpdatablesManager';
 import { BoxMesh } from '../prefabs/box/BoxMesh';
 import { LoadingManager } from '../../loading/manager/LoadingManager';
 

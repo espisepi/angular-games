@@ -1,7 +1,7 @@
 import { LoadingManager } from '../../../../engine/loading/manager/LoadingManager';
 import { Scenario } from '../../../../engine/scenarios/core/Scenario';
 import { ScenarioManager } from '../../../../engine/scenarios/manager/ScenarioManager';
-import { UpdatablesManager } from '../../../../engine/updatables/UpdatablesManager';
+import { UpdatablesManager } from '../../../../engine/updatables/manager/UpdatablesManager';
 import { GraphicsManager } from '../../../../engine/graphics/manager/GraphicsManager';
 import { ScenarioSketchbook } from '../features/ScenarioSketchbook';
 

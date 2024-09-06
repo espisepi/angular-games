@@ -1,7 +1,7 @@
 import { IInputReceiver } from '../interfaces/IInputReceiver';
 import { IUpdatable } from '../../../engine/interfaces/IUpdatable';
 import { WorldSketchbook } from '../world/WorldSketchbook';
-import { UpdatablesManager } from '../../../engine/updatables/UpdatablesManager';
+import { UpdatablesManager } from '../../../engine/updatables/manager/UpdatablesManager';
 import { CameraOperator } from './CameraOperator';
 
 export class InputManager implements IUpdatable {

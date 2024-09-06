@@ -4,7 +4,7 @@ import { getElementHeight, getElementWidth } from '../utils/FunctionLibrary';
 import { ControlsManager } from '../controls/manager/ControlsManager';
 import { TypeControls } from '../controls/enums/TypeControls';
 import { Stats } from '../features/stats/Stats';
-import { UpdatablesManager } from '../updatables/UpdatablesManager';
+import { UpdatablesManager } from '../updatables/manager/UpdatablesManager';
 import { LoadingManager } from '../loading/manager/LoadingManager';
 import { GraphicsManager } from '../graphics/manager/GraphicsManager';
 import { ScenarioManager } from '../scenarios/manager/ScenarioManager';

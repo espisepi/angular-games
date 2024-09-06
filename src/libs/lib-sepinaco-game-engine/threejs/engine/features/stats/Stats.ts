@@ -1,6 +1,6 @@
 import StatsImpl from 'stats.js';
 import { IUpdatable } from '../../interfaces/IUpdatable';
-import { UpdatablesManager } from '../../updatables/UpdatablesManager';
+import { UpdatablesManager } from '../../updatables/manager/UpdatablesManager';
 
 export class Stats implements IUpdatable {
   public updateOrder: number = 9;

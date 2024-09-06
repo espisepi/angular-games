@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { Scenario } from '../../../../engine/scenarios/core/Scenario';
-import { UpdatablesManager } from '../../../../engine/updatables/UpdatablesManager';
+import { UpdatablesManager } from '../../../../engine/updatables/manager/UpdatablesManager';
 import { GraphicsManager } from '../../../../engine/graphics/manager/GraphicsManager';
 import { LoadingManager } from '../../../../engine/loading/manager/LoadingManager';
 

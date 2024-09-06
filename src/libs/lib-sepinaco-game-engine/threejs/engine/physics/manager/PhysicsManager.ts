@@ -1,7 +1,7 @@
 import * as CANNON from 'cannon-es';
 import { IUpdatable } from '../../interfaces/IUpdatable';
 
-export class PhysicsManager implements IUpdatable{
+export class PhysicsManager implements IUpdatable {
   updateOrder: number = 1;
 
   private physicsWorld: CANNON.World;
@@ -23,7 +23,6 @@ export class PhysicsManager implements IUpdatable{
     });
     return world;
   }
-
 
   // Public methods to expose exterior
 

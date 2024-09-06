@@ -1,9 +1,12 @@
 import * as THREE from 'three';
+import * as CANNON from 'cannon-es';
 import { GLTF } from 'three-stdlib';
 import { VectorSpringSimulator } from '../../../../../engine/physics/core/spring_simulation/VectorSpringSimulator';
 import { RelativeSpringSimulator } from '../../../../../engine/physics/core/spring_simulation/RelativeSpringSimulator';
 import { EntityType } from '../../../enums/EntityType';
 import { KeyBinding } from '../../../controls/KeyBinding';
+import { CapsuleCollider } from '../../../../../engine/physics/features/cannon-physics/colliders/CapsuleCollider';
+import { GroundImpactData } from './GroundImpactData';
 
 export class Character extends THREE.Object3D {
   public updateOrder: number = 1;
@@ -34,19 +37,18 @@ export class Character extends THREE.Object3D {
   public rotationSimulator!: RelativeSpringSimulator;
   public viewVector!: THREE.Vector3;
   public actions!: { [action: string]: KeyBinding };
-  // public characterCapsule: CapsuleCollider;
+  public characterCapsule!: CapsuleCollider;
 
   // Ray casting
-  // public rayResult: CANNON.RaycastResult = new CANNON.RaycastResult();
-  // public rayHasHit: boolean = false;
-  // public rayCastLength: number = 0.57;
-  // public raySafeOffset: number = 0.03;
-  // public wantsToJump: boolean = false;
-  // public initJumpSpeed: number = -1;
-  // public groundImpactData: GroundImpactData = new GroundImpactData();
-  // public raycastBox: THREE.Mesh;
+  public rayResult: CANNON.RaycastResult = new CANNON.RaycastResult();
+  public rayHasHit: boolean = false;
+  public rayCastLength: number = 0.57;
+  public raySafeOffset: number = 0.03;
+  public wantsToJump: boolean = false;
+  public initJumpSpeed: number = -1;
+  public groundImpactData: GroundImpactData = new GroundImpactData();
+  public raycastBox!: THREE.Mesh;
 
-  // public world: World;
   // public charState: ICharacterState;
   // public behaviour: ICharacterAI;
 

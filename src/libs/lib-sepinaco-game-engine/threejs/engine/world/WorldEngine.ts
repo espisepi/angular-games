@@ -101,7 +101,6 @@ export class WorldEngine {
     this.stats = new Stats(this.updatablesManager);
   }
 
-
   // Override Methods to modify when extends WorldEngine ========================
 
   // Override this method to use custom Scenario Manager
@@ -135,11 +134,7 @@ export class WorldEngine {
     const cameraManager = this.getCameraManager();
     const graphicsManager = this.getGraphicsManager();
 
-    return new RendererManager(
-      parent,
-      cameraManager,
-      graphicsManager
-    );
+    return new RendererManager(parent, cameraManager, graphicsManager);
   }
 
   // Override this method to use custom Graphics Manager
@@ -151,7 +146,6 @@ export class WorldEngine {
   protected createControlsManager(
     typeControls?: TypeControls
   ): ControlsManager | null {
-
     const updatablesManager = this.getUpdatablesManager();
 
     const cameraManager = this.getCameraManager();
@@ -162,7 +156,7 @@ export class WorldEngine {
     const domElement = renderer?.domElement;
 
     if (!updatablesManager) return null;
-    if(!domElement) return null;
+    if (!domElement) return null;
 
     // Create controlsManager
     const controlsManager = new ControlsManager(
@@ -182,9 +176,7 @@ export class WorldEngine {
     return controlsManager;
   }
 
-
   // Public Method to expose to exterior =======================
-
 
   public getGraphicsManager(): GraphicsManager {
     return this.graphicsManager;
@@ -217,5 +209,4 @@ export class WorldEngine {
   public getParent(): HTMLElement {
     return this.parent;
   }
-
 }

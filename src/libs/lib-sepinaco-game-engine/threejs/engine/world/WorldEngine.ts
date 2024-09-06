@@ -59,8 +59,8 @@ export class WorldEngine {
     // Create Renderer Manager (Threejs renderer) (can be override by custom renderer manager)
     this.rendererManager = this.createRendererManager();
 
-    // Create Loading Manager
-    this.loadingManager = new LoadingManager();
+    // Create Loading Manager (can be override by custom loading manager)
+    this.loadingManager = this.createLoadingManager();
 
     // Create Updatables Manager
     this.updatablesManager = new UpdatablesManager();
@@ -102,6 +102,11 @@ export class WorldEngine {
   }
 
   // Override Methods to modify when extends WorldEngine ========================
+
+  // Override this method to use custom Loading Manager
+  protected createLoadingManager(): LoadingManager {
+    return new LoadingManager();
+  }
 
   // Override this method to use custom Scenario Manager
   protected createScenarioManager(): ScenarioManager | null {

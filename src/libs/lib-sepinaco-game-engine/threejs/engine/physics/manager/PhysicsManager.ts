@@ -23,4 +23,11 @@ export class PhysicsManager implements IUpdatable{
     });
     return world;
   }
+
+
+  // Public methods to expose exterior
+
+  public getPhysicsWorld(): CANNON.World {
+    return this.physicsWorld;
+  }
 }

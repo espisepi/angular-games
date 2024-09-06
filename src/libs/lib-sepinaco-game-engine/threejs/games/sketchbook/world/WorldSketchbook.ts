@@ -5,7 +5,6 @@ import { IWorldEngineParams } from '../../../engine/interfaces/IWorldEngineParam
 import { IWorldSketchbookParams } from '../interfaces/IWorldSketchbookParams';
 import { ScenarioManager } from '../../../engine/scenarios/manager/ScenarioManager';
 import { ScenarioManagerSketchbook } from '../scenarios/manager/ScenarioManagerSketchbook';
-import { GraphicsManager } from '../../../engine/graphics/GraphicsManager';
 
 export class WorldSketchbook extends WorldEngine {
   public inputManager?: InputManager | null;

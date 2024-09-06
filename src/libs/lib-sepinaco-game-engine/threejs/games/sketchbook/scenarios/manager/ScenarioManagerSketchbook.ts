@@ -9,7 +9,7 @@ import { PhysicsManager } from '../../../../engine/physics/manager/PhysicsManage
 export class ScenarioManagerSketchbook extends ScenarioManager {
   constructor(
     graphicsManager: GraphicsManager,
-    physicsManager: PhysicsManager,
+    physicsManager: PhysicsManager | null | undefined,
     updatablesManager: UpdatablesManager,
     loadingManager: LoadingManager
   ) {

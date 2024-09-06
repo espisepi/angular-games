@@ -55,7 +55,7 @@ export class WorldSketchbook extends WorldEngine {
     const graphicsManager = this.getGraphicsManager();
     const physicsManager = this.getPhysicsManager();
 
-    if (updatablesManager && loadingManager && physicsManager) {
+    if (updatablesManager && loadingManager) {
       return new ScenarioManagerSketchbook(
         graphicsManager,
         physicsManager,

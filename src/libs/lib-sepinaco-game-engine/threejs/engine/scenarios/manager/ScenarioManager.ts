@@ -16,7 +16,7 @@ import { PhysicsManager } from '../../physics/manager/PhysicsManager';
 // porque quiero hacer IUpdatables
 export class ScenarioManager {
   private graphicsManager: GraphicsManager;
-  private physicsManager: PhysicsManager;
+  private physicsManager?: PhysicsManager | null | undefined;
   private updatablesManager: UpdatablesManager;
   private loadingManager: LoadingManager;
 
@@ -24,7 +24,7 @@ export class ScenarioManager {
 
   constructor(
     graphicsManager: GraphicsManager,
-    physicsManager: PhysicsManager,
+    physicsManager: PhysicsManager | null | undefined,
     updatablesManager: UpdatablesManager,
     loadingManager: LoadingManager
   ) {
@@ -61,5 +61,9 @@ export class ScenarioManager {
 
   public getLoadingManager(): LoadingManager {
     return this.loadingManager;
+  }
+
+  public getPhysicsManager(): PhysicsManager | undefined | null {
+    return this.physicsManager;
   }
 }

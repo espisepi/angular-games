@@ -131,7 +131,7 @@ export class WorldEngine {
     const graphicsManager = this.getGraphicsManager();
     const physicsManager = this.getPhysicsManager();
 
-    if (updatablesManager && loadingManager && physicsManager) {
+    if (updatablesManager && loadingManager) {
       return new ScenarioManager(
         graphicsManager,
         physicsManager,

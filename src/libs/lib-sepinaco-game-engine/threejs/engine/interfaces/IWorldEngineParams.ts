@@ -4,4 +4,5 @@ export interface IWorldEngineParams {
   parent: HTMLElement;
   typeControls?: TypeControls;
   hasStats?: boolean;
+  hasPhysics?: boolean;
 }

@@ -9,6 +9,7 @@ import { LoadingManager } from '../loading/manager/LoadingManager';
 import { GraphicsManager } from '../graphics/manager/GraphicsManager';
 import { ScenarioManager } from '../scenarios/manager/ScenarioManager';
 import { CameraManager } from '../cameras/manager/CameraManager';
+import { PhysicsManager } from '../physics/manager/PhysicsManager';
 
 export class WorldEngine {
   private graphicsManager: GraphicsManager;
@@ -24,6 +25,8 @@ export class WorldEngine {
   private rendererManager: RendererManager;
 
   private scenarioManager?: ScenarioManager | null;
+
+  private physicsManager?: PhysicsManager;
 
   public parent: HTMLElement;
 
@@ -45,6 +48,7 @@ export class WorldEngine {
     const { parent } = params;
     const { typeControls } = params;
     const { hasStats = true } = params;
+    const { hasPhysics = true } = params;
 
     this.parent = parent;
 
@@ -68,6 +72,11 @@ export class WorldEngine {
 
     //  Create Scenario Manager (can be override by custom scenario manager)
     this.scenarioManager = this.createScenarioManager();
+
+    if(hasPhysics) {
+      //  Create Physics Manager (can be override by custom physics manager)
+      this.physicsManager = this.createPhysicsManager();
+    }
 
     if (hasStats) {
       this.setupStats();
@@ -99,6 +108,11 @@ export class WorldEngine {
   }
 
   // Override Methods to modify when extends WorldEngine ========================
+
+  // Override this method to use custom Physics Manager
+  protected createPhysicsManager(): PhysicsManager {
+    return new PhysicsManager();
+  }
 
   // Override this method to use custom Loading Manager
   protected createUpdatablesManager(): UpdatablesManager {

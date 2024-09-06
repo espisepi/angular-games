@@ -1,5 +1,3 @@
-import * as THREE from 'three';
-import { IUpdatable } from '../interfaces/IUpdatable';
 import { IWorldEngineParams } from '../interfaces/IWorldEngineParams';
 import { RendererManager } from '../renderer/RendererManager';
 import { getElementHeight, getElementWidth } from '../utils/FunctionLibrary';

@@ -5,6 +5,7 @@ import { GraphicsManager } from '../../../../engine/graphics/manager/GraphicsMan
 import { LoadingManager } from '../../../../engine/loading/manager/LoadingManager';
 import { PhysicsManager } from '../../../../engine/physics/manager/PhysicsManager';
 import { BoxMan } from '../prefabs/boxman/BoxMan';
+import { CharacterManager } from '../prefabs/character/CharacterManager';
 
 // TODO: Hacer los scenarios o cambios de escenas y tener en cuenta el dispose de los objetos: https://threejs.org/manual/#en/cleanup
 // https://threejs.org/manual/#en/cleanup
@@ -45,7 +46,9 @@ export class ScenarioSketchbook extends Scenario {
     const updatablesManager = this.getUpdatablesManager();
     const loadingManager = this.getLoadingManager();
 
-    const boxMan = new BoxMan(loadingManager,updatablesManager,graphicsManager,physicsManager);
+    // const boxMan = new BoxMan(loadingManager,updatablesManager,graphicsManager,physicsManager);
+
+    const characterManager = new CharacterManager(loadingManager,updatablesManager,graphicsManager,physicsManager);
 
   }
 

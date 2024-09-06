@@ -4,6 +4,7 @@ import { UpdatablesManager } from '../../../../engine/updatables/manager/Updatab
 import { GraphicsManager } from '../../../../engine/graphics/manager/GraphicsManager';
 import { LoadingManager } from '../../../../engine/loading/manager/LoadingManager';
 import { PhysicsManager } from '../../../../engine/physics/manager/PhysicsManager';
+import { BoxMan } from '../prefabs/boxman/BoxMan';
 
 // TODO: Hacer los scenarios o cambios de escenas y tener en cuenta el dispose de los objetos: https://threejs.org/manual/#en/cleanup
 // https://threejs.org/manual/#en/cleanup
@@ -39,26 +40,14 @@ export class ScenarioSketchbook extends Scenario {
     // init default object
     super.initObjects();
 
-    // Load GLTF
-    this.loadGLTF();
-  }
-
-  private loadGLTF(): void {
-    const loadingManager = this.getLoadingManager();
     const graphicsManager = this.getGraphicsManager();
+    const physicsManager = this.getPhysicsManager();
+    const updatablesManager = this.getUpdatablesManager();
+    const loadingManager = this.getLoadingManager();
 
-    if (!loadingManager) return;
+    const boxMan = new BoxMan(loadingManager,updatablesManager,graphicsManager,physicsManager);
 
-    loadingManager.onFinishedCallback = () => {
-      console.log('finished loading manager! :)');
-    };
-
-    this.getLoadingManager()?.loadGLTF(
-      '/assets/models/boxman.glb',
-      (gltf: any) => {
-        console.log('gltf loaded: ', gltf);
-        graphicsManager.add(gltf.scene);
-      }
-    );
   }
+
+
 }

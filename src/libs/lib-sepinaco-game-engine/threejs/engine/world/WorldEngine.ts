@@ -63,7 +63,7 @@ export class WorldEngine {
     this.loadingManager = this.createLoadingManager();
 
     // Create Updatables Manager
-    this.updatablesManager = new UpdatablesManager();
+    this.updatablesManager = this.createUpdatablesManager();
 
     //  Create Controls Manager (can be override by custom controls manager)
     this.controlsManager = this.createControlsManager(typeControls);
@@ -102,6 +102,11 @@ export class WorldEngine {
   }
 
   // Override Methods to modify when extends WorldEngine ========================
+
+  // Override this method to use custom Loading Manager
+  protected createUpdatablesManager(): UpdatablesManager {
+    return new UpdatablesManager();
+  }
 
   // Override this method to use custom Loading Manager
   protected createLoadingManager(): LoadingManager {

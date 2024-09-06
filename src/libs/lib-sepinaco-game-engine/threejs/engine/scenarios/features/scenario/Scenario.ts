@@ -38,7 +38,7 @@ export class Scenario {
   // override this method to create custom objects
   protected initObjects(): void {
     const updatablesManager = this.getUpdatablesManager();
-    const graphicsManager = this.getGraphicsManager()
+    const graphicsManager = this.getGraphicsManager();
 
     // create mesh
     const mesh = new BoxMesh();

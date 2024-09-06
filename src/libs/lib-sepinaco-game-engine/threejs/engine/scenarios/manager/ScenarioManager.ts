@@ -3,6 +3,7 @@ import { GraphicsManager } from '../../graphics/manager/GraphicsManager';
 import { UpdatablesManager } from '../../updatables/manager/UpdatablesManager';
 import { IUpdatable } from '../../interfaces/IUpdatable';
 import { Scenario } from '../features/scenario/Scenario';
+import { PhysicsManager } from '../../physics/manager/PhysicsManager';
 
 // TODO: Hacer los scenarios o cambios de escenas y tener en cuenta el dispose de los objetos: https://threejs.org/manual/#en/cleanup
 // TODO: Seguir la misma arquitectura que con controls: manager, factory, features
@@ -15,6 +16,7 @@ import { Scenario } from '../features/scenario/Scenario';
 // porque quiero hacer IUpdatables
 export class ScenarioManager {
   private graphicsManager: GraphicsManager;
+  private physicsManager: PhysicsManager;
   private updatablesManager: UpdatablesManager;
   private loadingManager: LoadingManager;
 
@@ -22,10 +24,12 @@ export class ScenarioManager {
 
   constructor(
     graphicsManager: GraphicsManager,
+    physicsManager: PhysicsManager,
     updatablesManager: UpdatablesManager,
     loadingManager: LoadingManager
   ) {
     this.graphicsManager = graphicsManager;
+    this.physicsManager = physicsManager;
     this.updatablesManager = updatablesManager;
     this.loadingManager = loadingManager;
 

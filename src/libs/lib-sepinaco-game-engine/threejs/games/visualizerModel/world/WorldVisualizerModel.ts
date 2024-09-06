@@ -2,6 +2,7 @@ import { WorldEngine } from '../../../engine/world/WorldEngine';
 import { IWorldEngineParams } from '../../../engine/interfaces/IWorldEngineParams';
 import { ScenarioManager } from '../../../engine/scenarios/manager/ScenarioManager';
 import { ScenarioManagerVisualizerModel } from '../scenarios/manager/ScenarioManagerVisualizerModel';
+import { PhysicsManager } from '../../../engine/physics/manager/PhysicsManager';
 
 export class WorldVisualizerModel extends WorldEngine {
   constructor(params: IWorldEngineParams) {
@@ -12,10 +13,12 @@ export class WorldVisualizerModel extends WorldEngine {
     const updatablesManager = this.getUpdatablesManager();
     const loadingManager = this.getLoadingManager();
     const graphicsManager = this.getGraphicsManager();
+    const physicsManager = this.getPhysicsManager();
 
-    if (updatablesManager && loadingManager) {
+    if (updatablesManager && loadingManager && physicsManager) {
       return new ScenarioManagerVisualizerModel(
         graphicsManager,
+        physicsManager,
         updatablesManager,
         loadingManager
       );

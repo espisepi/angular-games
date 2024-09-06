@@ -55,6 +55,11 @@ export class WorldEngine {
     // Create Graphics Manager (Threejs scene) (can be override by custom graphics manager)
     this.graphicsManager = this.createGraphicsManager();
 
+    if(hasPhysics) {
+      //  Create Physics Manager (can be override by custom physics manager)
+      this.physicsManager = this.createPhysicsManager();
+    }
+
     // Create Camera Manager (Threejs camera) (can be override by custom camera manager)
     this.cameraManager = this.createCameraManager();
 
@@ -72,11 +77,6 @@ export class WorldEngine {
 
     //  Create Scenario Manager (can be override by custom scenario manager)
     this.scenarioManager = this.createScenarioManager();
-
-    if(hasPhysics) {
-      //  Create Physics Manager (can be override by custom physics manager)
-      this.physicsManager = this.createPhysicsManager();
-    }
 
     if (hasStats) {
       this.setupStats();
@@ -129,10 +129,12 @@ export class WorldEngine {
     const updatablesManager = this.getUpdatablesManager();
     const loadingManager = this.getLoadingManager();
     const graphicsManager = this.getGraphicsManager();
+    const physicsManager = this.getPhysicsManager();
 
-    if (updatablesManager && loadingManager) {
+    if (updatablesManager && loadingManager && physicsManager) {
       return new ScenarioManager(
         graphicsManager,
+        physicsManager,
         updatablesManager,
         loadingManager
       );
@@ -201,6 +203,10 @@ export class WorldEngine {
 
   public getGraphicsManager(): GraphicsManager {
     return this.graphicsManager;
+  }
+
+  public getPhysicsManager(): PhysicsManager | undefined {
+    return this.physicsManager;
   }
 
   public getCameraManager(): CameraManager {

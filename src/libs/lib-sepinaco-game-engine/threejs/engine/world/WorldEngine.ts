@@ -10,6 +10,7 @@ import { GraphicsManager } from '../graphics/manager/GraphicsManager';
 import { ScenarioManager } from '../scenarios/manager/ScenarioManager';
 import { CameraManager } from '../cameras/manager/CameraManager';
 import { PhysicsManager } from '../physics/manager/PhysicsManager';
+import { TypePhysics } from '../physics/enums/TypePhysics';
 
 export class WorldEngine {
   private graphicsManager: GraphicsManager;
@@ -49,6 +50,7 @@ export class WorldEngine {
     const { typeControls } = params;
     const { hasStats = true } = params;
     const { hasPhysics = true } = params;
+    const { typePhysics = TypePhysics.CANNON } = params;
 
     this.parent = parent;
 
@@ -61,6 +63,7 @@ export class WorldEngine {
     if(hasPhysics) {
       //  Create Physics Manager (can be override by custom physics manager)
       this.physicsManager = this.createPhysicsManager();
+      this.physicsManager?.setPhysics(typePhysics);
     }
 
     // Create Camera Manager (Threejs camera) (can be override by custom camera manager)

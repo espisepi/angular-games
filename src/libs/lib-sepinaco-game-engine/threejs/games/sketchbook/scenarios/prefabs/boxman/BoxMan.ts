@@ -63,7 +63,7 @@ export class BoxMan implements IUpdatable {
 
   private loadPhysics(): void {
     const physicsManager = this.getPhysicsManager();
-    const world = physicsManager?.getPhysicsWorld();
+    const world = physicsManager?.getCurrentPhysics()?.getPhysicsWorld();
 
     if (!physicsManager) return;
     if (!world) return;

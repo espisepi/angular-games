@@ -26,7 +26,7 @@ export class WorldEngine {
 
   private scenarioManager?: ScenarioManager | null;
 
-  private physicsManager?: PhysicsManager;
+  private physicsManager?: PhysicsManager | null | undefined;
 
   public parent: HTMLElement;
 
@@ -52,6 +52,9 @@ export class WorldEngine {
 
     this.parent = parent;
 
+    // Create Updatables Manager
+    this.updatablesManager = this.createUpdatablesManager();
+
     // Create Graphics Manager (Threejs scene) (can be override by custom graphics manager)
     this.graphicsManager = this.createGraphicsManager();
 
@@ -68,9 +71,6 @@ export class WorldEngine {
 
     // Create Loading Manager (can be override by custom loading manager)
     this.loadingManager = this.createLoadingManager();
-
-    // Create Updatables Manager
-    this.updatablesManager = this.createUpdatablesManager();
 
     //  Create Controls Manager (can be override by custom controls manager)
     this.controlsManager = this.createControlsManager(typeControls);
@@ -110,8 +110,12 @@ export class WorldEngine {
   // Override Methods to modify when extends WorldEngine ========================
 
   // Override this method to use custom Physics Manager
-  protected createPhysicsManager(): PhysicsManager {
-    return new PhysicsManager();
+  protected createPhysicsManager(): PhysicsManager | null {
+    const updatablesManager = this.getUpdatablesManager();
+
+    if(!updatablesManager) return null;
+
+    return new PhysicsManager(updatablesManager);
   }
 
   // Override this method to use custom Loading Manager
@@ -205,7 +209,7 @@ export class WorldEngine {
     return this.graphicsManager;
   }
 
-  public getPhysicsManager(): PhysicsManager | undefined {
+  public getPhysicsManager(): PhysicsManager | undefined | null {
     return this.physicsManager;
   }
 
